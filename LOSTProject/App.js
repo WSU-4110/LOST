@@ -5,9 +5,16 @@
  * @format
  * @flow strict-local
  */
-
+ import Home from "./Home";
+ import Search from "./Search";
 import React from 'react';
+import MusicPlayer from "./MusicPlayer";
+import Error from "./Error";
+import Settings from "./Settings";
+import Loading from "./Loading";
+import Auth from "./Auth";
 import type {Node} from 'react';
+import { NativeRouter, Route,Routes, Link } from "react-router-native";
 import {
   SafeAreaView,
   ScrollView,
@@ -70,20 +77,20 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+             
+          <NativeRouter>
+       
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/search" element={<Search />}></Route>
+          <Route path="/musicplayer" element={<MusicPlayer />}></Route>
+          <Route path="/error" element={<Error />}></Route>
+          <Route path="/settings" element={<Settings />}></Route>
+          <Route path="/loading" element={<Loading />}></Route>
+          <Route path="/auth" element={<Auth />}></Route>
+        </Routes>
+       
+      </NativeRouter>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -110,3 +117,4 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+
