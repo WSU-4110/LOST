@@ -12,7 +12,7 @@ db = SQLAlchemy(app)
 
 
 
-@app.route("/test")
+@app.route("http://localhost:3000")
 def testing():
     return {"customer": ["Jayne", "Lisa", "Jon"]}
 
