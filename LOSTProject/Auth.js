@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { Link } from "react-router-native";
-const MusicPlayer = () => {
+const Auth = () => {
   return (
     <View >
-    <Text>This is the Music Player page</Text>
+    <Text>This is the Authentication page</Text>
     <Link to="/">
       <Text>Back to Home</Text>
     </Link>
@@ -12,5 +12,5 @@ const MusicPlayer = () => {
   );
 };
 
-export default MusicPlayer;
+export default Auth;
  
