@@ -5,15 +5,15 @@
  * @format
  * @flow strict-local
  */
- import Home from "./Home";
- import Search from "./Search";
+import Home from "./Home";
+import Search from "./Search";
 import React from 'react';
 import MusicPlayer from "./MusicPlayer";
 import Error from "./Error";
 import Settings from "./Settings";
 import Loading from "./Loading";
 import Auth from "./Auth";
-import type {Node} from 'react';
+
 import { NativeRouter, Route,Routes, Link } from "react-router-native";
 import {
   SafeAreaView,
@@ -33,7 +33,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const Section = ({children, title}): Node => {
+const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -59,7 +59,7 @@ const Section = ({children, title}): Node => {
   );
 };
 
-const App: () => Node = () => {
+const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
