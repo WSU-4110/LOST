@@ -1,19 +1,12 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-import Home from "./Home";
-import Search from "./Search";
+
+ import Home from "./Home";
+ import Search from "./Search";
 import React from 'react';
 import MusicPlayer from "./MusicPlayer";
 import Error from "./Error";
 import Settings from "./Settings";
 import Loading from "./Loading";
 import Auth from "./Auth";
-
 import { NativeRouter, Route,Routes, Link } from "react-router-native";
 import {
   SafeAreaView,
