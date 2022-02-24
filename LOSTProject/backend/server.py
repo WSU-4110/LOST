@@ -1,20 +1,51 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, request, url_for, session, redirect
+from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String
+#import spotipy
+from spotipy.oauth2 import SpotifyOAuth
 
 app = Flask(__name__)
 
-# connecting to SQL database, database://root:pw format
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@localhost/databasenamegoeshere'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# DEFINE THE DATABASE CREDENTIALS
+user = 'root'
+password = ''
+host = 'localhost'
+port = 3306
+database = 'test'
 
-# database stored in db variable
-db = SQLAlchemy(app)
+# PYTHON FUNCTION TO CONNECT TO THE MYSQL DATABASE AND
+# RETURN THE SQLACHEMY ENGINE OBJECT
+def get_connection():
+	return create_engine(
+		url="mysql+pymysql://{0}:{1}@{2}:{3}/{4}".format(
+			user, password, host, port, database
+		, echo = True)
+	)
+
+engine = get_connection()
+
+if __name__ == '__main__':
+    meta = MetaData()
+    # creation of an example database for testing purposes
+    students = Table(
+    'students', meta, 
+    Column('id', Integer, primary_key = True), 
+    Column('name', String(20)), 
+    Column('lastname', String(20)),
+    )
+    meta.create_all(engine)
+    
+try:
+	# GET THE CONNECTION OBJECT (ENGINE) FOR THE DATABASE
+	engine = get_connection()
+	print(f"Connection to the {host} for user {user} created successfully.")
+except Exception as ex:
+	print("Connection could not be made due to the following error: \n", ex)
 
 
 
-@app.route("http://localhost:3000")
-def testing():
-    return {"customer": ["Jayne", "Lisa", "Jon"]}
+# @app.route("http://localhost:3000")
+# def testing():
+#     return {"customer": ["Jayne", "Lisa", "Jon"]}
 
 
 # debug=true when developing
