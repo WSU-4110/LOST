@@ -21,6 +21,7 @@ def get_connection():
 		, echo = True)
 	)
 
+# Saving SQLAlchemy engine obj into engine var
 engine = get_connection()
 
 if __name__ == '__main__':
@@ -34,6 +35,10 @@ if __name__ == '__main__':
     )
     meta.create_all(engine)
     
+    ins = students.insert()
+    ins = students.insert().values(name = 'Ravi', lastname = 'Kapoor')
+    conn = engine.connect()
+    result = conn.execute(ins)
 try:
 	# GET THE CONNECTION OBJECT (ENGINE) FOR THE DATABASE
 	engine = get_connection()
