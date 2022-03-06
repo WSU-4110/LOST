@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Home from './Home';
 
 
 const Search = () => {
@@ -7,6 +7,7 @@ const Search = () => {
         <div align='center'>
           <h1>This is the Search page</h1>
         </div>
+        /* <div className="App"></div> */
     )
 }
 
