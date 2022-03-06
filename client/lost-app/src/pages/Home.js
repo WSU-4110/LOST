@@ -1,8 +1,15 @@
 import '../styles/App.css';
 import React, { useEffect, useState} from 'react';
 import axios from 'axios';
+import Loading from './Loading';
 
 function Home(){
+const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+  })
   const CLIENT_ID = "814c4cd6f699496faf7fb59dac61f66a"
   const REDIRECT_URI = "http://localhost:3000"
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
@@ -52,8 +59,13 @@ function Home(){
         </div>
     ))
 }
-
+  if(isLoading){
+    return(
+<Loading />
+    );
+  }
   return (
+  
     <div className="App">
             <header className="App-header">
                 <h1>Spotify React</h1>
