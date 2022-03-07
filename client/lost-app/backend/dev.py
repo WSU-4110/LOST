@@ -24,7 +24,25 @@ def get_connection():
 # Saving SQLAlchemy engine obj into engine var
 engine = get_connection()
 
+#app.route('/createAttribute')
+#def create_attribute()
 
+#app.route('/deleteAttribute')
+#def delete_attribute()
+
+#app.route('/attachAttribute/<token>')
+#def attach_attributeToSong(token)
+
+#app.route('/removeAttribute')
+#def remove_attributeFromSong()
+
+#app.route('/hasAttr')
+#def has_Attribute()
+#   return true or false
+
+#app.route('/createPlaylist/<token>')
+#def create_Playlist(token)
+#   return redirect(request.referrer)
 
 if __name__ == '__main__':
     meta = MetaData()
