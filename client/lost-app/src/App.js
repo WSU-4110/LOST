@@ -20,14 +20,7 @@ function App(){
   return (
     <div className="App">
       <Router>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/Error"> Error</Link>
-        <Link to="/MusicPlayer"> MusicPlayer</Link>
-        <Link to="/Search"> Search</Link>
-        <Link to="/Settings"> Settings</Link>
-        
-      </nav>
+    
       <Routes>
         <Route exact path="/" element={<Home />} ></Route>
         <Route exact path="/Error" element={<Error />}> </Route>  

@@ -1,7 +1,15 @@
 import './App.css';
 import React, { useEffect, useState} from 'react';
 import axios from 'axios';
+import {
+  Link,
+} from "react-router-dom";
+
+import Error from './Error';
 import Loading from './Loading';
+import Search from './Search';
+import Settings from './Settings';
+import MusicPlayer from './MusicPlayer';
 
 function Home(){
 const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +29,7 @@ const [isLoading, setIsLoading] = useState(true);
 
   useEffect( ()=> {
     const hash = window.location.hash
-     window.token = window.localStorage.getItem("token")
+    let token = window.localStorage.getItem("token")
 
     if(!token && hash){
       token = hash.substring(1).split("&").find(elem=> elem.startsWith("access_token")).split("=")[1]
@@ -72,13 +80,24 @@ const [isLoading, setIsLoading] = useState(true);
                 {!token ?
                     <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
                         to Spotify</a>
-                    : <button onClick={logout}>Logout</button>}
+                    :  <div>
+                    <Link to="/">Home</Link>
+                    <Link to="/Error"> Error</Link>
+                    <Link to="/MusicPlayer"> MusicPlayer</Link>
+                    <Link to="/Search"> Search</Link>
+                    <Link to="/Settings"> Settings</Link>
+                  <br></br>
+                   <button onClick={logout}>Logout</button>
+                    </div>
+                    }
 
                 {token ?
-                    <form onSubmit={searchArtists}>
-                        <input type="text" onChange={e => setSearchKey(e.target.value)}/>
-                        <button type={"submit"}>Search</button>
-                    </form>
+                    <div className="Search">
+                      <form onSubmit={searchArtists}>
+                          <input type="text" onChange={e => setSearchKey(e.target.value)}/>
+                          <button type={"submit"}>Search</button>
+                      </form>
+                    </div>
 
                     : <h2>Please login</h2>
                 }
