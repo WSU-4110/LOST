@@ -1,5 +1,5 @@
 from flask import Flask, request, url_for, session, redirect
-from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String
+from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, insert, select
 #import spotipy
 #from spotipy.oauth2 import SpotifyOAuth ignore for now
 
@@ -10,7 +10,7 @@ user = 'root'
 password = ''
 host = 'localhost'
 port = 3306
-database = 'test'
+database = 'dbLost'
 
 # PYTHON FUNCTION TO CONNECT TO THE MYSQL DATABASE AND
 # RETURNS THE SQLACHEMY ENGINE OBJECT
@@ -24,21 +24,35 @@ def get_connection():
 # Saving SQLAlchemy engine obj into engine var
 engine = get_connection()
 
+
+
 if __name__ == '__main__':
     meta = MetaData()
-    # creation of an example database for testing purposes
-    students = Table(
-    'students', meta, 
-    Column('id', Integer, primary_key = True), 
-    Column('name', String(20)), 
-    Column('lastname', String(20)),
-    )
     meta.create_all(engine)
     
-    ins = students.insert()
-    ins = students.insert().values(name = 'Ravi', lastname = 'Kapoor')
+    #creates tbArtists variable that will be used to reference tbArtists table
+    #inside of dbLost
+    tbArtists = Table('tbArtists', meta, autoload=True, autoload_with=engine)
+
+    #query to INSERT into tbArtists, the values 1231425 Doja Cat Pop
+    query = insert(tbArtists).values(artistID='1231425', artistName='Doja Cat', genres='Pop')
+
+    #connects to the database
     conn = engine.connect()
-    result = conn.execute(ins)
+
+    #statement to execute query
+    result = conn.execute(query)
+
+    #another query created to do a SELECT statement from tbArtists
+    query = select([tbArtists])
+
+    #statement to execute query
+    result = conn.execute(query)
+
+    #fetchall() used to create a list of data retrieved from a SELECT call 
+    result_set = result.fetchall()
+    print(result_set)
+
     
 try:
 	# GET THE CONNECTION OBJECT (ENGINE) FOR THE DATABASE
@@ -56,4 +70,4 @@ except Exception as ex:
 
 # debug=true when developing
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
