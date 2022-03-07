@@ -1,12 +1,10 @@
 import './App.css';
-import React, { useEffect, useState} from 'react';
-import axios from 'axios';
+import React from 'react';
+
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link,
-  Switch,
 } from "react-router-dom";
 import Home from './Home';
 import Error from './Error';

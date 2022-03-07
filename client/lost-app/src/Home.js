@@ -69,7 +69,7 @@ const [isLoading, setIsLoading] = useState(true);
 }
   if(isLoading){
     return(
-<Loading />
+      <Loading />
     );
   }
   return (
