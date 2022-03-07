@@ -1,17 +1,17 @@
 
-import './App.css';
+import '../styles/App.css';
 import React from 'react';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
-import Home from './Home';
-import Error from './Error';
-import Loading from './Loading';
-import Search from './Search';
-import Settings from './Settings';
-import MusicPlayer from './MusicPlayer';
+import Home from '../pages/Home';
+import Error from '../pages/Error';
+import Loading from '../pages/Loading';
+import Search from '../pages/Search';
+import Settings from '../pages/Settings';
+import MusicPlayer from '../pages/MusicPlayer';
 function App(){
 
 
