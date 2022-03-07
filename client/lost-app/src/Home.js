@@ -21,7 +21,7 @@ const [isLoading, setIsLoading] = useState(true);
 
   useEffect( ()=> {
     const hash = window.location.hash
-    let token = window.localStorage.getItem("token")
+     window.token = window.localStorage.getItem("token")
 
     if(!token && hash){
       token = hash.substring(1).split("&").find(elem=> elem.startsWith("access_token")).split("=")[1]
