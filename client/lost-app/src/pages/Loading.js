@@ -1,4 +1,5 @@
 import React from 'react';
+
 import '../styles/Loading.css';
 import {Audio} from 'react-loader-spinner';
 

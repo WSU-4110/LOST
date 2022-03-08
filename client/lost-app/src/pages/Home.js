@@ -1,7 +1,15 @@
 import '../styles/App.css';
 import React, { useEffect, useState} from 'react';
 import axios from 'axios';
+import {
+  Link,
+} from "react-router-dom";
+
+import Error from './Error';
 import Loading from './Loading';
+import Search from './Search';
+import Settings from './Settings';
+import MusicPlayer from './MusicPlayer';
 
 function Home(){
 const [isLoading, setIsLoading] = useState(true);
@@ -61,7 +69,7 @@ const [isLoading, setIsLoading] = useState(true);
 }
   if(isLoading){
     return(
-<Loading />
+      <Loading />
     );
   }
   return (
@@ -72,7 +80,16 @@ const [isLoading, setIsLoading] = useState(true);
                 {!token ?
                     <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
                         to Spotify</a>
-                    : <button onClick={logout}>Logout</button>}
+                    :  <div>
+                    <Link to="/">Home</Link>
+                    <Link to="/Error"> Error</Link>
+                    <Link to="/MusicPlayer"> MusicPlayer</Link>
+                    <Link to="/Search"> Search</Link>
+                    <Link to="/Settings"> Settings</Link>
+                  <br></br>
+                   <button onClick={logout}>Logout</button>
+                    </div>
+                    }
 
                 {token ?
                     <div className="Search">
