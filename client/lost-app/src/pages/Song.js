@@ -2,7 +2,7 @@ import React, { useEffect, useState} from 'react';
 import Loading from './Loading';
 
 
-const MusicPlayer = () => {
+const Song = () => {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => {
@@ -21,4 +21,4 @@ const MusicPlayer = () => {
     )
 }
 
-export default MusicPlayer
+export default Song

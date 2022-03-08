@@ -11,7 +11,7 @@ import Error from '../pages/Error';
 import Loading from '../pages/Loading';
 import Search from '../pages/Search';
 import Settings from '../pages/Settings';
-import MusicPlayer from '../pages/MusicPlayer';
+import Song from '../pages/Song';
 function App(){
 
 
@@ -25,7 +25,7 @@ function App(){
         <Route exact path="/Loading" element={<Loading />} ></Route>
         <Route exact path="/Settings" element={<Settings />}> </Route>  
         <Route exact path="/Search" element={<Search />} ></Route>
-        <Route exact path="/MusicPlayer" element={<MusicPlayer />}> </Route>  
+        <Route exact path="/Song" element={<Song />}> </Route>  
       </Routes>
     </Router>
       </div>    

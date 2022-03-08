@@ -9,7 +9,7 @@ import Error from './Error';
 import Loading from './Loading';
 import Search from './Search';
 import Settings from './Settings';
-import MusicPlayer from './MusicPlayer';
+import MusicPlayer from './Song';
 
 function Home(){
 const [isLoading, setIsLoading] = useState(true);
@@ -82,7 +82,7 @@ const [isLoading, setIsLoading] = useState(true);
                         to Spotify</a>
                     :  <div>
                     <Link to="/">Home</Link>
-                    <Link to="/Error"> Error</Link>
+                    <Link to="/Song"> Song</Link>
                     <Link to="/MusicPlayer"> MusicPlayer</Link>
                     <Link to="/Search"> Search</Link>
                     <Link to="/Settings"> Settings</Link>
