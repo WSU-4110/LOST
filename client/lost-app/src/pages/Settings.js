@@ -1,24 +1,22 @@
 import React, { useEffect, useState} from 'react';
 import Loading from './Loading';
-
+import Popup from 'reactjs-popup';
 
 const Settings = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
-  })
-  if(isLoading){
-    return(
-      <Loading />
-    );
-  }
     return (
-        <div align='center'>
-          <h1>This is the Settings page</h1>
+     <div>
+      <Popup trigger={<button>Trigger</button>} position="top left">
+      {close => (
+        <div>
+          Content here
+          <a className="close" onClick={close}>
+            &times;
+          </a>
         </div>
-    )
+      )}
+    </Popup>
+    </div>
+    );
 }
 
 export default Settings

@@ -119,7 +119,9 @@ const [isLoading, setIsLoading] = useState(true);
             </div>
             <div className="createSection">
                 <h1>Create</h1>
+                
             </div>
+           
         </div>
   );
 }  
