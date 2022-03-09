@@ -6,7 +6,29 @@
   height: 40vmin;
   pointer-events: none;
 }
-
+.recentPlayed{
+  box-shadow: 0 0 50px #ccc;
+  width: 300px;
+  height: 300px;
+}
+.recentAttributes{
+  box-shadow: 0 0 50px #ccc;
+  width: 300px;
+  height: 300px;
+ 
+}
+.horizontalDisplay{
+  float:left;
+  margin-left:50px;
+}
+.createSection{
+  box-shadow: 0 0 50px #ccc;
+  width: 800px;
+  height: 600px;
+  float:right;
+  margin-right: 50px;
+  margin-top: 20px;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

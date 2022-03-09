@@ -75,8 +75,10 @@ const [isLoading, setIsLoading] = useState(true);
   return (
   
     <div className="App">
+      <div>
             <header className="App-header">
                 <h1>Spotify React</h1>
+            
                 {!token ?
                     <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
                         to Spotify</a>
@@ -103,8 +105,21 @@ const [isLoading, setIsLoading] = useState(true);
                 }
 
                 {renderArtists()}
-
-            </header>
+                </header>
+            </div>
+            <div className="horizontalDisplay">
+                <div className= "recentPlayed">
+                  <h2>Recently Played</h2>
+                  <h1>image here</h1>
+                </div>
+                <div className="recentAttributes">
+                  <h2>Recent Attributes</h2>
+                  <h1>functions here</h1>
+                </div>
+            </div>
+            <div className="createSection">
+                <h1>Create</h1>
+            </div>
         </div>
   );
 }  
