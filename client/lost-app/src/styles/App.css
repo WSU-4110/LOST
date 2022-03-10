@@ -24,14 +24,40 @@
   margin-top:auto;
   margin-right:auto;
 }
+body{
+  background-color: rgba(139, 252, 255);
+}
 .createSection{
-  box-shadow: 0 0 50px #ccc;
   width: 800px;
   height: 600px;
   float:right;
   margin-right: 50px;
   margin-top: 20px;
   display: flex;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.bubble{
+  background-color: #588C49;
+  border-radius: 36%;
+  width: 100px;
+  height: 50px;
+  position: relative;
+  margin-bottom:30px;
+ 
+}
+.flexAttributes{
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+}
+.description{
+text-align: center;
+ margin: auto;
+ padding-top:10px;
 }
 .leftSection{
   margin-left:auto;
@@ -40,8 +66,9 @@
 .rightSection{
   margin-left:auto;
   margin-right:auto;
+  margin: auto;
   width:300px;
-  height:450px;
+  height:500px;
   background-color: grey;
 }
 @media (prefers-reduced-motion: no-preference) {

@@ -73,7 +73,7 @@ const [isLoading, setIsLoading] = useState(true);
     );
   }
   return (
-  
+  <body>
     <div className="App">
       <div>
             <header className="App-header">
@@ -114,7 +114,23 @@ const [isLoading, setIsLoading] = useState(true);
                 </div>
                 <div className="recentAttributes">
                   <h2>Recent Attributes</h2>
-                  <h1>functions here</h1>
+                  <div className="flexAttributes">
+                    <div className="bubble">
+                      <h4 className="description">attribute 1</h4>
+                    </div>
+                    <div className="bubble">
+                      <h4 className="description">attribute 2</h4>
+                    </div>
+                    <div className="bubble">
+                      <h4 className="description">attribute 2</h4>
+                    </div>
+                    <div className="bubble">
+                      <h4 className="description">attribute 2</h4>
+                    </div>
+                    <div className="bubble">
+                      <h4 className="description">attribute 2</h4>
+                    </div>
+                  </div>
                 </div>
             </div>
             <div className="createSection">
@@ -128,6 +144,7 @@ const [isLoading, setIsLoading] = useState(true);
             </div>
            
         </div>
+        </body>
   );
 }  
 
