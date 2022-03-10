@@ -116,6 +116,7 @@ const [isLoading, setIsLoading] = useState(true);
                 <div className="recentAttributes">
                   <div className="flexAttributes">
                      <Attributes/>
+                     <Attributes/>
                   </div>
                 </div>
             </div>
