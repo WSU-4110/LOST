@@ -74,6 +74,18 @@ def get_token():
     token_valid = True
     return token_info, token_valid
 
+
+#testing function for sending token info to front end
+@app.route('/tokenStatus')
+def getStatus():
+    session['token_info'], authorized = get_token()
+    session.modified = True
+    if authorized:
+        if session.get('token_info').get('expires_at') - int(time.time()) < 60:
+            return 'token expired'
+        return 'true'
+    return 'false'
+
 # debug=true when developing
 if __name__ == "__main__":
     app.run(debug=True)
