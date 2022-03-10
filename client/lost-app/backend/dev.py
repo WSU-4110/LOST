@@ -23,6 +23,14 @@ def create_spotify_oauth():
             redirect_uri=url_for('authorize', _external=True),
             scope="user-library-read")
 
+#creates authorization link for spotify
+@app.route('/')
+def login():
+    oauth = create_spotify_oauth()
+    auth_url = oauth.get_authorize_url()
+    print(auth_url)
+    return redirect(auth_url)
+
 # debug=true when developing
 if __name__ == "__main__":
     app.run(debug=True)
