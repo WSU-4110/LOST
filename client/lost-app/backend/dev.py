@@ -86,6 +86,26 @@ def getStatus():
         return 'true'
     return 'false'
 
+# just using this function to test the spotify call
+@app.route('/getTracks')
+def get_tracks():
+    session['token_info'], authorized = get_token()
+    session.modified = True
+    if not authorized:
+        return redirect('/')
+    sp = spotipy.Spotify(auth=session.get('token_info').get('access_token'))
+    results = []
+    iter = 0
+    while iter != 10:
+        curGroup = sp.current_user_saved_tracks(limit=10, offset=iter)['items'][0]['track']['name']
+        results.append(curGroup)
+        iter += 1
+
+    for x in results:
+        print(x)
+    return jsonify(results)
+
+
 # debug=true when developing
 if __name__ == "__main__":
     app.run(debug=True)
