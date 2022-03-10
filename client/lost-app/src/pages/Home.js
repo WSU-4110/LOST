@@ -136,6 +136,16 @@ const [isLoading, setIsLoading] = useState(true);
             <div className="createSection">
               <div className="leftSection">
                 <h1>Create</h1>
+                {token ?
+                    <div className="Search">
+                      <form onSubmit={searchArtists}>
+                          <input type="text" onChange={e => setSearchKey(e.target.value)}/>
+                          <button type={"submit"}>Search</button>
+                      </form>
+                    </div>
+
+                    : <h2>Please login</h2>
+                }
                 <Settings/>
               </div>
               <div className="rightSection">
