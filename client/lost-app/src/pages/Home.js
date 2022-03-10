@@ -108,6 +108,7 @@ const [isLoading, setIsLoading] = useState(true);
 
                 {renderArtists()}
                 </header>
+
             </div>
             <div className="horizontalDisplay">
               <h2>Recently Played</h2>
@@ -129,18 +130,22 @@ const [isLoading, setIsLoading] = useState(true);
                 {token ?
                     <div className="Search">
                       <form onSubmit={searchArtists}>
-                          <input type="text" onChange={e => setSearchKey(e.target.value)}/>
-                          <button type={"submit"}>Search</button>
+                          <input className="searchInput"type="text" onChange={e => setSearchKey(e.target.value)}/>
+                          <button className = "searchButton" type={"submit"}><i class="fa fa-search"></i></button>
                          
                       </form>
                     </div>
 
                     : <h2>Please login</h2>
                 }
+          
+                <h3 >Saved Attributes</h3>
+                <div className="SavedAtrributes">
+
+                </div>
                 <Settings/>
               </div>
               <div className="rightSection">
-              <h1>Playlist</h1>
               </div>
             </div>
            
