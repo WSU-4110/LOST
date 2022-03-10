@@ -10,6 +10,7 @@ import Loading from './Loading';
 import Search from './Search';
 import Settings from './Settings';
 import MusicPlayer from './Song';
+import Attributes from './Attributes';
 
 function Home(){
 const [isLoading, setIsLoading] = useState(true);
@@ -108,34 +109,21 @@ const [isLoading, setIsLoading] = useState(true);
                 </header>
             </div>
             <div className="horizontalDisplay">
+              <h2>Recently Played</h2>
                 <div className= "recentPlayed">
-                  <h2>Recently Played</h2>
-                  <h1>image here</h1>
                 </div>
+              <h2>Recent Attributes</h2>
                 <div className="recentAttributes">
-                  <h2>Recent Attributes</h2>
                   <div className="flexAttributes">
-                    <div className="bubble">
-                      <h4 className="description">attribute 1</h4>
-                    </div>
-                    <div className="bubble">
-                      <h4 className="description">attribute 2</h4>
-                    </div>
-                    <div className="bubble">
-                      <h4 className="description">attribute 2</h4>
-                    </div>
-                    <div className="bubble">
-                      <h4 className="description">attribute 2</h4>
-                    </div>
-                    <div className="bubble">
-                      <h4 className="description">attribute 2</h4>
-                    </div>
+                     <Attributes/>
                   </div>
                 </div>
             </div>
             <div className="createSection">
               <div className="leftSection">
-                <h1>Create</h1>
+                <div className="createEffect">
+                  <h1 className='create'>CREATE</h1>
+                </div>
                 {token ?
                     <div className="Search">
                       <form onSubmit={searchArtists}>

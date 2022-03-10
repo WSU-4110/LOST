@@ -1,13 +1,15 @@
 .App {
   text-align: center;
 }
-
+h2{
+  color: white;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 .recentPlayed{
-  box-shadow: 0 0 50px #ccc;
+  background-color:black;
   width: 300px;
   height: 300px;
   margin:auto;
@@ -25,7 +27,10 @@
   margin-right:auto;
 }
 body{
-  background-color: rgba(139, 252, 255);
+  background-image: url('../nature.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;  
+  background-size: 100% 100%;
 }
 .createSection{
   width: 800px;
@@ -34,16 +39,17 @@ body{
   margin-right: 50px;
   margin-top: 20px;
   display: flex;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255,255,255,0.5);
+  border-radius: 5%;
 }
-.bubble{
-  background-color: #588C49;
-  border-radius: 36%;
-  width: 100px;
-  height: 50px;
-  position: relative;
-  margin-bottom:30px;
- 
+.createEffect{
+  background-color: rgba(255,255,255,0.7);
+  border-radius: 30%;
+  width: 300px;
+}
+.create{
+  font-size: 50px;
+  color:white;
 }
 .flexAttributes{
   width: 90%;
@@ -53,11 +59,6 @@ body{
   flex-direction: row;
   flex-wrap: wrap;
   position: relative;
-}
-.description{
-text-align: center;
- margin: auto;
- padding-top:10px;
 }
 .leftSection{
   margin-left:auto;
