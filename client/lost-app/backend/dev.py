@@ -1,91 +1,111 @@
-from flask import Flask, request, url_for, session, redirect
-from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, insert, select
-#import spotipy
-#from spotipy.oauth2 import SpotifyOAuth ignore for now
+from urllib import request
+from flask import Flask, jsonify, request, json, url_for, session, redirect
+from flask_cors import CORS, cross_origin
+from sqlalchemy import *
+import spotipy
+from spotipy.oauth2 import SpotifyOAuth
+import json
+import time
 
 app = Flask(__name__)
 
-# DEFINE THE DATABASE CREDENTIALS
-user = 'root'
-password = ''
-host = 'localhost'
-port = 3306
-database = 'dbLost'
+app.secret_key = 'holder'
+app.config['SESSION_COOKIE_NAME'] = 'spotify-login-session'
 
-# PYTHON FUNCTION TO CONNECT TO THE MYSQL DATABASE AND
-# RETURNS THE SQLACHEMY ENGINE OBJECT
-def get_connection():
-	return create_engine(
-		url="mysql+pymysql://{0}:{1}@{2}:{3}/{4}".format(
-			user, password, host, port, database
-		, echo = True)
-	)
+#ignore
+#CORS(app, supports_credentials=True, resources={r"/access": {'origins':'http://localhost:3000'}})
 
-# Saving SQLAlchemy engine obj into engine var
-engine = get_connection()
+#object to hold oauth info
+def create_spotify_oauth():
+    return SpotifyOAuth(
+            client_id="814c4cd6f699496faf7fb59dac61f66a",
+            client_secret="868a316526dc4d11935f6810b3e54c8d",
+            redirect_uri=url_for('authorize', _external=True),
+            scope="user-library-read")
 
-#app.route('/createAttribute')
-#def create_attribute()
+#creates authorization link for spotify
+@app.route('/')
+def login():
+    oauth = create_spotify_oauth()
+    auth_url = oauth.get_authorize_url()
+    print(auth_url)
+    return redirect(auth_url)
 
-#app.route('/deleteAttribute')
-#def delete_attribute()
+@app.route('/authorize')
+def authorize():
+    oauth = create_spotify_oauth()
+    session.clear()
+    code = request.args.get('code')
+    token_info = oauth.get_access_token(code)
+    session["token_info"] = token_info
 
-#app.route('/attachAttribute/<token>')
-#def attach_attributeToSong(token)
+    #after token has been obtained, redirect user to homepage of Lost
+    return redirect("http://localhost:3000/")
 
-#app.route('/removeAttribute')
-#def remove_attributeFromSong()
 
-#app.route('/hasAttr')
-#def has_Attribute()
-#   return true or false
+@app.route('/logout')
+def logout():
+    for key in list(session.keys()):
+        session.pop(key)
+    #after token has been removed from session, redirect user to homepage of Lost
+    return redirect('http://localhost:3000')
 
-#app.route('/createPlaylist/<token>')
-#def create_Playlist(token)
-#   return redirect(request.referrer)
 
-if __name__ == '__main__':
-    meta = MetaData()
-    meta.create_all(engine)
+# Checks to see if token is valid and gets a new token if not
+@app.route('/getnewToken')
+def get_token():
+    token_valid = False
+    token_info = session.get("token_info", {})
     
-    #creates tbArtists variable that will be used to reference tbArtists table
-    #inside of dbLost
-    tbArtists = Table('tbArtists', meta, autoload=True, autoload_with=engine)
+    # Checking if the session already has a token stored
+    if not (session.get('token_info', False)):
+        token_valid = False
+        return token_info, token_valid
 
-    #query to INSERT into tbArtists, the values 1231425 Doja Cat Pop
-    query = insert(tbArtists).values(artistID='1231425', artistName='Doja Cat', genres='Pop')
+    # Checking if token has expired
+    now = int(time.time())
+    is_token_expired = session.get('token_info').get('expires_at') - now < 60
 
-    #connects to the database
-    conn = engine.connect()
+    # Refreshing token if it has expired
+    if (is_token_expired):
+        sp_oauth = create_spotify_oauth()
+        token_info = sp_oauth.refresh_access_token(session.get('token_info').get('refresh_token'))
 
-    #statement to execute query
-    result = conn.execute(query)
-
-    #another query created to do a SELECT statement from tbArtists
-    query = select([tbArtists])
-
-    #statement to execute query
-    result = conn.execute(query)
-
-    #fetchall() used to create a list of data retrieved from a SELECT call 
-    result_set = result.fetchall()
-    print(result_set)
-
-    
-try:
-	# GET THE CONNECTION OBJECT (ENGINE) FOR THE DATABASE
-	engine = get_connection()
-	print(f"Connection to the {host} for user {user} created successfully.")
-except Exception as ex:
-	print("Connection could not be made due to the following error: \n", ex)
+    token_valid = True
+    return token_info, token_valid
 
 
-# ignore for now
-# @app.route("http://localhost:3000")
-# def testing():
-#     return {"customer": ["Jayne", "Lisa", "Jon"]}
+#testing function for sending token info to front end
+@app.route('/tokenStatus')
+def getStatus():
+    session['token_info'], authorized = get_token()
+    session.modified = True
+    if authorized:
+        if session.get('token_info').get('expires_at') - int(time.time()) < 60:
+            return 'token expired'
+        return 'true'
+    return 'false'
+
+# just using this function to test the spotify call
+@app.route('/getTracks')
+def get_tracks():
+    session['token_info'], authorized = get_token()
+    session.modified = True
+    if not authorized:
+        return redirect('/')
+    sp = spotipy.Spotify(auth=session.get('token_info').get('access_token'))
+    results = []
+    iter = 0
+    while iter != 10:
+        curGroup = sp.current_user_saved_tracks(limit=10, offset=iter)['items'][0]['track']['name']
+        results.append(curGroup)
+        iter += 1
+
+    for x in results:
+        print(x)
+    return jsonify(results)
 
 
 # debug=true when developing
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)
