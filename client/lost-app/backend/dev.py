@@ -31,6 +31,19 @@ def login():
     print(auth_url)
     return redirect(auth_url)
 
+@app.route('/authorize')
+def authorize():
+    oauth = create_spotify_oauth()
+    session.clear()
+    code = request.args.get('code')
+    token_info = oauth.get_access_token(code)
+    session["token_info"] = token_info
+
+    #after token has been obtained, redirect user to homepage of Lost
+    return redirect("http://localhost:3000/")
+
+
+
 # debug=true when developing
 if __name__ == "__main__":
     app.run(debug=True)
