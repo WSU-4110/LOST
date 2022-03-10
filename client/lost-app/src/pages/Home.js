@@ -99,6 +99,7 @@ const [isLoading, setIsLoading] = useState(true);
                       <form onSubmit={searchArtists}>
                           <input type="text" onChange={e => setSearchKey(e.target.value)}/>
                           <button type={"submit"}>Search</button>
+                          
                       </form>
                     </div>
 
@@ -130,6 +131,7 @@ const [isLoading, setIsLoading] = useState(true);
                       <form onSubmit={searchArtists}>
                           <input type="text" onChange={e => setSearchKey(e.target.value)}/>
                           <button type={"submit"}>Search</button>
+                         
                       </form>
                     </div>
 
