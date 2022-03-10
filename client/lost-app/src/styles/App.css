@@ -10,16 +10,19 @@
   box-shadow: 0 0 50px #ccc;
   width: 300px;
   height: 300px;
+  margin:auto;
 }
 .recentAttributes{
   box-shadow: 0 0 50px #ccc;
   width: 300px;
   height: 300px;
- 
+ margin:auto;
 }
 .horizontalDisplay{
   float:left;
   margin-left:50px;
+  margin-top:auto;
+  margin-right:auto;
 }
 .createSection{
   box-shadow: 0 0 50px #ccc;
@@ -28,6 +31,18 @@
   float:right;
   margin-right: 50px;
   margin-top: 20px;
+  display: flex;
+}
+.leftSection{
+  margin-left:auto;
+  margin-right:auto;
+}
+.rightSection{
+  margin-left:auto;
+  margin-right:auto;
+  width:300px;
+  height:450px;
+  background-color: grey;
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

@@ -118,8 +118,13 @@ const [isLoading, setIsLoading] = useState(true);
                 </div>
             </div>
             <div className="createSection">
+              <div className="leftSection">
                 <h1>Create</h1>
-                
+                <Settings/>
+              </div>
+              <div className="rightSection">
+              <h1>Playlist</h1>
+              </div>
             </div>
            
         </div>
