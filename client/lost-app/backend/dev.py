@@ -43,6 +43,12 @@ def authorize():
     return redirect("http://localhost:3000/")
 
 
+@app.route('/logout')
+def logout():
+    for key in list(session.keys()):
+        session.pop(key)
+    #after token has been removed from session, redirect user to homepage of Lost
+    return redirect('http://localhost:3000')
 
 # debug=true when developing
 if __name__ == "__main__":
