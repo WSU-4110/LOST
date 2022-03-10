@@ -86,6 +86,17 @@ def getStatus():
         return 'true'
     return 'false'
 
+@app.route('/testing123')
+def testing11():
+    response = getStatus()
+    if response == false:
+        return redirect('http://localhost:3000')
+    elif response == true:
+        return jsonify(session.get('token_info'))
+    else:
+        get_token()
+        return jsonify(session.get('token_info'))
+
 # just using this function to test the spotify call
 @app.route('/getTracks')
 def get_tracks():
