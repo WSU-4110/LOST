@@ -1,23 +1,59 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Loading from './Loading';
+import { Search } from '../components/Search';
 
 
 const MusicPlayer = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 1500);
+  // })
+  // if(isLoading){
+  //   return(
+  //     <Loading />
+  //   );
+  // }
+
+  const [data, setData] = useState([{}])
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
-  })
-  if(isLoading){
-    return(
-      <Loading />
-    );
-  }
+    fetch("http://localhost:3000/testing123").then(
+      res=> res.json()
+    ).then(
+      data => {
+        setData(JSON.parse(data))
+        console.log(data)
+
+      }
+    )
+  }, [])
+
     return (
-        <div align='center'>
-          <h1>this is the MusicPlayer page.</h1>
+        <div className="mainContainer">
+          <div className="subContainer">
+            
+          </div>
+          <div className="subContainer">
+            <h1>ATTRIBUTES</h1>
+          </div>
+          <div className="subContainer">
+            <h1>ADD</h1>
+          </div>
+
+          <div className="test">
+          {(typeof data.members === 'undefined') ? (
+            <p>Loading...</p>
+          ) : (
+            data.members.map((member, i) => (
+              <p key ={i}>{member}</p>
+            ))
+          )}
         </div>
+        <Search></Search>
+
+        </div>
+        
     )
 }
 

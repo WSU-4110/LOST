@@ -1,4 +1,3 @@
-
 import '../styles/App.css';
 import React from 'react';
 import {
@@ -13,7 +12,9 @@ import Search from '../pages/Search';
 import Settings from '../pages/Settings';
 import MusicPlayer from '../pages/MusicPlayer';
 function App(){
-
+  const CLIENT_ID = "814c4cd6f699496faf7fb59dac61f66a"
+  const REDIRECT_URI = "http://localhost:3000"
+  const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
 
   return (
     <div className="App">
