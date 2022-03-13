@@ -111,10 +111,10 @@ const [isLoading, setIsLoading] = useState(true);
 
             </div>
             <div className="horizontalDisplay">
-              <h2>Recently Played</h2>
+              <h2 className ="h2Align">Recently Played</h2>
                 <div className= "recentPlayed">
                 </div>
-              <h2>Recent Attributes</h2>
+              <h2 className ="h2Align">Recent Attributes</h2>
                 <div className="recentAttributes">
                   <div className="flexAttributes">
                      <Attributes/>

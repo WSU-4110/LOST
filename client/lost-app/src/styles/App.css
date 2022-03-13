@@ -32,6 +32,9 @@ body{
   background-attachment: fixed;  
   background-size: 100% 100%;
 }
+.h2Align{
+  margin-left: -50%;
+}
 .createSection{
   width: 800px;
   height: 600px;
@@ -44,7 +47,7 @@ body{
 }
 .createEffect{
   background-color: rgba(255,255,255,0.7);
-  border-radius: 30%;
+  border-radius: 1.65rem;
   width: 300px;
 }
 .Search{
