@@ -108,7 +108,10 @@ const [isLoading, setIsLoading] = useState(true);
 
                 {renderArtists()}
                 </header>
-
+            <nav>
+              <Link to="/MusicPlayer" className='linkStyle'> SONGS</Link>
+              <Settings/>
+            </nav>
             </div>
             <div className="horizontalDisplay">
               <h2 className ="h2Align">Recently Played</h2>
@@ -131,7 +134,7 @@ const [isLoading, setIsLoading] = useState(true);
                     <div className="Search">
                       <form onSubmit={searchArtists}>
                           <input className="searchInput"type="text" onChange={e => setSearchKey(e.target.value)}/>
-                          <button onClick={randomColor} className = "searchButton" type={"submit"}><i class="fa fa-search"></i></button>
+                          <button className = "searchButton" type={"submit"}><i class="fa fa-search"></i></button>
                          
                       </form>
                     </div>
@@ -143,7 +146,7 @@ const [isLoading, setIsLoading] = useState(true);
                 <div className="SavedAtrributes">
 
                 </div>
-                <Settings/>
+                
               </div>
               <div className="rightSection">
               </div>

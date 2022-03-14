@@ -17,9 +17,11 @@ const Settings = () => {
 
   return (
     <>
-      <button onClick={toggleModal} className="btn-modal">
-        Settings
-      </button>
+      <a onClick={toggleModal} className="btn-modal">
+        <div className='menuBar'></div>
+        <div className='menuBar'></div>
+        <div className='menuBar'></div>
+      </a>
 
       {modal && (
         <div className="modal">
