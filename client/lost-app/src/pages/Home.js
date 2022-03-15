@@ -77,15 +77,14 @@ const [isLoading, setIsLoading] = useState(true);
   <body>
     <div className="App">
       <div>
-            <header className="App-header">
+      <header className="App-header">
                 <h1>Spotify React</h1>
-            
                 {!token ?
                     <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
                         to Spotify</a>
                     :  <div>
                     <Link to="/">Home</Link>
-                    <Link to="/Song"> Song</Link>
+                    <Link to="/Error"> Error</Link>
                     <Link to="/MusicPlayer"> MusicPlayer</Link>
                     <Link to="/Search"> Search</Link>
                     <Link to="/Settings"> Settings</Link>
@@ -99,7 +98,6 @@ const [isLoading, setIsLoading] = useState(true);
                       <form onSubmit={searchArtists}>
                           <input type="text" onChange={e => setSearchKey(e.target.value)}/>
                           <button type={"submit"}>Search</button>
-                          
                       </form>
                     </div>
 
@@ -107,17 +105,18 @@ const [isLoading, setIsLoading] = useState(true);
                 }
 
                 {renderArtists()}
-                </header>
+
+            </header>
             <nav>
               <Link to="/MusicPlayer" className='linkStyle'> SONGS</Link>
               <Settings/>
             </nav>
             </div>
             <div className="horizontalDisplay">
-              <h2 className ="h2Align">Recently Played</h2>
+              <h3 className ="h2Align">Recently Played</h3>
                 <div className= "recentPlayed">
                 </div>
-              <h2 className ="h2Align">Recent Attributes</h2>
+              <h3 className ="h2Align">Recent Attributes</h3>
                 <div className="recentAttributes">
                   <div className="flexAttributes">
                      <Attributes/>
