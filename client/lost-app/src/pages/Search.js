@@ -1,3 +1,4 @@
+
 import '../styles/Search.css';
 import React from 'react';
 
@@ -12,4 +13,4 @@ const Search = () => {
     )
 }
 
-export { Search };
+export default Search

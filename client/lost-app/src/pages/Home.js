@@ -86,7 +86,6 @@ const [isLoading, setIsLoading] = useState(true);
                     <Link to="/">Home</Link>
                     <Link to="/Error"> Error</Link>
                     <Link to="/MusicPlayer"> MusicPlayer</Link>
-                    <Link to="/Search"> Search</Link>
                     <Link to="/Settings"> Settings</Link>
                   <br></br>
                    <button onClick={logout}>Logout</button>
@@ -135,17 +134,7 @@ const [isLoading, setIsLoading] = useState(true);
                 <div className="createEffect">
                   <h1 className='create'>CREATE</h1>
                 </div>
-                {token ?
-                    <div className="Search">
-                      <form onSubmit={searchArtists}>
-                          <input className="searchInput"type="text" onChange={e => setSearchKey(e.target.value)}/>
-                          <button className = "searchButton" type={"submit"}><i class="fa fa-search"></i></button>
-                         
-                      </form>
-                    </div>
-
-                    : <h2>Please login</h2>
-                }
+                <Search></Search>
           
                 <h3 >Saved Attributes</h3>
                 <div className="SavedAtrributes">
