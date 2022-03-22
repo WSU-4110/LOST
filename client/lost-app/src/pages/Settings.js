@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import Loading from './Loading';
 import '../styles/Settings.css';
-
+import Home from './Home';
 const Settings = () => {
   const [modal, setModal] = useState(false);
 
@@ -28,7 +28,7 @@ const Settings = () => {
           <div onClick={toggleModal} className="overlay"></div>
           <div className="popUp">
             <h2>Settings</h2>
-            <p>Log Out </p>
+            <button >Logout</button>
             <button className="closeBtn" onClick={toggleModal}>
               CLOSE
             </button>
