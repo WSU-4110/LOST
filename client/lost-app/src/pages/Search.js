@@ -4,23 +4,16 @@ import Loading from './Loading';
 
 
 const Search = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
-  })
-  if(isLoading){
-    return(
-      <Loading />
-    );
-  }
-    return (
-        <div align='center'>
-          <h1>This is the Search page</h1>
-        </div>
-        /* <div className="App"></div> */
-    )
+
+  return (
+    <div className="search">
+        <input type="text" class="search-bar" placeholder="Search"/>
+       <button><i>search</i></button>
+       <button><i>O</i></button>
+    </div>
+)
 }
+
+
 
 export default Search
