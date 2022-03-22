@@ -1,19 +1,15 @@
-
-import React, { useEffect, useState} from 'react';
-import Loading from './Loading';
+import '../styles/Search.css';
+import React from 'react';
 
 
 const Search = () => {
-
-  return (
-    <div className="search">
-        <input type="text" class="search-bar" placeholder="Search"/>
-       <button><i>search</i></button>
-       <button><i>O</i></button>
-    </div>
-)
+ 
+    return (
+        <div className="search">
+            <input type="text" class="search-bar" placeholder="Search"/>
+           <button><i>O</i></button>
+        </div>
+    )
 }
 
-
-
-export default Search
+export { Search };
