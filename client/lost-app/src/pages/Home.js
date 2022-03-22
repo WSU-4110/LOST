@@ -108,8 +108,14 @@ const [isLoading, setIsLoading] = useState(true);
 
             </header>
             <nav>
-              <Link to="/MusicPlayer" className='linkStyle'> SONGS</Link>
-              <Settings/>
+              <div className='navBar'>
+                <div className='musicPlayerLink'>
+                  <Link to="/MusicPlayer" className='linkStyle'> SONGS</Link>
+                </div>
+                <div className='menuIcon'>
+                  <Settings/>
+                </div>
+              </div>
             </nav>
             </div>
             <div className="horizontalDisplay">

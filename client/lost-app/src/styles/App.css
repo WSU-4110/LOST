@@ -11,6 +11,10 @@
 h2{
   color: white;
 }
+.navBar{
+  display: flex;
+  justify-content: flex-end;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
