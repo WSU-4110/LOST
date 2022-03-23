@@ -11,7 +11,6 @@ npm start
 * `urls.py` - URLs for our main project 
 *  `wsgi.py` - WSGI config for LOST project
 ### `api` - Django API application folder 
-* `migrations` 
 * `__init__.py` - Makes API a python package 
 * `admin.py`
 * `apps.py`
@@ -21,6 +20,14 @@ npm start
 * `urls.py` - API urls 
 * `views.py` - Code responsible for rendering our API endpoints
 ### `frontend`
+* `migrations`
+* `src` 
+* `components` folder holds all React page components 
+* `static` folder holds anything the browser would cache 
+  * `css`
+    * `index.css` 
+  *  `frontend` - Stores the main javascript bundle
+* `templates/frontend` 
 * `Babel.config.json` - Reroutes the pages so you can go to different pages from the React app 
 * `webpack.config.js` - Bundles all of our Javascript files into one file 
 ### `spotify`
