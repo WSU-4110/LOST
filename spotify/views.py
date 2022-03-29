@@ -76,3 +76,14 @@ class logoutUser(APIView):
     def get(self, request, format=None):
         logout_button(self.request.session.session_key)
         return Response(status=status.HTTP_200_OK)
+
+#recieves search string sent from frontend and calls util search using the search string
+class spotifySearch(APIView):
+    def get(self, request, format=None):
+        #use this when search bar has been added and form data from frontend can be sent
+        #searchInput = self.request.session.get('search')
+
+        #testing input
+        searchInput = 'the weeknd'
+        results = search(self.request.session.session_key, searchInput)
+        return Response(results, status=status.HTTP_200_OK)
