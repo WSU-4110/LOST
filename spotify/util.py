@@ -2,7 +2,10 @@ from .models import SpotifyToken
 from django.utils import timezone 
 from datetime import timedelta
 from .credentials import CLIENT_ID, CLIENT_SECRET
-from requests import post
+from requests import post, put, get
+
+#url stem used for all api calls to spotify
+URL_STEM = "https://api.spotify.com/v1/"
 
 #Check if there is a token for a specific user 
 def get_user_tokens(session_id):
