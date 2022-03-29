@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Button, Grid, Typography, FormHelperText, FormControl, Radio, RadioGroup, FormControlLabel } from "@material-ui/core";
-import MusicPlayer from './MusicPlayer';
 import Login from './Login';
 
 export default class Home extends Component {
@@ -71,7 +70,6 @@ export default class Home extends Component {
                         Home
                     </Typography>
                 </Grid>
-                <MusicPlayer {...this.state.song} />
                 <Grid item xs={12} align="center">
                     <Button
                         variant="contained"

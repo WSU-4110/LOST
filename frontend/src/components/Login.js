@@ -3,6 +3,8 @@ import { Grid, Button, ButtonGroup, Typography } from "@material-ui/core";
 import Home from './Home';
 import SongPage from './SongPage';
 import Settings from './Settings';
+import MusicPlayer from './MusicPlayer';
+import Loading from './Loading';
 import {
     BrowserRouter as Router,
     Switch,
@@ -78,6 +80,7 @@ export default class Login extends Component {
                     <Route path="/home" component={Home} />
                     <Route path="/song" component={SongPage} />
                     <Route path="/settings" component={Settings} />
+                    <Route path="/music-player" component={MusicPlayer} />
                 </Switch>
             </Router>
         );

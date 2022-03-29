@@ -7,5 +7,6 @@ urlpatterns = [
     path('', index, name=''),
     path('song', index),
     path('home', index, name='home'),
+    path('music-player', index),
     path('settings', index)
 ]
