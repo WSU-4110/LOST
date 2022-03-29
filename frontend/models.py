@@ -4,6 +4,8 @@ from django.db import models
 
 # Creating Database model
 class Database(models.Model):
+    class Meta:
+        composite_key = ('userEmail', 'trackID')
 
     userEmail = models.IntegerField(unique=True)
     trackID = models.IntegerField(max_length=50, unique=True)
