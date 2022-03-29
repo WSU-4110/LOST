@@ -14,6 +14,13 @@ def get_user_tokens(session_id):
     else:
         return None
 
+#searches for user in spotifytoken table, if it exists, delete the record
+def logout_button(session_id):
+    user_tokens = SpotifyToken.objects.filter(user=session_id)
+    if user_tokens.exists():
+        #session_id.session.delete()
+        user_tokens[0].delete()
+
 #User Tokens expire in 1 hr 
 #User tokens expire in 3600 seconds 
 #Convert seconds into timestamp
