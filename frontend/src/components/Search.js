@@ -1,8 +1,9 @@
+
 import React, { useEffect, useState} from 'react';
 import Loading from './Loading';
 
 
-const Settings = () => {
+const Search = () => {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => {
@@ -16,9 +17,10 @@ const Settings = () => {
   }
     return (
         <div align='center'>
-          <h1>This is the Settings page</h1>
+          <h1>This is the Search page</h1>
         </div>
+        /* <div className="App"></div> */
     )
 }
 
-export default Settings
+export default Search

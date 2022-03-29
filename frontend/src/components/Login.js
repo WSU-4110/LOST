@@ -4,6 +4,8 @@ import Home from './Home';
 import SongPage from './SongPage';
 import Settings from './Settings';
 import MusicPlayer from './MusicPlayer';
+import Search from './Search';
+import Error from './Error';
 import Loading from './Loading';
 import {
     BrowserRouter as Router,
@@ -81,6 +83,8 @@ export default class Login extends Component {
                     <Route path="/song" component={SongPage} />
                     <Route path="/settings" component={Settings} />
                     <Route path="/music-player" component={MusicPlayer} />
+                    <Route path="/search" component={Search} />
+                    <Route path="/error" component={Error} />
                 </Switch>
             </Router>
         );

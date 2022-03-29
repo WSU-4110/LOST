@@ -2,7 +2,7 @@ import React, { useEffect, useState} from 'react';
 import Loading from './Loading';
 
 
-const Settings = () => {
+const Error = () => {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => {
@@ -16,9 +16,9 @@ const Settings = () => {
   }
     return (
         <div align='center'>
-          <h1>This is the Settings page</h1>
+          <h1>We're sorry but an ERROR has occured.</h1>
         </div>
     )
 }
 
-export default Settings
+export default Error
