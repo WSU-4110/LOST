@@ -6,6 +6,6 @@ app_name = 'frontend'
 urlpatterns = [
     path('', index, name=''),
     path('song', index),
-    path('home/<str:homeCode>', index),
+    path('home', index, name='home'),
     path('settings', index)
 ]

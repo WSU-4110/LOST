@@ -7,19 +7,14 @@ export default class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            nightMode: false,
             spotifyAuthenticated: false,
         };
-       
-        //this.getCurrentSong = this.getCurrentSong.bind(this);
-        //this.homeCode = this.props.match.params.roomCode;
-        //to get home code, this.props.match.params isnt working, it comes back as undefined
-        this.homeCode = location.pathname.slice(location.pathname.lastIndexOf('/') + 1, location.pathname.length);
-        this.getHomeDetails = this.getHomeDetails.bind(this);
         this.authenticateSpotify = this.authenticateSpotify.bind(this);
-        this.getHomeDetails();  //Update the states
+        this.authenticateSpotify();
+        this.get_SearchResults();
     }
 
+    /*
     // Get Details for the Users Home Page 
     getHomeDetails() {
         fetch('/api/get-home' + '?code=' + this.homeCode).then((response) => 
@@ -31,22 +26,40 @@ export default class Home extends Component {
             });
             this.authenticateSpotify();
         });
-    }
+    }*/
 
     //Ask if current user is authenticated 
     authenticateSpotify() {
         fetch('/spotify/is-authenticated')
             .then((response) => response.json())
             .then((data) => {
-                this.setState({spotifyAuthenticated: data.status })
+                this.setState({ spotifyAuthenticated: data.status })
                 if (!data.status) {
                     fetch('/spotify/get-auth-url')
-                    .then((response) => response.json())
-                    .then((data) => {
-                        window.location.replace(data.url);
-                    });
+                        .then((response) => response.json())
+                        .then((data) => {
+                            window.location.replace(data.url);
+                        });
                 }
-        });
+            });
+    }
+
+    //tester function to show search results request
+    get_SearchResults() {
+        fetch("http://127.0.0.1:8000/spotify/searchAPI")
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+            });
+    }
+
+    //User logout
+    logout() {
+        fetch('/spotify/logout-user');
+        window.open('https://www.spotify.com/us/logout/');
+        setTimeout(function () {
+            window.location.replace('http://localhost:8000/')
+        }, 1000);
     }
 
     //Display info on the home page 
@@ -55,7 +68,7 @@ export default class Home extends Component {
             <Grid container spacing={1}>
                 <Grid item xs={12} align="center">
                     <Typography variant="h4" component="h4">
-                        Code: {this.homeCode}
+                        Home
                     </Typography>
                 </Grid>
                 <MusicPlayer {...this.state.song} />
@@ -63,11 +76,12 @@ export default class Home extends Component {
                     <Button
                         variant="contained"
                         color="secondary"
+                        onClick={this.logout}
                     >
                         Log Out
                     </Button>
                 </Grid>
-          </Grid>
+            </Grid>
         );
     }
 }
