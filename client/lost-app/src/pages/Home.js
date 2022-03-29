@@ -46,28 +46,9 @@ const [isLoading, setIsLoading] = useState(true);
     window.localStorage.removeItem("token")
   }
 
-  const searchArtists = async (e) => {
-    e.preventDefault()
-    const {data} = await axios.get("https://api.spotify.com/v1/search", {
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-      params: {
-        q: searchKey,
-        type: "artist"
-      }
-    })
-    setArtists(data.artists.items)
-  }
+  
 
-  const renderArtists = () => {
-    return artists.map(artist => (
-        <div key={artist.id}>
-            {artist.images.length ? <img width={"100%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
-            {artist.name}
-        </div>
-    ))
-}
+  
   if(isLoading){
     return(
       <Loading />
@@ -77,35 +58,7 @@ const [isLoading, setIsLoading] = useState(true);
   <body>
     <div className="App">
       <div>
-      <header className="App-header">
-                <h1>Spotify React</h1>
-                {!token ?
-                    <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
-                        to Spotify</a>
-                    :  <div>
-                    <Link to="/">Home</Link>
-                    <Link to="/Error"> Error</Link>
-                    <Link to="/MusicPlayer"> MusicPlayer</Link>
-                    <Link to="/Settings"> Settings</Link>
-                  <br></br>
-                   <button onClick={logout}>Logout</button>
-                    </div>
-                    }
-
-                {token ?
-                    <div className="Search">
-                      <form onSubmit={searchArtists}>
-                          <input type="text" onChange={e => setSearchKey(e.target.value)}/>
-                          <button type={"submit"}>Search</button>
-                      </form>
-                    </div>
-
-                    : <h2>Please login</h2>
-                }
-
-                {renderArtists()}
-
-            </header>
+     
             <nav>
               <div className='navBar'>
                 <div className='musicPlayerLink'>

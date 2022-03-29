@@ -24,7 +24,6 @@ function App(){
         <Route exact path="/Error" element={<Error />}> </Route>  
         <Route exact path="/Loading" element={<Loading />} ></Route>
         <Route exact path="/Settings" element={<Settings />}> </Route>  
-      
         <Route exact path="/Song" element={<Song />}> </Route>  
       </Routes>
     </Router>
