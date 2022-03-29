@@ -7,5 +7,5 @@ urlpatterns = [
     path('is-authenticated', IsAuthenticated.as_view()),
     path('logout-user', logoutUser.as_view()),
     path('user', userView.as_view()),
-    path('searchAPI', searchSpotify.as_view())
+    path('searchAPI', spotifySearch.as_view())
 ]

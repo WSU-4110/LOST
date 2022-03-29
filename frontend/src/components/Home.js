@@ -11,7 +11,7 @@ export default class Home extends Component {
         };
         this.authenticateSpotify = this.authenticateSpotify.bind(this);
         this.authenticateSpotify();
-        this.getSearchResults();
+        this.get_SearchResults();
     }
 
     storage;
@@ -46,7 +46,7 @@ export default class Home extends Component {
     }
 
     //tester function to show search results request
-    getSearchResults() {
+    get_SearchResults() {
         fetch("http://127.0.0.1:8000/spotify/searchAPI")
             .then((response) => response.json())
             .then((data) => {
