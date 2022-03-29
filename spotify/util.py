@@ -1,13 +1,8 @@
-from email import header
 from .models import SpotifyToken
 from django.utils import timezone 
 from datetime import timedelta
 from .credentials import CLIENT_ID, CLIENT_SECRET
-from requests import post, put, get
-
-#omitted me/
-#url stem used for all spotify api calls
-URL_STEM = "https://api.spotify.com/v1/"
+from requests import post
 
 #Check if there is a token for a specific user 
 def get_user_tokens(session_id):
@@ -76,8 +71,7 @@ def refresh_spotify_token(session_id):
     token_type = response.get('token_type')
     expires_in = response.get('expires_in')
 
-    update_or_create_user_tokens(
-        session_id, access_token, token_type, expires_in, refresh_token)
+    update_or_create_user_tokens(session_id, access_token, token_type, expires_in, refresh_token)
 
 #create request url using user's id and the endpoint from spotify's api
 def execute_spotify_api_request(session_id, endpoint, post_=False, put_=False):
