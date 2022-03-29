@@ -71,5 +71,33 @@ def refresh_spotify_token(session_id):
     token_type = response.get('token_type')
     expires_in = response.get('expires_in')
 
-    update_or_create_user_tokens(
-        session_id, access_token, token_type, expires_in, refresh_token)
+    update_or_create_user_tokens(session_id, access_token, token_type, expires_in, refresh_token)
+
+#create request url using user's id and the endpoint from spotify's api
+def execute_spotify_api_request(session_id, endpoint, post_=False, put_=False):
+    tokens = get_user_tokens(session_id)
+
+    #send authorization token to spotify 
+    headers = {'Content-Type': 'application/json', 'Authorization': "Bearer " + tokens.access_token}
+
+    #Send POST request
+    if post_:
+        post(URL_STEM + endpoint, headers=headers)
+
+    #Send PUT request 
+    if put_:
+        put(URL_STEM + endpoint, headers=headers)
+
+    #Send GET request 
+    response = get(URL_STEM + endpoint, {}, headers=headers)
+
+    #if there is an issue sending json, return Error 
+    try:
+        return response.json()
+    except:
+        return {'Error': 'Issue with request'}
+
+#search function that creates query string and calls api request function
+def search(session_id, search):
+    searchQuery = "search?q=" + search + "&type=track,artist,album&include_external=audio&limit=30"
+    return execute_spotify_api_request(session_id, searchQuery)

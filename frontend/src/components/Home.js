@@ -11,6 +11,7 @@ export default class Home extends Component {
         };
         this.authenticateSpotify = this.authenticateSpotify.bind(this);
         this.authenticateSpotify();
+        this.get_SearchResults();
     }
 
     /*
@@ -40,6 +41,15 @@ export default class Home extends Component {
                             window.location.replace(data.url);
                         });
                 }
+            });
+    }
+
+    //tester function to show search results request
+    get_SearchResults() {
+        fetch("http://127.0.0.1:8000/spotify/searchAPI")
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
             });
     }
 
