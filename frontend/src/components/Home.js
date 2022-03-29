@@ -11,10 +11,8 @@ export default class Home extends Component {
         };
         this.authenticateSpotify = this.authenticateSpotify.bind(this);
         this.authenticateSpotify();
-        this.getSearchResults();
     }
 
-    storage;
     /*
     // Get Details for the Users Home Page 
     getHomeDetails() {
@@ -45,17 +43,8 @@ export default class Home extends Component {
             });
     }
 
-    //tester function to show search results request
-    getSearchResults() {
-        fetch("http://127.0.0.1:8000/spotify/searchAPI")
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-            });
-    }
-
     //User logout
-    logoutofSpotify() {
+    logout() {
         fetch('/spotify/logout-user');
         window.open('https://www.spotify.com/us/logout/');
         setTimeout(function () {
@@ -77,7 +66,7 @@ export default class Home extends Component {
                     <Button
                         variant="contained"
                         color="secondary"
-                        onClick={this.logoutofSpotify}
+                        onClick={this.logout}
                     >
                         Log Out
                     </Button>
