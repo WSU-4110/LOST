@@ -78,7 +78,7 @@ export default class Home extends Component {
                     </Button>
                 </Grid>
                 <Grid item xs={12} align="center">
-                    
+
                 </Grid>
             </Grid>
         );
