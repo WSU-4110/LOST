@@ -64,13 +64,11 @@ export default class Home extends Component {
     //Display info on the home page 
     render() {
         return (
-            <Grid container spacing={1}>
-                <Grid item xs={12} align="center">
+            <Grid container spacing={1} class="App">
+                <Grid item xs={12} class="App-header" align="center">
                     <Typography variant="h4" component="h4">
                         Home
                     </Typography>
-                </Grid>
-                <Grid item xs={12} align="center">
                     <Button
                         variant="contained"
                         color="secondary"
@@ -78,6 +76,9 @@ export default class Home extends Component {
                     >
                         Log Out
                     </Button>
+                </Grid>
+                <Grid item xs={12} align="center">
+                    
                 </Grid>
             </Grid>
         );
