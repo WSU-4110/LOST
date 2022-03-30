@@ -1,5 +1,9 @@
 # LOST
 ## Reproduction
+install in command prompt
+
+`pip install django djangorestframework`
+
 cd frontend and install the following
 
 `npm install axios`
