@@ -3,6 +3,10 @@ import { Grid, Button, ButtonGroup, Typography } from "@material-ui/core";
 import Home from './Home';
 import SongPage from './SongPage';
 import Settings from './Settings';
+import MusicPlayer from './MusicPlayer';
+import Search from './Search';
+import Error from './Error';
+import Loading from './Loading';
 import {
     BrowserRouter as Router,
     Switch,
@@ -13,40 +17,40 @@ import {
 
 
 export default class Login extends Component {
-
     static defaultProps = {
-        nightMode: false,
+        spotifyAuthenticated: false,
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            nightMode: this.props.nightMode,
-        }
-        this.handleLoginButtonPressed = this.handleLoginButtonPressed.bind(this);
+            spotifyAuthenticated: this.props.spotifyAuthenticated,
+        };
+
+        this.authenticateSpotify = this.authenticateSpotify.bind(this);
     }
 
 
-    handleLoginButtonPressed() {
-        // What happens when you press Login Room button 
-        const requestOptions = {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                night_mode: this.state.nightMode // Need to match what is in views.py
-            }),
-        };
-        fetch("/api/create-home", requestOptions)
+    //Ask if current user is authenticated 
+    //if user not authenticated => send user to spotify login page
+    //else, redirect user to LOST homepage
+    authenticateSpotify() {
+        fetch('/spotify/is-authenticated')
             .then((response) => response.json())
             .then((data) => {
-                //test for error (this.props.history <- shows undefined)
-                console.log(this.props.history)
-                //new code to redirect user
-                window.location.href = '/home/' + data.code
-                //old code
-                //this.props.history.push("/home/" + data.code)
-            }); //redirect user to room/roomcodenamehere
+                this.setState({ spotifyAuthenticated: data.status })
+                if (!data.status) {
+                    fetch('/spotify/get-auth-url')
+                        .then((response) => response.json())
+                        .then((data) => {
+                            window.location.replace(data.url);
+                        });
+                } else {
+                    window.location.replace('/home');
+                }
+            });
     }
+
 
     renderLoginPage() {
         return (
@@ -59,7 +63,7 @@ export default class Login extends Component {
                 </Grid>
                 <Grid item xs={12} align="center">
                     {/* LOGIN BUTTON*/}
-                    <Button color="secondary" variant="contained" onClick={this.handleLoginButtonPressed} >
+                    <Button color="secondary" variant="contained" onClick={this.authenticateSpotify} >
                         Login
                     </Button>
                 </Grid>
@@ -78,6 +82,9 @@ export default class Login extends Component {
                     <Route path="/home" component={Home} />
                     <Route path="/song" component={SongPage} />
                     <Route path="/settings" component={Settings} />
+                    <Route path="/music-player" component={MusicPlayer} />
+                    <Route path="/search" component={Search} />
+                    <Route path="/error" component={Error} />
                 </Switch>
             </Router>
         );

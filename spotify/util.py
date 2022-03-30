@@ -2,7 +2,10 @@ from .models import SpotifyToken
 from django.utils import timezone 
 from datetime import timedelta
 from .credentials import CLIENT_ID, CLIENT_SECRET
-from requests import post
+from requests import post, put, get
+
+#url stem used for all api calls to spotify
+URL_STEM = "https://api.spotify.com/v1/"
 
 #Check if there is a token for a specific user 
 def get_user_tokens(session_id):
@@ -13,6 +16,13 @@ def get_user_tokens(session_id):
         return user_tokens[0]
     else:
         return None
+
+#searches for user in spotifytoken table, if it exists, delete the record
+def logout_button(session_id):
+    user_tokens = SpotifyToken.objects.filter(user=session_id)
+    if user_tokens.exists():
+        #session_id.session.delete()
+        user_tokens[0].delete()
 
 #User Tokens expire in 1 hr 
 #User tokens expire in 3600 seconds 
@@ -64,5 +74,33 @@ def refresh_spotify_token(session_id):
     token_type = response.get('token_type')
     expires_in = response.get('expires_in')
 
-    update_or_create_user_tokens(
-        session_id, access_token, token_type, expires_in, refresh_token)
+    update_or_create_user_tokens(session_id, access_token, token_type, expires_in, refresh_token)
+
+#create request url using user's id and the endpoint from spotify's api
+def execute_spotify_api_request(session_id, endpoint, post_=False, put_=False):
+    tokens = get_user_tokens(session_id)
+
+    #send authorization token to spotify 
+    headers = {'Content-Type': 'application/json', 'Authorization': "Bearer " + tokens.access_token}
+
+    #Send POST request
+    if post_:
+        post(URL_STEM + endpoint, headers=headers)
+
+    #Send PUT request 
+    if put_:
+        put(URL_STEM + endpoint, headers=headers)
+
+    #Send GET request 
+    response = get(URL_STEM + endpoint, {}, headers=headers)
+
+    #if there is an issue sending json, return Error 
+    try:
+        return response.json()
+    except:
+        return {'Error': 'Issue with request'}
+
+#search function that creates query string and calls api request function
+def search(session_id, search):
+    searchQuery = "search?q=" + search + "&type=track,artist,album&include_external=audio&limit=30"
+    return execute_spotify_api_request(session_id, searchQuery)
