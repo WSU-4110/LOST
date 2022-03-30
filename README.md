@@ -1,6 +1,8 @@
 # LOST
 ## Prerequisites
-Python, Node.js 
+Python - https://www.python.org/downloads/ 
+
+Node.js - https://nodejs.org/en/
 
 ## Reproduction
 install in command prompt
