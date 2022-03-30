@@ -1,4 +1,7 @@
 # LOST
+## Prerequisites
+Python, Node.js 
+
 ## Reproduction
 install in command prompt
 
