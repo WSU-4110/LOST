@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Grid, Typography, FormHelperText, FormControl, Radio, RadioGroup, FormControlLabel } from "@material-ui/core";
 import Login from './Login';
+import Song from './Song';
+import { Link } from "react-router-dom";
 import '../../static/css/Appa.css';
 
 export default class Home extends Component {
@@ -69,10 +71,18 @@ export default class Home extends Component {
               <nav>
               <div class='navBar'>
                 <div class='musicPlayerLink'>
-                 
+                <Button color="secondary" class="songBtn" variant="contained" to="/Song" component={Link}>
+                    SONGS
+                    </Button>
                 </div>
                 <div class='menuIcon'>
-                 
+                <Button color="secondary" class="btn-modal" variant="contained" to="/Settings" component={Link}>
+               
+                    <div class='menuBar'></div>
+                    <div class='menuBar'></div>
+                    <div class='menuBar'></div>
+                
+                    </Button>
                 </div>
               </div>
             </nav>
