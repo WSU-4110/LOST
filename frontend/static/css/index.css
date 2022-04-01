@@ -9,6 +9,10 @@ body {
     /*height: 100%;
     margin: 0;
     padding: 0;*/
+    background-image: url('./bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: 100% 100%;
 }
 
 code {
@@ -42,6 +46,7 @@ code {
 
 .App {
     text-align: center;
+  
 }
   
 .App-logo {
@@ -69,7 +74,79 @@ code {
 .App-link {
     color: #61dafb;
 }
-  
+.h2Align{
+  margin-left: -35%;
+  color: white;
+}
+.rightSection{
+  margin-left:auto;
+  margin-right:auto;
+  margin: auto;
+  width:225px;
+  height:400px;
+  background-color:black;
+}
+.navBar{
+  display: flex;
+  justify-content: flex-end;
+}
+.recentPlayed{
+  background-color:black;
+  width: 200px;
+  height: 200px;
+  margin:auto;
+}
+.recentAttributes{
+  width: 200px;
+  height: 200px;
+  margin:auto;
+}
+.flexAttributes{
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+}
+.horizontalDisplay{
+  float:left;
+  margin-left:70px;
+  padding: 20px;
+}
+.createSection{
+  width: 600px;
+  height: 450px;
+  float:right;
+  margin-top: 40px;
+  margin-right: 70px;
+  display: flex;
+  background-color: rgba(255,255,255,0.5);
+  border-radius: 5%;
+ padding: 20px;
+}
+.createEffect{
+  background-color: rgba(213, 210, 210, 0.7);
+  border-radius: 1.65rem;
+  width: 250px;
+}
+.create{
+  font-size: 30px;
+  color:white;
+}
+.leftSection{
+  margin-left:auto;
+  margin-right:auto;
+}
+.rightSection{
+  margin-left:auto;
+  margin-right:auto;
+  margin: auto;
+  width:225px;
+  height:400px;
+  background-color:black;
+}
 a {
     color: white;
 }

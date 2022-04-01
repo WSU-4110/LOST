@@ -66,21 +66,53 @@ export default class Home extends Component {
     render() {
         return (
             <Grid container spacing={1} class="App">
-                <Grid item xs={12} class="App-header" align="center">
-                    <Typography variant="h4" component="h4">
-                        Home
-                    </Typography>
-                    <Button
+              <nav>
+              <div class='navBar'>
+                <div class='musicPlayerLink'>
+                 
+                </div>
+                <div class='menuIcon'>
+                  
+                </div>
+              </div>
+            </nav>
+               <div class="horizontalDisplay">
+              <h3 class="h2Align">Recently Played</h3>
+                <div class= "recentPlayed">
+                </div>
+              <h3 class ="h2Align">Recent Attributes</h3>
+                <div class="recentAttributes">
+                  <div class="flexAttributes">
+                    
+                  </div>
+                </div>
+            </div>
+            <div className="createSection">
+              <div className="leftSection">
+                <div className="createEffect">
+                  <h1 className='create'>CREATE</h1>
+                </div>
+          
+                <h3 >Saved Attributes</h3>
+                <div className="SavedAtrributes">
+
+                </div>
+                
+              </div>
+                <div class ="rightSection">
+
+                </div>
+              </div>
+             
+                    {/* <Button
                         variant="contained"
                         color="secondary"
                         onClick={this.logout}
                     >
                         Log Out
                     </Button>
-                </Grid>
-                <Grid item xs={12} align="center">
-
-                </Grid>
+                */}
+               
             </Grid>
         );
     }
