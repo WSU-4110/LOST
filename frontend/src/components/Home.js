@@ -72,7 +72,7 @@ export default class Home extends Component {
                  
                 </div>
                 <div class='menuIcon'>
-                  
+                 
                 </div>
               </div>
             </nav>
