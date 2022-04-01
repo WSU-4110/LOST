@@ -1,5 +1,5 @@
 
-import '../styles/Search.css';
+
 import React from 'react';
 
 
