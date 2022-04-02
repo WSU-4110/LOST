@@ -4,7 +4,7 @@ import {
   Button,
   Typography,
 } from "@material-ui/core";
-import MusicPlayer from "./MusicPlayer";
+import MusicPlayer from "./MusicPage";
 
 
 export default class SongPage extends Component {

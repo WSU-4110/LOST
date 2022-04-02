@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Grid, Typography, FormHelperText, FormControl, Radio, RadioGroup, FormControlLabel } from "@material-ui/core";
 import Login from './Login';
+import MusicPage from './MusicPage';
+import { Link } from "react-router-dom"; 
 
 export default class Home extends Component {
     constructor(props) {
@@ -76,6 +78,7 @@ export default class Home extends Component {
                     >
                         Log Out
                     </Button>
+                    <Button color="secondary" variant="contained" to="/music-player" component={Link}>Music Player</Button>
                 </Grid>
                 <Grid item xs={12} align="center">
 

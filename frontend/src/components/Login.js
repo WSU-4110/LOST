@@ -3,7 +3,7 @@ import { Grid, Button, ButtonGroup, Typography } from "@material-ui/core";
 import Home from './Home';
 import SongPage from './SongPage';
 import Settings from './Settings';
-import MusicPlayer from './MusicPlayer';
+import MusicPlayer from './MusicPage';
 import Search from './Search';
 import Error from './Error';
 import Loading from './Loading';
