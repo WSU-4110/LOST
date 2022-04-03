@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Grid, Typography, FormHelperText, FormControl, Radio, RadioGroup, FormControlLabel } from "@material-ui/core";
 import Login from './Login';
-import Song from './Song';
-import { Link } from "react-router-dom";
-import '../../static/css/Appa.css';
+import MusicPage from './MusicPage';
+import { Link } from "react-router-dom"; 
 
 export default class Home extends Component {
     constructor(props) {
@@ -114,15 +113,7 @@ export default class Home extends Component {
                 </div>
               </div>
              
-                    {/* <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={this.logout}
-                    >
-                        Log Out
-                    </Button>
-                */}
-               
+                   
             </Grid>
         );
     }
