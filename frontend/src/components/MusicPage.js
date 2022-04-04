@@ -30,7 +30,7 @@ const MusicPage = () => {
         console.log(data['albums']['items'][0])
 
         //to get all items within the 'albums' list
-        console.log(data['albums']['items'][0])
+        console.log(data['albums']['items'])
 
         //the same can be done with the tracks and artists lists
       });
