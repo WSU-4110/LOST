@@ -83,3 +83,40 @@ a {
     }
 }
   
+h1 {
+  margin: 0px;
+
+}
+
+.mainContainer {
+  height: 100vh;
+  background-image: url("https://i.imgur.com/U2uggu6.jpg");
+}
+.bodyContainer {
+  display: flex;
+  padding: 10px 50px;
+}
+
+.nav {
+  border: 1px solid black;
+  justify-content: space-between;
+}
+
+.logo img {
+  width: 50px;
+}
+
+.subContainer {
+  width:31%;
+  padding-top: 20px;
+  margin-right: 2%;
+}
+
+#player {
+  background-color: rgba(255,255,255, 0.5);
+  border-radius: 10px;
+}
+
+.album {
+  margin: 20px 0px;;
+}

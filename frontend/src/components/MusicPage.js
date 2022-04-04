@@ -23,7 +23,10 @@ const MusicPage = () => {
       </div>
       <div className="bodyContainer">
         <div className="subContainer" id="player">
-          {/* <Search></Search> */}
+          <div class="search">
+            <input type="text" class="search-bar" placeholder="Search" />
+            <button><i class="material-icons">search</i></button>
+          </div>
           <div className="album">
             <img width={"70%"} src="https://i.imgur.com/4HPKiov.jpeg" alt="album cover"/>
           
