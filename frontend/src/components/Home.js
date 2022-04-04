@@ -62,7 +62,20 @@ export default class Home extends Component {
             window.location.replace('http://localhost:8000/')
         }, 1000);
     }
-
+    getCurrentSong() {
+        fetch("../spotify/current-song")
+        .then((response) => {
+            if (!response.ok) {
+                return {};
+            } else {
+              return response.json();
+            }
+        })
+        .then((data) => {
+          this.setState({ song: data});
+          console.log(data);
+        });
+    }
     //Display info on the home page 
     render() {
         return (
@@ -88,6 +101,10 @@ export default class Home extends Component {
                <div class="horizontalDisplay">
               <h3 class="h2Align">Recently Played</h3>
                 <div class= "recentPlayed">
+                    <img src={this.props.image_url} height="100%" width="100%" /> 
+                    <Typography component="h5" variant="h5">
+                            {this.props.title}
+                        </Typography>
                 </div>
               <h3 class ="h2Align">Recent Attributes</h3>
                 <div class="recentAttributes">
