@@ -14,6 +14,35 @@ const MusicPage = () => {
       <Loading />
     );
   }
+
+  const get_SearchResults = () => {
+    fetch("http://127.0.0.1:8000/spotify/searchAPI")
+        .then((response) => response.json())
+        .then((data) => {
+            const {data} = {
+              params: {
+                type: "track"
+              }
+            }
+        });
+    
+        const requestOptions = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            code: {data},
+          }),
+        };
+        fetch("/api/join-room", requestOptions)
+          .then((response) => response.json())
+          .then((data) => {
+            params: {
+              type: "track"
+            }
+          })
+      }    
+  }
+
     return (
       <div className="mainContainer">
       <div className="nav">
@@ -24,8 +53,8 @@ const MusicPage = () => {
       <div className="bodyContainer">
         <div className="subContainer" id="player">
           <div class="search">
-            <input type="text" class="search-bar" placeholder="Search" />
-            <button><i class="material-icons">search</i></button>
+            <input type="text" class="search-bar" placeholder="Search" onChange={e => get_SearchResults(e.target.value)}/>
+            <button><i class="material-icons">searchelp</i></button>
           </div>
           <div className="album">
             <img width={"70%"} src="https://i.imgur.com/4HPKiov.jpeg" alt="album cover"/>
