@@ -4,10 +4,9 @@ export default class Search {
 
     song_title = "";
 
+     Search(){
 
-    /**
-     * @returns {Search}
-     */
+     }
     static getInstance() {
         if (Search.myInstance == null) {
             Search.myInstance = new Search();
