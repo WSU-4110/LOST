@@ -1,16 +1,26 @@
+export default class Search {
+
+    static myInstance = null;
+
+    song_title = "";
 
 
-import React from 'react';
+    /**
+     * @returns {Search}
+     */
+    static getInstance() {
+        if (Search.myInstance == null) {
+            Search.myInstance = new Search();
+        }
 
+        return this.myInstance;
+    }
 
-const Search = () => {
- 
-    return (
-        <div className="search">
-            <input type="text" class="search-bar" placeholder="Search"/>
-           <button><i>O</i></button>
-        </div>
-    )
+    getSongTitle() {
+        return this.song_title;
+    }
+
+    setSongTitle(song) {
+        this.song_title = song;
+    }
 }
-
-export default Search

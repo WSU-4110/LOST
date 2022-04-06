@@ -28,7 +28,35 @@ export default class Home extends Component {
             this.authenticateSpotify();
         });
     }*/
+// When storing data.
+let songT = Search.getInstance();
+songT.setUserID("User1");
 
+
+// When retrieving stored data.
+let song = Search.getInstance();
+let songTitle = song.getUserID();
+console.log(songTitle);
+
+ get_SearchResults = e => {
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      searchStr: e,
+    }),
+  };
+  fetch("http://127.0.0.1:8000/spotify/searchAPI", requestOptions)
+    .then((response) => response.json())
+    .then((data) => {
+     
+      console.log(data['songs']['items'][0])
+
+      
+      console.log(data['songs']['items'])
+     
+      });
+    }
     //Ask if current user is authenticated 
     authenticateSpotify() {
         fetch('/spotify/is-authenticated')
@@ -100,6 +128,10 @@ export default class Home extends Component {
               <div className="leftSection">
                 <div className="createEffect">
                   <h1 className='create'>CREATE</h1>
+                    <div class="search">
+                        <input type="text" class="search-bar" placeholder="Search" onChange={e => get_SearchResults(e.target.value)} />
+                        <button><i class="material-icons">searchelp</i></button>
+                    </div>
                 </div>
           
                 <h3 >Saved Attributes</h3>
