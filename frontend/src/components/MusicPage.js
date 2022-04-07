@@ -48,7 +48,7 @@ const MusicPage = () => {
         <div className="subContainer" id="player">
           <div class="search">
             <input type="text" class="search-bar" placeholder="Search" onChange={e => get_SearchResults(e.target.value)} />
-            <button><i class="material-icons">searchelp</i></button>
+            <button><i class="material-icons">search</i></button>
           </div>
           <div className="album">
             <img width={"70%"} src="https://i.imgur.com/4HPKiov.jpeg" alt="album cover" />

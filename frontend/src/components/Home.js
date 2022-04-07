@@ -103,7 +103,7 @@ export default class Home extends Component {
                     </div>
                 </div>
 
-
+                <Button color="secondary" variant="contained" to="/music-player" component={Link}>Music Player</Button>
             </Grid>
         );
     }
