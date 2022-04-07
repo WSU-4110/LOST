@@ -79,11 +79,73 @@ class logoutUser(APIView):
 
 #recieves search string sent from frontend and calls util search using the search string
 class spotifySearch(APIView):
-    def get(self, request, format=None):
-        #use this when search bar has been added and form data from frontend can be sent
-        searchInput = self.request.session.get('track')
+    #name of value sent from body of POST request in frontend
+    lookup_url_kwarg = 'searchStr'
 
-        #testing input
-        #searchInput = 'the weeknd'
+    def post(self, request, format=None):
+        #obtaining value sent from the body of POST request in frontend
+        searchInput = request.data.get(self.lookup_url_kwarg)
+        
+        #print statement for debugging purposes
+        print(searchInput)
+
         results = search(self.request.session.session_key, searchInput)
         return Response(results, status=status.HTTP_200_OK)
+
+
+#Get all info about current song 
+# used for testing purposes 
+class AllCurrentSongInfo(APIView):
+    def get(self, request, format=None):
+        
+        endpoint = "me/player/currently-playing"
+        response = execute_spotify_api_request(self.request.session.session_key, endpoint)
+
+        if 'error' in response or 'item' not in response:
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+
+        return Response(response, status=status.HTTP_200_OK)
+
+
+
+#Get current info about current song and return to Frontend 
+class CurrentSong(APIView):
+    def get(self, request, format=None):
+        
+        endpoint = "me/player/currently-playing"
+        response = execute_spotify_api_request(self.request.session.session_key, endpoint)
+
+        if 'error' in response or 'item' not in response:
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+        
+        item = response.get('item')
+        duration = item.get('duration_ms')
+        progress = response.get('progress_ms')
+        album_cover = item.get('album').get('images')[0].get('url')
+        is_playing = response.get('is_playing')
+        song_id = item.get('id')
+
+        artist_string = "" #Handles if there are multiple artists for a song, cleans up for frontend 
+
+        for i, artist in enumerate(item.get('artists')):
+            if i > 0:
+                artist_string += ", "
+            name = artist.get('name')
+            artist_string += name
+
+
+        song = {
+            'title': item.get('name'),
+            'artist': artist_string,
+            'duration': duration,
+            'time': progress,
+            'image_url': album_cover,
+            'is_playing': is_playing,
+            'id': song_id
+        }
+
+        return Response(song, status=status.HTTP_200_OK)
+
+
+    

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Grid, Typography, FormHelperText, FormControl, Radio, RadioGroup, FormControlLabel } from "@material-ui/core";
 import Login from './Login';
 import MusicPage from './MusicPage';
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 
 export default class Home extends Component {
     constructor(props) {
@@ -12,7 +12,6 @@ export default class Home extends Component {
         };
         this.authenticateSpotify = this.authenticateSpotify.bind(this);
         this.authenticateSpotify();
-        this.get_SearchResults();
     }
 
     /*
@@ -45,15 +44,6 @@ export default class Home extends Component {
             });
     }
 
-    //tester function to show search results request
-    get_SearchResults() {
-        fetch("http://127.0.0.1:8000/spotify/searchAPI")
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-            });
-    }
-
     //User logout
     logout() {
         fetch('/spotify/logout-user');
@@ -67,22 +57,53 @@ export default class Home extends Component {
     render() {
         return (
             <Grid container spacing={1} class="App">
-                <Grid item xs={12} class="App-header" align="center">
-                    <Typography variant="h4" component="h4">
-                        Home
-                    </Typography>
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={this.logout}
-                    >
-                        Log Out
-                    </Button>
-                    <Button color="secondary" variant="contained" to="/music-player" component={Link}>Music Player</Button>
-                </Grid>
-                <Grid item xs={12} align="center">
+                <nav>
+                    <div class='navBar'>
+                        <div class='musicPlayerLink'>
+                            <Button color="secondary" class="songBtn" variant="contained" to="/Song" component={Link}>
+                                SONGS
+                            </Button>
+                        </div>
+                        <div class='menuIcon'>
+                            <Button color="secondary" class="btn-modal" variant="contained" to="/Settings" component={Link}>
 
-                </Grid>
+                                <div class='menuBar'></div>
+                                <div class='menuBar'></div>
+                                <div class='menuBar'></div>
+
+                            </Button>
+                        </div>
+                    </div>
+                </nav>
+                <div class="horizontalDisplay">
+                    <h3 class="h2Align">Recently Played</h3>
+                    <div class="recentPlayed">
+                    </div>
+                    <h3 class="h2Align">Recent Attributes</h3>
+                    <div class="recentAttributes">
+                        <div class="flexAttributes">
+
+                        </div>
+                    </div>
+                </div>
+                <div className="createSection">
+                    <div className="leftSection">
+                        <div className="createEffect">
+                            <h1 className='create'>CREATE</h1>
+                        </div>
+
+                        <h3 >Saved Attributes</h3>
+                        <div className="SavedAtrributes">
+
+                        </div>
+
+                    </div>
+                    <div class="rightSection">
+
+                    </div>
+                </div>
+
+
             </Grid>
         );
     }
