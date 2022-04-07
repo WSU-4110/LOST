@@ -1,3 +1,4 @@
+from contextlib import nullcontext
 from django.shortcuts import render, redirect
 
 from spotify.serializers import userSerializer
@@ -64,12 +65,24 @@ def spotify_callback(request, format=None):
 
     return redirect('frontend:home')  #put in name of application (frontend:) after : put page to go to 
 
-#Call util is_spotify_autneticated to see if user is authenticated 
-#return the response 
+class Authentication:
+    __instance = None
+    __response = False
+    @staticmethod
+    def startAuth():
+        if Authentication.__instance == None:
+            Authentication.__instance = Authentication()
+        return Authentication.__instance
+    def __init__(self, request):
+         Authentication.__instance = self
+         Authentication.__response = is_spotify_authenticated(request.session.session_key)
+
+
+#see if user is authenticated 
 class IsAuthenticated(APIView):
-    def get(self, request, format=None):
-        is_authenticated = is_spotify_authenticated(self.request.session.session_key)
-        return Response({'status': is_authenticated}, status=status.HTTP_200_OK)
+    def get(self, request):
+        auth = Authentication(self.request).startAuth()
+        return Response('response',{auth.__response})
 
 
 class logoutUser(APIView):
