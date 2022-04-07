@@ -102,5 +102,5 @@ def execute_spotify_api_request(session_id, endpoint, post_=False, put_=False):
 
 #search function that creates query string and calls api request function
 def search(session_id, search):
-    searchQuery = "search?q=" + search + "&type=track,artist,album&include_external=audio&limit=50"
+    searchQuery = "search?q=" + search + "&type=track&include_external=audio&limit=50"
     return execute_spotify_api_request(session_id, searchQuery)
