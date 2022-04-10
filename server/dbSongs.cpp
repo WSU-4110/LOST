@@ -19,6 +19,19 @@ class dbSongs {
         }
         string getSong(string songName) {
             return songName; 
+            // play song from spotify api
         }
-
+        void setArtist() {
+            cout << "Enter an artist to listen to: "; 
+            cin >> artistName; 
+            /* for (int i = songArray.begin(); i < songArray.end; i++) {
+                return songName; 
+            }
+            */
+            // return list of songs by artist 
+        }
+        string getArtist(string artistName) {
+            return artistName;
+        }
 }
+
