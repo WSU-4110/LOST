@@ -60,7 +60,7 @@ export default class Home extends Component {
                 <nav>
                     <div class='navBar'>
                         <div class='musicPlayerLink'>
-                            <Button color="secondary" class="songBtn" variant="contained" to="/MusicPage" component={Link}>
+                            <Button color="secondary" class="songBtn" variant="contained" to="/music-player" component={Link}>
                                 SONGS
                             </Button>
                         </div>

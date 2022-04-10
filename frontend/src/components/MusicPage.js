@@ -62,7 +62,7 @@ const MusicPage = () => {
     <div className="mainContainer">
       <div className="nav">
         <div className="logo">
-          <img src="https://i.imgur.com/NMLpcKj.jpeg" width={"5%"} alt="logo" />
+          <img src="https://i.imgur.com/ILJ5T9G.png" width={"5%"} alt="logo" />
         </div>
       </div>
       <div className="bodyContainer">
