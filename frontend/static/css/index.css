@@ -1,3 +1,7 @@
+* {
+  margin: 5px;
+}
+
 html, 
 body {
     margin: 0;
@@ -21,7 +25,7 @@ code {
   }
 
 #main {
-    position: fixed;
+    /* position: fixed; */
     width: 100%;
     height: 100%;
     left: 0;
@@ -177,5 +181,31 @@ a {
     to {
       transform: rotate(360deg);
     }
+}
+
+tbody {
+  width: 100px;
+  border: none;
+}
+
+tr {
+  background-color: #282c34d0;
+  display: flex;
+  justify-content: flex-start;
+  color: white;
+  margin: 10px 0 0 10px;
+  border-radius: 10px;
+}
+
+td {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.subContainer {
+  width: auto;
+  padding-top: 20px;
+  margin-right: 2%;
 }
   
