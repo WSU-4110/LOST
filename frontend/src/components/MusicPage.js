@@ -72,7 +72,7 @@ const MusicPage = () => {
             <button><i class="material-icons">search</i></button>
           </div>
           <div className="subContainer">
-            <table border="1" id="results">
+            <table border="0" id="results">
             </table>
           </div>
         </div>

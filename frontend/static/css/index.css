@@ -179,4 +179,30 @@ a {
       transform: rotate(360deg);
     }
 }
+
+tbody {
+  width: 100px;
+  border: none;
+}
+
+tr {
+  background-color: #282c34d0;
+  display: flex;
+  justify-content: flex-start;
+  color: white;
+  margin: 10px 0 0 10px;
+  border-radius: 10px;
+}
+
+td {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.subContainer {
+  width: auto;
+  padding-top: 20px;
+  margin-right: 2%;
+}
   
