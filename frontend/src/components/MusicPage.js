@@ -26,11 +26,32 @@ const MusicPage = () => {
     fetch("http://127.0.0.1:8000/spotify/searchAPI", requestOptions)
       .then((response) => response.json())
       .then((data) => {
+        var table = document.getElementById("results");
+        $("#results tr").remove();
+
+        for (var i = 0; i < data['tracks']['items'].length; i++) {
+          var row = table.insertRow();
+
+          var song = row.insertCell(0);
+          song.innerHTML = "<img src='" + data['tracks']['items'][i]['album']['images'][data['tracks']['items'][i]['album']['images'].length - 1]['url'] +
+            "' style={{ height: '64px', width: '64px' }}/> <br>" + data['tracks']['items'][i]['name'];
+          var artists = row.insertCell(1);
+          var strArtists = "";
+          for (var j = 0; j < data['tracks']['items'][i]['artists'].length; j++) {
+            if (j != data['tracks']['items'][i]['artists'].length - 1) {
+              strArtists += data['tracks']['items'][i]['artists'][j]['name'] + ", ";
+            } else {
+              strArtists += data['tracks']['items'][i]['artists'][j]['name'];
+            }
+          }
+          artists.innerHTML = strArtists;
+        }
         //to get a single item within the 'albums' list
-        console.log(data['albums']['items'][0])
+        console.log(data['tracks']['items'].length);
+        console.log(data['tracks']['total']);
 
         //to get all items within the 'albums' list
-        console.log(data['albums']['items'])
+        console.log(data['tracks']['items']);
 
         //the same can be done with the tracks and artists lists
       });
@@ -50,9 +71,9 @@ const MusicPage = () => {
             <input type="text" class="search-bar" placeholder="Search" onChange={e => get_SearchResults(e.target.value)} />
             <button><i class="material-icons">searchelp</i></button>
           </div>
-          <div className="album">
-            <img width={"70%"} src="https://i.imgur.com/4HPKiov.jpeg" alt="album cover" />
-
+          <div className="subContainer">
+            <table border="1" id="results">
+            </table>
           </div>
         </div>
         <div className="subContainer">
