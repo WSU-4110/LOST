@@ -79,12 +79,16 @@ class logoutUser(APIView):
 
 #recieves search string sent from frontend and calls util search using the search string
 class spotifySearch(APIView):
-    def get(self, request, format=None):
-        #use this when search bar has been added and form data from frontend can be sent
-        #searchInput = self.request.session.get('search')
+    #name of value sent from body of POST request in frontend
+    lookup_url_kwarg = 'searchStr'
 
-        #testing input
-        searchInput = 'the weeknd'
+    def post(self, request, format=None):
+        #obtaining value sent from the body of POST request in frontend
+        searchInput = request.data.get(self.lookup_url_kwarg)
+        
+        #print statement for debugging purposes
+        print(searchInput)
+
         results = search(self.request.session.session_key, searchInput)
         return Response(results, status=status.HTTP_200_OK)
 
