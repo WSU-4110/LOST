@@ -9,5 +9,6 @@ urlpatterns = [
     path('user', userView.as_view()),
     path('all-current-song-info', AllCurrentSongInfo.as_view()),
     path('current-song', CurrentSong.as_view()),
-    path('searchAPI', spotifySearch.as_view())
+    path('searchAPI', spotifySearch.as_view()),
+    path('recent', recentTrack.as_view())
 ]

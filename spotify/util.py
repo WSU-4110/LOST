@@ -104,3 +104,8 @@ def execute_spotify_api_request(session_id, endpoint, post_=False, put_=False):
 def search(session_id, search):
     searchQuery = "search?q=" + search + "&type=track&include_external=audio&limit=50"
     return execute_spotify_api_request(session_id, searchQuery)
+
+#submit query to get recently played track
+def recentlyPlayed(session_id):
+    query = "me/player/recently-played?q=limit=1"
+    return execute_spotify_api_request(session_id, query)
