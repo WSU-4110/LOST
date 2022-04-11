@@ -43,7 +43,7 @@ export default class Home extends Component {
                 }
             });
     }
-
+    
     //User logout
     logout() {
         fetch('/spotify/logout-user');
@@ -66,18 +66,17 @@ export default class Home extends Component {
                         </div>
                         <div class='menuIcon'>
                             <Button color="secondary" class="btn-modal" variant="contained" to="/Settings" component={Link}>
-
                                 <div class='menuBar'></div>
                                 <div class='menuBar'></div>
                                 <div class='menuBar'></div>
-
                             </Button>
                         </div>
                     </div>
                 </nav>
                 <div class="horizontalDisplay">
                     <h3 class="h2Align">Recently Played</h3>
-                    <div class="recentPlayed">
+                    <div class ="recentPlayed">
+
                     </div>
                     <h3 class="h2Align">Recent Attributes</h3>
                     <div class="recentAttributes">
