@@ -92,6 +92,7 @@ export default class Home extends Component {
                 <nav>
                     <div class='navBar'>
                         <div class='musicPlayerLink'>
+                        <Button color = "secondary" class= "songBtn" >Logout</Button>
                             <Button color="secondary" class="songBtn" variant="contained" to="/music-player" component={Link}>
                                 SONGS
                             </Button>
@@ -103,6 +104,7 @@ export default class Home extends Component {
                                 <div class='menuBar'></div>
                             </Button>
                         </div>
+                        
                     </div>
                 </nav>
                 <div class="horizontalDisplay">
