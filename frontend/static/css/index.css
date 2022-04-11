@@ -185,7 +185,7 @@ a {
 }
 
 tbody {
-  width: 100px;
+  width: 70px;
   border: none;
 }
 
@@ -194,7 +194,7 @@ tr {
   display: flex;
   justify-content: flex-start;
   color: white;
-  margin: 10px 0 0 10px;
+  margin: 10px 0 0 0;
   border-radius: 10px;
 }
 
@@ -204,8 +204,13 @@ td {
   text-align: center;
 }
 
+.bodyContainer {
+  display: flex;
+  padding: 10px 50px;
+}
+
 .subContainer {
-  width: auto;
+  width: 70vh;
   padding-top: 20px;
   margin-right: 2%;
 }
