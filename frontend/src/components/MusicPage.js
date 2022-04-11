@@ -26,53 +26,68 @@ const MusicPage = () => {
     fetch("http://127.0.0.1:8000/spotify/searchAPI", requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        var table = document.getElementById("results");
-        $("#results tr").remove();
-
-        for (var i = 0; i < data['tracks']['items'].length; i++) {
-          var row = table.insertRow();
-
-          var song = row.insertCell(0);
-          song.innerHTML = "<img src='" + data['tracks']['items'][i]['album']['images'][data['tracks']['items'][i]['album']['images'].length - 1]['url'] +
-            "' style={{ height: '64px', width: '64px' }}/> <br>" + data['tracks']['items'][i]['name'];
-          var artists = row.insertCell(1);
-          var strArtists = "";
-          for (var j = 0; j < data['tracks']['items'][i]['artists'].length; j++) {
-            if (j != data['tracks']['items'][i]['artists'].length - 1) {
-              strArtists += data['tracks']['items'][i]['artists'][j]['name'] + ", ";
-            } else {
-              strArtists += data['tracks']['items'][i]['artists'][j]['name'];
-            }
-          }
-          artists.innerHTML = strArtists;
-        }
-        //to get a single item within the 'albums' list
-        console.log(data['tracks']['items'].length);
-        console.log(data['tracks']['total']);
-
-        //to get all items within the 'albums' list
-        console.log(data['tracks']['items']);
-
-        //the same can be done with the tracks and artists lists
+        fillTable(data);
       });
   }
 
+  const fillTable = (data) => {
+    var table = document.getElementById("results");
+    $("#results tr").remove();
+
+    for (var i = 0; i < data['tracks']['items'].length; i++) {
+      var row = table.insertRow();
+      row.style.cssText = "cursor: pointer;";
+
+      //save for later, needed for rest of webpage functionality
+      var sendRowInfo = function (row) {
+        return function () {
+          var rowInfo = [];
+          rowInfo[0] = row.getElementsByTagName("td")[1].innerHTML;
+          rowInfo[1] = row.getElementsByTagName("td")[2].innerHTML;
+          alert("Song Name: " + rowInfo[0] + "\nArtist(s): " + rowInfo[1]);
+        };
+      };
+
+      row.onclick = sendRowInfo(row);
+
+      var song = row.insertCell(0);
+      song.innerHTML = "<img src='" + data['tracks']['items'][i]['album']['images'][data['tracks']['items'][i]['album']['images'].length - 1]['url'] +
+        "' style={{ height: '64px', width: '64px' }}/>";
+
+      var songName = row.insertCell(1);
+      songName.innerHTML = data['tracks']['items'][i]['name'];
+
+      var artists = row.insertCell(2);
+      var strArtists = "";
+
+      for (var j = 0; j < data['tracks']['items'][i]['artists'].length; j++) {
+        if (j != data['tracks']['items'][i]['artists'].length - 1) {
+          strArtists += data['tracks']['items'][i]['artists'][j]['name'] + ", ";
+        } else {
+          strArtists += data['tracks']['items'][i]['artists'][j]['name'];
+        }
+      }
+
+      artists.innerHTML = strArtists;
+    }
+  }
 
   return (
     <div className="mainContainer">
       <div className="nav">
-        <div className="logo">
-          <img src="https://i.imgur.com/ILJ5T9G.png" width={"5%"} alt="logo" />
+        <div className="logo" >
+        <a href="/home" onclick="navigation.followPath('/home');">
+          <img src="https://i.imgur.com/QVj3kkb.png" width={"5%"} alt="logo" />
+         </a> 
         </div>
       </div>
       <div className="bodyContainer">
         <div className="subContainer" id="player">
           <div class="search">
             <input type="text" class="search-bar" placeholder="Search" onChange={e => get_SearchResults(e.target.value)} />
-            <button><i class="material-icons">search</i></button>
           </div>
           <div className="subContainer">
-            <table border="0" id="results">
+            <table id="results">
             </table>
           </div>
         </div>
