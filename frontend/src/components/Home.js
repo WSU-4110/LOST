@@ -3,6 +3,7 @@ import { Button, Grid, Typography, FormHelperText, FormControl, Radio, RadioGrou
 import Login from './Login';
 import MusicPage from './MusicPage';
 import { Link } from "react-router-dom";
+import Settings from "./Settings";
 
 export default class Home extends Component {
     constructor(props) {
@@ -91,20 +92,17 @@ export default class Home extends Component {
             <Grid container spacing={1} class="App">
                 <nav>
                     <div class='navBar'>
+                    <Button onClick={this.logout}>Play</Button>
                         <div class='musicPlayerLink'>
-                        <Button color = "secondary" class= "songBtn" >Logout</Button>
+                        
                             <Button color="secondary" class="songBtn" variant="contained" to="/music-player" component={Link}>
                                 SONGS
                             </Button>
                         </div>
                         <div class='menuIcon'>
-                            <Button color="secondary" class="btn-modal" variant="contained" to="/Settings" component={Link}>
-                                <div class='menuBar'></div>
-                                <div class='menuBar'></div>
-                                <div class='menuBar'></div>
-                            </Button>
+                           <Settings/>
                         </div>
-                        
+                       
                     </div>
                 </nav>
                 <div class="horizontalDisplay">
