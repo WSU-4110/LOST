@@ -75,8 +75,10 @@ const MusicPage = () => {
   return (
     <div className="mainContainer">
       <div className="nav">
-        <div className="logo">
-          <img src="https://i.imgur.com/ILJ5T9G.png" width={"5%"} alt="logo" />
+        <div className="logo" >
+        <a href="/home" onclick="navigation.followPath('/home');">
+          <img src="https://i.imgur.com/QVj3kkb.png" width={"5%"} alt="logo" />
+         </a> 
         </div>
       </div>
       <div className="bodyContainer">
