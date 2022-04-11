@@ -30,7 +30,7 @@ class Home(models.Model):
 # Creating Database model
 class Database(models.Model):
 
-    userEmail = models.IntegerField(unique=True)
+    userEmail = models.CharField(unique=True, max_length=200)
     trackID = models.IntegerField(unique=True)
     loudness = models.IntegerField()
     location = models.CharField(max_length=200)
@@ -42,5 +42,8 @@ class Database(models.Model):
 
     class Meta:
         unique_together = (('userEmail', 'trackID'),)
+
+    def __str__(self):
+        return self.name
   
 

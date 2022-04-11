@@ -243,3 +243,10 @@ button {
   color: white;
   opacity: 1; /* Firefox */
 }
+
+.logoutSection {
+  position:absolute; 
+  background-color: #282c34;
+  bottom: 0;
+  right: 0;
+}
