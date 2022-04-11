@@ -50,10 +50,9 @@ const MusicPage = () => {
 
       row.onclick = sendRowInfo(row);
 
-      //styling to img can be added inside the song.innerHTML string
       var song = row.insertCell(0);
       song.innerHTML = "<img src='" + data['tracks']['items'][i]['album']['images'][data['tracks']['items'][i]['album']['images'].length - 1]['url'] +
-        "'/>";
+        "' style={{ height: '64px', width: '64px' }}/>";
 
       var songName = row.insertCell(1);
       songName.innerHTML = data['tracks']['items'][i]['name'];
@@ -76,15 +75,10 @@ const MusicPage = () => {
   return (
     <div className="mainContainer">
       <div className="nav">
-<<<<<<< Updated upstream
-        <div className="logo">
-          <img src="https://i.imgur.com/ILJ5T9G.png" width={"5%"} alt="logo" />
-=======
         <div className="logo" >
-          <a href="/home" onclick="navigation.followPath('/home');">
-            <img src="https://i.imgur.com/QVj3kkb.png" width={"5%"} alt="logo" />
-          </a>
->>>>>>> Stashed changes
+        <a href="/home" onclick="navigation.followPath('/home');">
+          <img src="https://i.imgur.com/QVj3kkb.png" width={"5%"} alt="logo" />
+         </a> 
         </div>
       </div>
       <div className="bodyContainer">
