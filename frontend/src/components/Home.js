@@ -92,7 +92,7 @@ export default class Home extends Component {
             <Grid container spacing={1} class="App">
                 <nav>
                     <div class='navBar'>
-                    <Button onClick={this.logout}>Play</Button>
+                  
                         <div class='musicPlayerLink'>
                         
                             <Button color="secondary" class="songBtn" variant="contained" to="/music-player" component={Link}>
