@@ -1,14 +1,14 @@
 from cgitb import lookup
 from django.shortcuts import render
 from rest_framework import generics, status
-from .serializers import HomeSerializer, CreateHomeSerializer
-from .models import Home
+from .serializers import DatabaseSerializer, CreateDatabaseSerializer
+from .models import Database
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
 
 # Create your views here.
-
+"""
 #List of all users who authenticated
 class HomeView(generics.ListAPIView):
     queryset = Home.objects.all()
@@ -67,7 +67,7 @@ class CreateHomeView(APIView):
                 return Response(HomeSerializer(home).data, status=status.HTTP_201_CREATED)
 
         return Response({'Bad Request': 'Invalid data...'}, status=status.HTTP_400_BAD_REQUEST)
-    
+    """
 
 
 

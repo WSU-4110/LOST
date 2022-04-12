@@ -1,5 +1,4 @@
 from django.db import models
-from api.models import Home
 
 class SpotifyToken(models.Model):
     user = models.CharField(max_length=50, unique=True)

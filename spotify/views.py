@@ -7,7 +7,6 @@ from requests import Request, post
 from rest_framework import generics, status
 from rest_framework.response import Response
 from .util import * 
-from api.models import Home
 
 # Create your views here.
 
@@ -152,4 +151,18 @@ class recentTrack(APIView):
     def get(self, request, format=None):
         result = recentlyPlayed(self.request.session.session_key)
         return Response(result, status=status.HTTP_200_OK)
+
+class sendtoDB(APIView):
+    #name of value sent from body of POST request in frontend
+    lookup_kwarg = 'song'
+
+    def post(self, request, format=None):
+        #obtaining value sent from the body of POST request in frontend
+        searchInput = request.data.get(self.lookup_url_kwarg)
+        
+        #print statement for debugging purposes
+        print(searchInput)
+
+        results = storeSong(self.request.session.session_key, searchInput)
+        return Response(results, status=status.HTTP_200_OK)
     
