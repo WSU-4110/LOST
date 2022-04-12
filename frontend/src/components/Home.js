@@ -17,19 +17,6 @@ export default class Home extends Component {
         this.pauseMusic = this.pauseMusic.bind(this);
     }
 
-    /*
-    // Get Details for the Users Home Page 
-    getHomeDetails() {
-        fetch('/api/get-home' + '?code=' + this.homeCode).then((response) => 
-        response.json()
-        ).then((data) => {
-            this.setState({
-                nightMode: data.night_mode,
-                isUser: data.is_user,
-            });
-            this.authenticateSpotify();
-        });
-    }*/
 
     //Ask if current user is authenticated 
     authenticateSpotify() {
@@ -47,7 +34,7 @@ export default class Home extends Component {
             });
         this.getPlayed();
     }
-    
+
     //User logout
     logout() {
         fetch('/spotify/logout-user');
@@ -92,22 +79,22 @@ export default class Home extends Component {
             <Grid container spacing={1} class="App">
                 <nav>
                     <div class='navBar'>
-                  
+
                         <div class='musicPlayerLink'>
-                        
+
                             <Button color="secondary" class="songBtn" variant="contained" to="/music-player" component={Link}>
                                 SONGS
                             </Button>
                         </div>
                         <div class='menuIcon'>
-                           <Settings/>
+                            <Settings />
                         </div>
-                       
+
                     </div>
                 </nav>
                 <div class="horizontalDisplay">
                     <h3 class="h2Align">Recently Played</h3>
-                    <div class ="recentPlayed">
+                    <div class="recentPlayed">
 
                     </div>
                     <audio id="spotifyAud"></audio>
