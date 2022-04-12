@@ -243,10 +243,54 @@ button {
   color: white;
   opacity: 1; /* Firefox */
 }
+body.active-modal {
+  overflow-y: hidden;
+}
 
-.logoutSection {
-  position:absolute; 
-  background-color: #282c34;
-  bottom: 0;
+.btn-modal {
+  padding: 10px 20px;
+  display: block;
+/* margin: 100px auto 0;*/
+  font-size: 18px;
+ left:80%;
+}
+.menuBar{
+  width: 35px;
+  height: 5px;
+  background-color: white;
+  margin: 6px 0;
+}
+.modal, .overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
   right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.overlay {
+  background: rgba(49,49,49,0.8);
+}
+.popUp {
+  position: absolute;
+  top: 50%;
+  left:80%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background-color: rgba(213, 210, 210, 0.7);
+  padding: 14px 28px;
+  border-radius: 3px;
+  max-width: 300px;
+  width:400px;
+  height:400px;
+  
+}
+
+.closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 7px;
 }

@@ -30,6 +30,41 @@ const MusicPage = () => {
       });
   }
 
+  const fillColumn = (songInfo) => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        song: songInfo,
+      }),
+    };
+    fetch("http://127.0.0.1:8000/spotify/searchAPI", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+
+        //cover art
+        // column div here .innerHTML = "<img src='" + data['items'][0]['track']['album']['images'][1]['url'] + "' style='height: 200px; width: 200px;'/>";
+        //send userEmail trackid
+        //create div to store track id
+        //call sendtoDB()
+      });
+  }
+
+  /*const sendtoDB = (songInfo) => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        song: songInfo,
+      }),
+    };
+    fetch("http://127.0.0.1:8000/spotify/song2DB", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+
+      });
+  }*/
+
   const fillTable = (data) => {
     var table = document.getElementById("results");
     $("#results tr").remove();
@@ -44,7 +79,8 @@ const MusicPage = () => {
           var rowInfo = [];
           rowInfo[0] = row.getElementsByTagName("td")[1].innerHTML;
           rowInfo[1] = row.getElementsByTagName("td")[2].innerHTML;
-          alert("Song Name: " + rowInfo[0] + "\nArtist(s): " + rowInfo[1]);
+          //fillColumn(rowInfo[0] + " " + rowInfo[1]);
+          //alert("Song Name: " + rowInfo[0] + "\nArtist(s): " + rowInfo[1]);
         };
       };
 
@@ -52,7 +88,7 @@ const MusicPage = () => {
 
       var song = row.insertCell(0);
       song.innerHTML = "<img src='" + data['tracks']['items'][i]['album']['images'][data['tracks']['items'][i]['album']['images'].length - 1]['url'] +
-        "' style={{ height: '64px', width: '64px' }}/>";
+        "'/>";
 
       var songName = row.insertCell(1);
       songName.innerHTML = data['tracks']['items'][i]['name'];
@@ -76,9 +112,9 @@ const MusicPage = () => {
     <div className="mainContainer">
       <div className="nav">
         <div className="logo" >
-        <a href="/home" onclick="navigation.followPath('/home');">
-          <img src="https://i.imgur.com/QVj3kkb.png" width={"5%"} alt="logo" />
-         </a> 
+          <a href="/home" onclick="navigation.followPath('/home');">
+            <img src="https://i.imgur.com/QVj3kkb.png" width={"5%"} alt="logo" />
+          </a>
         </div>
       </div>
       <div className="bodyContainer">

@@ -1,4 +1,5 @@
 from .models import SpotifyToken
+from api.models import Database
 from django.utils import timezone 
 from datetime import timedelta
 from .credentials import CLIENT_ID, CLIENT_SECRET
@@ -47,6 +48,25 @@ def update_or_create_user_tokens(session_id, access_token, token_type, expires_i
                               refresh_token=refresh_token, token_type=token_type, expires_in=expires_in)
         tokens.save()
 
+def getSongInfo(session_id, id):
+    searchQuery = "/audio-features/" + id
+    return execute_spotify_api_request(session_id, searchQuery)
+
+
+def storeSong(session_id, data, email):
+    user_song = Database.objects.filter(userEmail=email, trackID=data[0])
+    
+    #if song exist in db, return song information
+    if user_song.exists():
+        return user_song[0]
+    else:
+        #else store song in db and return information
+        #song = Database(userEmail=email, trackID=data[0], loudness=, location=NULL, mood=NULL, )
+        #song.save
+        #user_song = Database.objects.filter(userEmail=email, trackID=data[0])
+        return user_song[0]
+
+
 #Check if spotify is authenticated already 
 #if current time has passed expire rate, refresh token 
 def is_spotify_authenticated(session_id):
@@ -57,7 +77,6 @@ def is_spotify_authenticated(session_id):
             refresh_spotify_token(session_id)
 
         return True
-
     return False
 
 def refresh_spotify_token(session_id):
@@ -104,3 +123,8 @@ def execute_spotify_api_request(session_id, endpoint, post_=False, put_=False):
 def search(session_id, search):
     searchQuery = "search?q=" + search + "&type=track&include_external=audio&limit=50"
     return execute_spotify_api_request(session_id, searchQuery)
+
+#submit query to get recently played track
+def recentlyPlayed(session_id):
+    query = "me/player/recently-played?q=limit=1"
+    return execute_spotify_api_request(session_id, query)
