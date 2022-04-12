@@ -99,10 +99,13 @@ export default class Home extends Component {
 
                     </div>
                     <div class="rightSection">
-
                     </div>
                 </div>
-
+                <div className="logoutSection">
+                    <button onClick={logout}>
+                        LOGOUT
+                    </button>
+                </div> 
 
             </Grid>
         );
