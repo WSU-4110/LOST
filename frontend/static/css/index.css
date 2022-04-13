@@ -1,0 +1,296 @@
+* {
+  margin: 5px;
+}
+
+html, 
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /*height: 100%;
+    margin: 0;
+    padding: 0;*/
+    background-image: url('./bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: 100% 100%;
+    
+    width: 100%;
+    margin:0;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+
+#main {
+    /* position: fixed; */
+    /*width: 99%;
+    height: 100%;*/
+    left: 0;
+    top: 0;
+}
+
+/* Where React code is rendered */
+#app {
+    width: 100%;
+    height: 100%;
+}
+
+/* For Loading.js */
+.mystyle{
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+.App {
+    text-align: center;
+  
+}
+  
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+  
+@media (prefers-reduced-motion: no-preference) {
+.App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+}
+  
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+  
+.App-link {
+    color: #61dafb;
+}
+.h2Align{
+  margin-left: -35%;
+  color: white;
+}
+.rightSection{
+  margin-left:auto;
+  margin-right:auto;
+  margin: auto;
+  width:225px;
+  height:400px;
+  background-color:black;
+}
+.navBar{
+  display: flex;
+  justify-content: flex-end;
+}
+.recentPlayed{
+  width: 200px;
+  height: 200px;
+  margin:auto;
+}
+.recentAttributes{
+  width: 200px;
+  height: 200px;
+  margin:auto;
+}
+.flexAttributes{
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+}
+.horizontalDisplay{
+  float:left;
+  margin-left:120px;
+  
+}
+.createSection{
+  width: 600px;
+  height: 450px;
+  float:right;
+  margin-top: 10px;
+  margin-right: 120px;
+  display: flex;
+  background-color: rgba(255,255,255,0.5);
+  border-radius: 5%;
+ padding: 20px;
+}
+.createEffect{
+  background-color: rgba(213, 210, 210, 0.7);
+  border-radius: 1.65rem;
+  width: 250px;
+}
+.create{
+  font-size: 30px;
+  color:white;
+}
+.leftSection{
+  margin-left:auto;
+  margin-right:auto;
+}
+.rightSection{
+  margin-left:auto;
+  margin-right:auto;
+  margin: auto;
+  width:225px;
+  height:400px;
+  background-color:black;
+}
+.songBtn{
+  text-decoration: none;
+  font-size: 36px;
+ float:right;
+ color:white;
+ font-weight: bold;
+}
+.btn-modal {
+  padding: 10px 20px;
+  display: block;
+/* margin: 100px auto 0;*/
+  font-size: 18px;
+ left:80%;
+}
+.menuBar{
+  width: 35px;
+  height: 5px;
+  background-color: white;
+  margin: 6px 0;
+}
+a {
+    color: white;
+}
+  
+@keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+}
+
+tbody {
+  width: 70px;
+  border: none;
+}
+
+tr {
+  background-color: #282c34d0;
+  display: flex;
+  justify-content: flex-start;
+  color: white;
+  margin: 10px 0 0 0;
+  border-radius: 10px;
+}
+
+td {
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.bodyContainer {
+  display: flex;
+  padding: 10px 0px;
+}
+
+.subContainer {
+  width: 70vh;
+  margin-right: 5%;
+}
+
+input.search-bar {
+  border: none;
+  outline: none;
+  padding: 0.4em 1em;
+  border-radius: 24px;
+  background: #3f3f3f86;
+  color: white;
+  font-size: 105%;
+  width: calc(100%-100px);
+}
+
+button {
+  background-color: '#00aeef';
+  padding: 10;
+  align-items:'center';
+  justify-content: 'space-between';
+  border-radius: 50%;
+  margin-left: -33px;
+  width:auto;
+  min-width: 33px;
+  height:33px;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+body.active-modal {
+  overflow-y: hidden;
+}
+
+.btn-modal {
+  padding: 10px 20px;
+  display: block;
+/* margin: 100px auto 0;*/
+  font-size: 18px;
+ left:80%;
+}
+.menuBar{
+  width: 35px;
+  height: 5px;
+  background-color: white;
+  margin: 6px 0;
+}
+.modal, .overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.overlay {
+  background: rgba(49,49,49,0.8);
+}
+.popUp {
+  position: absolute;
+  top: 50%;
+  left:80%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background-color: rgba(213, 210, 210, 0.7);
+  padding: 14px 28px;
+  border-radius: 3px;
+  max-width: 300px;
+  width:400px;
+  height:400px;
+  
+}
+
+.closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 7px;
+}
