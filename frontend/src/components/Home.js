@@ -5,6 +5,8 @@ import MusicPage from './MusicPage';
 import { Link } from "react-router-dom";
 import Settings from "./Settings";
 
+//test commit for kylie
+
 export default class Home extends Component {
     constructor(props) {
         super(props);
