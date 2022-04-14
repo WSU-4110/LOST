@@ -48,22 +48,28 @@ def update_or_create_user_tokens(session_id, access_token, token_type, expires_i
                               refresh_token=refresh_token, token_type=token_type, expires_in=expires_in)
         tokens.save()
 
-def getSongInfo(session_id, id):
-    searchQuery = "/audio-features/" + id
+def getUserEmail(session_id):
+    searchQuery = "me"
     return execute_spotify_api_request(session_id, searchQuery)
 
 
-def storeSong(session_id, data, email):
-    user_song = Database.objects.filter(userEmail=email, trackID=data[0])
-    
+def getSongInfo(session_id, id):
+    searchQuery = "audio-features/" + id
+    return execute_spotify_api_request(session_id, searchQuery)
+
+
+def storeSong(session_id, data, email, id):
+    user_song = Database.objects.filter(userEmail=email, trackID=data)
+    print('user song in db (if exists): ' + user_song[0])
+
     #if song exist in db, return song information
     if user_song.exists():
         return user_song[0]
     else:
         #else store song in db and return information
-        #song = Database(userEmail=email, trackID=data[0], loudness=, location=NULL, mood=NULL, )
-        #song.save
-        #user_song = Database.objects.filter(userEmail=email, trackID=data[0])
+        song = Database(userEmail=email, trackID=id, loudness=data, location=NULL, mood=NULL, activity=NULL, custom_attr1=NULL, custom_attr2=NULL, custom_attr3=NULL)
+        song.save
+        user_song = Database.objects.filter(userEmail=email, trackID=data[0])
         return user_song[0]
 
 
