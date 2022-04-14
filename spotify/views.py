@@ -158,11 +158,16 @@ class sendtoDB(APIView):
 
     def post(self, request, format=None):
         #obtaining value sent from the body of POST request in frontend
-        searchInput = request.data.get(self.lookup_url_kwarg)
-        
+        songID = request.data.get(self.lookup_kwarg)
         #print statement for debugging purposes
-        print(searchInput)
+        print('song ID: '+ songID)
 
-        results = storeSong(self.request.session.session_key, searchInput)
+        songInfo = getSongInfo(self.request.session.session_key, songID)['loudness']
+        print('loudness: ' + songInfo)
+
+        email = getUserEmail(self.request.session.session_key)['email']
+        print('user email: ' + email)
+
+        results = storeSong(self.request.session.session_key, songInfo, email, songID)
         return Response(results, status=status.HTTP_200_OK)
     

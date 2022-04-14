@@ -44,9 +44,9 @@ const MusicPage = () => {
 
         //cover art
         // column div here .innerHTML = "<img src='" + data['items'][0]['track']['album']['images'][1]['url'] + "' style='height: 200px; width: 200px;'/>";
-        //send userEmail trackid
-        //create div to store track id
-        //call sendtoDB()
+        //send trackid to sendtoDB
+        //create div to store track id?
+        //call sendtoDB(data['items'][0])
       });
   }
 
