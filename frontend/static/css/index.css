@@ -245,6 +245,7 @@ td {
   background-color: rgba(255,255,255,0.5);
   border-radius: 10px;
   margin: 0;
+  height: auto;
 }
 
 .search {
@@ -328,4 +329,13 @@ body.active-modal {
   top: 10px;
   right: 10px;
   padding: 5px 7px;
+}
+
+.bubble {
+  border-radius: 20px;
+  display: inline-block;
+  left: 1%;
+  right: 1%;
+  color: #fff;
+  padding: 0px 5px;
 }

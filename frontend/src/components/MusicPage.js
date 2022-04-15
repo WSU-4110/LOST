@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Loading from './Loading';
 import { Button, Grid, Typography, FormHelperText, FormControl, Radio, RadioGroup, FormControlLabel } from "@material-ui/core";
 import Navigation from "./Navigation";
+import Attributes from "./Attributes";
 
 const MusicPage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -151,8 +152,9 @@ const MusicPage = () => {
           <div className="subContainer">
             <div className="translucent">
               <h1>Attributes</h1>
-              <div className="Attributes" >
-
+              <div className="Attributes">
+              
+              <Attributes></Attributes>
               </div>
             </div>
             <div className="translucent">
