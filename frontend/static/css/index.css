@@ -197,6 +197,7 @@ a {
 
 tbody {
   border: none;
+  font-size:14px;
 }
 
 tr {
@@ -219,9 +220,13 @@ td {
   padding: 10px 0px;
 }
 
+h1 {
+  margin: 0;
+}
+
 .subContainer, .songPlayer, .scroll {
-  width: 70vh;
-  margin-top: 0;
+  width: 60vh;
+  margin: 0 5px 10px 5px;
 }
 
 .scroll {
@@ -235,7 +240,7 @@ td {
 }
 
 .songPlayer {
-  width: 60%;
+  width: 40%;
   height: 60vh;
   background-color: rgba(255,255,255,0.5);
   border-radius: 10px;
@@ -244,8 +249,13 @@ td {
 .translucent {
   background-color: rgba(255,255,255,0.5);
   border-radius: 10px;
-  margin: 0;
+  margin: 0 0 10px 0;
   height: auto;
+  padding-bottom: 10px;
+}
+
+#AttributesID {
+  height: 54%;
 }
 
 .search {
@@ -260,7 +270,7 @@ input.search-bar {
   background: #3f3f3f86;
   color: white;
   font-size: 105%;
-  width: calc(100%-100px);
+  width: calc(100%);
 }
 
 button {

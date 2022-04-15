@@ -150,7 +150,7 @@ const MusicPage = () => {
             </div>
           </div>
           <div className="subContainer">
-            <div className="translucent">
+            <div className="translucent" id="AttributesID">
               <h1>Attributes</h1>
               <div className="Attributes">
               
@@ -160,7 +160,9 @@ const MusicPage = () => {
             <div className="translucent">
               <h1>Add</h1>
               <div className="Add">
-
+              <div class="search">
+                <input type="text" class="search-bar" placeholder="Search" />
+              </div>
               </div>
             </div>
           </div>
