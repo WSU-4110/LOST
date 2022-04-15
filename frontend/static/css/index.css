@@ -20,6 +20,7 @@ body {
     
     width: 100%;
     margin:0;
+    overflow-y: hidden;
 }
 
 code {
@@ -128,11 +129,10 @@ code {
 .horizontalDisplay{
   float:left;
   margin-left:120px;
-  
 }
 .createSection{
   width: 600px;
-  height: 450px;
+  height: 70vh;
   float:right;
   margin-top: 10px;
   margin-right: 120px;
@@ -159,7 +159,7 @@ code {
   margin-right:auto;
   margin: auto;
   width:225px;
-  height:400px;
+  height:40vh;
   background-color:black;
 }
 .songBtn{
@@ -305,6 +305,10 @@ body.active-modal {
   height: 5px;
   background-color: white;
   margin: 6px 0;
+}
+
+.btn-modal .menuBar:hover {
+  background-color: #aaaaaa;
 }
 .modal, .overlay {
   width: 100vw;
