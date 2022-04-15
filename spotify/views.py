@@ -7,7 +7,6 @@ from requests import Request, post
 from rest_framework import generics, status
 from rest_framework.response import Response
 from .util import * 
-from api.models import Home
 
 # Create your views here.
 
@@ -22,7 +21,7 @@ class AuthURL(APIView):
         # info we want to access in the app (need to add more scopes later)
         # find more scopes @ developer.spotify.com
         # https://developer.spotify.com/documentation/general/guides/authorization/code-flow/
-        scopes = 'user-read-playback-state user-modify-playback-state user-read-currently-playing'
+        scopes = 'user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-recently-played'
 
         # URL to authorize account
         url = Request('GET', 'https://accounts.spotify.com/authorize', params={
@@ -147,5 +146,28 @@ class CurrentSong(APIView):
 
         return Response(song, status=status.HTTP_200_OK)
 
+#get recently played track by executing recentlyPlayed()
+class recentTrack(APIView):
+    def get(self, request, format=None):
+        result = recentlyPlayed(self.request.session.session_key)
+        return Response(result, status=status.HTTP_200_OK)
 
+class sendtoDB(APIView):
+    #name of value sent from body of POST request in frontend
+    lookup_kwarg = 'song'
+
+    def post(self, request, format=None):
+        #obtaining value sent from the body of POST request in frontend
+        songID = request.data.get(self.lookup_kwarg)
+        #print statement for debugging purposes
+        print('song ID: '+ songID)
+
+        songInfo = getSongInfo(self.request.session.session_key, songID)['loudness']
+        print('loudness: ' + songInfo)
+
+        email = getUserEmail(self.request.session.session_key)['email']
+        print('user email: ' + email)
+
+        results = storeSong(self.request.session.session_key, songInfo, email, songID)
+        return Response(results, status=status.HTTP_200_OK)
     

@@ -1,4 +1,5 @@
 from .models import SpotifyToken
+from api.models import Database
 from django.utils import timezone 
 from datetime import timedelta
 from .credentials import CLIENT_ID, CLIENT_SECRET
@@ -47,6 +48,31 @@ def update_or_create_user_tokens(session_id, access_token, token_type, expires_i
                               refresh_token=refresh_token, token_type=token_type, expires_in=expires_in)
         tokens.save()
 
+def getUserEmail(session_id):
+    searchQuery = "me"
+    return execute_spotify_api_request(session_id, searchQuery)
+
+
+def getSongInfo(session_id, id):
+    searchQuery = "audio-features/" + id
+    return execute_spotify_api_request(session_id, searchQuery)
+
+
+def storeSong(session_id, data, email, id):
+    user_song = Database.objects.filter(userEmail=email, trackID=data)
+    print('user song in db (if exists): ' + user_song[0])
+
+    #if song exist in db, return song information
+    if user_song.exists():
+        return user_song[0]
+    else:
+        #else store song in db and return information
+        song = Database(userEmail=email, trackID=id, loudness=data, location=NULL, mood=NULL, activity=NULL, custom_attr1=NULL, custom_attr2=NULL, custom_attr3=NULL)
+        song.save
+        user_song = Database.objects.filter(userEmail=email, trackID=data[0])
+        return user_song[0]
+
+
 #Check if spotify is authenticated already 
 #if current time has passed expire rate, refresh token 
 def is_spotify_authenticated(session_id):
@@ -57,7 +83,6 @@ def is_spotify_authenticated(session_id):
             refresh_spotify_token(session_id)
 
         return True
-
     return False
 
 def refresh_spotify_token(session_id):
@@ -104,3 +129,8 @@ def execute_spotify_api_request(session_id, endpoint, post_=False, put_=False):
 def search(session_id, search):
     searchQuery = "search?q=" + search + "&type=track&include_external=audio&limit=50"
     return execute_spotify_api_request(session_id, searchQuery)
+
+#submit query to get recently played track
+def recentlyPlayed(session_id):
+    query = "me/player/recently-played?q=limit=1"
+    return execute_spotify_api_request(session_id, query)

@@ -2,7 +2,7 @@ import React, { useEffect, useState} from 'react';
 import Loading from './Loading';
 
 
-const Song = () => {  
+const Song = () => {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => {
