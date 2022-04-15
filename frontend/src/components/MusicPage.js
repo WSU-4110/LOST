@@ -126,27 +126,26 @@ const MusicPage = () => {
           <div class="search">
             <input type="text" class="search-bar" placeholder="Search" onChange={e => get_SearchResults(e.target.value)} />
           </div>
-          <div className="subContainer">
+          <div class="scroll">
             <table id="results">
             </table>
           </div>
         </div>
-        <div className="subContainer">
-          <div class ="selectedSong"></div>
-          <div class="flex">
-            
+        <div className="songPlayer">
+          <div className ="selectedSong"></div>
+          <div className="flex">
           </div>
         </div>
         <div className="subContainer">
-          <div>
+          <div className="translucent">
             <h1>Attributes</h1>
-            <div class="Attributes">
+            <div className="Attributes" >
 
             </div>
           </div>
-          <div>
+          <div className="translucent">
             <h1>Add</h1>
-            <div class="Add">
+            <div className="Add">
               
             </div>
           </div>
