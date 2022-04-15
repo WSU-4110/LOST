@@ -1,4 +1,3 @@
-import '../styles/Attributes.css';
 import React from 'react';
 
 
@@ -8,7 +7,7 @@ const Attributes = () => {
  
     return (
         <div style={{ backgroundColor: "#" + `${randomColor}` }} className="bubble">
-            <h4 className="description">attribute 2</h4>
+            <h4 className="description">attribute</h4>
         </div>
     )
 }
