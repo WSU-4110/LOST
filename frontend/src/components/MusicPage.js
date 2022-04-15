@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Loading from './Loading';
-
+import { Button, Grid, Typography, FormHelperText, FormControl, Radio, RadioGroup, FormControlLabel } from "@material-ui/core";
+import Navigation from "./Navigation";
 
 const MusicPage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -109,12 +110,15 @@ const MusicPage = () => {
   }
 
   return (
-    <div className="mainContainer">
+    <Grid container spacing={1} class="App">
+      <Navigation></Navigation>
+      <div className="mainContainer">
       <div className="nav">
         <div className="logo" >
           <a href="/home" onclick="navigation.followPath('/home');">
             <img src="https://i.imgur.com/QVj3kkb.png" width={"5%"} alt="logo" />
           </a>
+          
         </div>
       </div>
       <div className="bodyContainer">
@@ -128,14 +132,29 @@ const MusicPage = () => {
           </div>
         </div>
         <div className="subContainer">
-          <h1>ATTRIBUTES</h1>
+          <div class ="selectedSong"></div>
+          <div class="flex">
+            
+          </div>
         </div>
         <div className="subContainer">
-          <h1>ADD</h1>
-          {/* <Search></Search> */}
+          <div>
+            <h1>Attributes</h1>
+            <div class="Attributes">
+
+            </div>
+          </div>
+          <div>
+            <h1>Add</h1>
+            <div class="Add">
+              
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    </Grid>
+    
   )
 }
 
