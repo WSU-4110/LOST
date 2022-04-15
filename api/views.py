@@ -14,6 +14,12 @@ class DatabaseView(generics.ListAPIView):
     queryset = Database.objects.all()
     serializer_class = DatabaseSerializer
 
+class AttributesView(generics.ListAPIView):
+    queryset = Database.objects.all()
+    serializer_class = DatabaseSerializer
+
+
+
 #Load Users HomePage 
 """
 class CreateHomeView(APIView):

@@ -66,6 +66,12 @@ const MusicPage = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        /*if (typeof data['mood'] != "object") {
+          console.log('attr name');
+        } else {
+
+        }*/
+
       });
   }
 
