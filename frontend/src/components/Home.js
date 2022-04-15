@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Grid, Typography, FormHelperText, FormControl, Radio, RadioGroup, FormControlLabel } from "@material-ui/core";
-import Login from './Login';
-import MusicPage from './MusicPage';
-import { Link } from "react-router-dom";
-import Settings from "./Settings";
+import Navigation from "./Navigation";
 
 //test commit for kylie
 
@@ -79,21 +76,7 @@ export default class Home extends Component {
     render() {
         return (
             <Grid container spacing={1} class="App">
-                <nav>
-                    <div class='navBar'>
-
-                        <div class='musicPlayerLink'>
-
-                            <Button color="secondary" class="songBtn" variant="contained" to="/music-player" component={Link}>
-                                SONGS
-                            </Button>
-                        </div>
-                        <div class='menuIcon'>
-                            <Settings />
-                        </div>
-
-                    </div>
-                </nav>
+                <Navigation></Navigation>
                 <div class="horizontalDisplay">
                     <h3 class="h2Align">Recently Played</h3>
                     <div class="recentPlayed">
