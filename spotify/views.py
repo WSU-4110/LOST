@@ -21,7 +21,7 @@ class AuthURL(APIView):
         # info we want to access in the app (need to add more scopes later)
         # find more scopes @ developer.spotify.com
         # https://developer.spotify.com/documentation/general/guides/authorization/code-flow/
-        scopes = 'user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-recently-played'
+        scopes = 'user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-recently-played user-read-email'
 
         # URL to authorize account
         url = Request('GET', 'https://accounts.spotify.com/authorize', params={
@@ -163,11 +163,12 @@ class sendtoDB(APIView):
         print('song ID: '+ songID)
 
         songInfo = getSongInfo(self.request.session.session_key, songID)['loudness']
-        print('loudness: ' + songInfo)
+        print(songInfo)
 
         email = getUserEmail(self.request.session.session_key)['email']
-        print('user email: ' + email)
+        print(email)
 
         results = storeSong(self.request.session.session_key, songInfo, email, songID)
+        print(results)
         return Response(results, status=status.HTTP_200_OK)
     

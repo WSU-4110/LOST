@@ -31,32 +31,35 @@ const MusicPage = () => {
       });
   }
 
-  const fillColumn = (songInfo) => {
+  const fillColumn = (songInfo, display) => {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        song: songInfo,
+        searchStr: songInfo,
       }),
     };
     fetch("http://127.0.0.1:8000/spotify/searchAPI", requestOptions)
       .then((response) => response.json())
       .then((data) => {
+        console.dir(data);
+        var parentT = document.getElementsByClassName("selectedSong")[0];
+        //cover art, to style just edit the 'style' part of string
+        parentT.innerHTML = "<img src='" + data['tracks']['items'][0]['album']['images'][1]['url'] + "' style='height: 200px; width: 200px;'/><br>" + display[0] + "<br>" + display[1];
+        console.log(data['tracks']['items'][0]['id']);
 
-        //cover art
-        // column div here .innerHTML = "<img src='" + data['items'][0]['track']['album']['images'][1]['url'] + "' style='height: 200px; width: 200px;'/>";
-        //send trackid to sendtoDB
-        //create div to store track id?
-        //call sendtoDB(data['items'][0])
+        parentT.id = data['tracks']['items'][0]['id'];
+
+        sendtoDB(data['tracks']['items'][0]['id']);
       });
   }
 
-  /*const sendtoDB = (songInfo) => {
+  const sendtoDB = (id) => {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        song: songInfo,
+        song: id,
       }),
     };
     fetch("http://127.0.0.1:8000/spotify/song2DB", requestOptions)
@@ -64,7 +67,7 @@ const MusicPage = () => {
       .then((data) => {
 
       });
-  }*/
+  }
 
   const fillTable = (data) => {
     var table = document.getElementById("results");
@@ -77,10 +80,13 @@ const MusicPage = () => {
       //save for later, needed for rest of webpage functionality
       var sendRowInfo = function (row) {
         return function () {
-          var rowInfo = [];
-          rowInfo[0] = row.getElementsByTagName("td")[1].innerHTML;
-          rowInfo[1] = row.getElementsByTagName("td")[2].innerHTML;
-          //fillColumn(rowInfo[0] + " " + rowInfo[1]);
+          var info;
+          var display = [];
+          info = row.getElementsByTagName("td")[1].innerHTML + " " + row.getElementsByTagName("td")[2].innerHTML;
+          display[0] = row.getElementsByTagName("td")[1].innerHTML;
+          display[1] = row.getElementsByTagName("td")[2].innerHTML;
+          //console.log(rowInfo[0] + " " + rowInfo[1]);
+          fillColumn(info, display);
           //alert("Song Name: " + rowInfo[0] + "\nArtist(s): " + rowInfo[1]);
         };
       };
@@ -113,47 +119,47 @@ const MusicPage = () => {
     <Grid container spacing={1} class="App">
       <Navigation></Navigation>
       <div className="mainContainer">
-      <div className="nav">
-        <div className="logo" >
-          <a href="/home" onclick="navigation.followPath('/home');">
-            <img src="https://i.imgur.com/QVj3kkb.png" width={"5%"} alt="logo" />
-          </a>
-          
-        </div>
-      </div>
-      <div className="bodyContainer">
-        <div className="subContainer" id="player">
-          <div class="search">
-            <input type="text" class="search-bar" placeholder="Search" onChange={e => get_SearchResults(e.target.value)} />
-          </div>
-          <div class="scroll">
-            <table id="results">
-            </table>
-          </div>
-        </div>
-        <div className="songPlayer">
-          <div className ="selectedSong"></div>
-          <div className="flex">
-          </div>
-        </div>
-        <div className="subContainer">
-          <div className="translucent">
-            <h1>Attributes</h1>
-            <div className="Attributes" >
+        <div className="nav">
+          <div className="logo" >
+            <a href="/home" onclick="navigation.followPath('/home');">
+              <img src="https://i.imgur.com/QVj3kkb.png" width={"5%"} alt="logo" />
+            </a>
 
+          </div>
+        </div>
+        <div className="bodyContainer">
+          <div className="subContainer" id="player">
+            <div class="search">
+              <input type="text" class="search-bar" placeholder="Search" onChange={e => get_SearchResults(e.target.value)} />
+            </div>
+            <div class="scroll">
+              <table id="results">
+              </table>
             </div>
           </div>
-          <div className="translucent">
-            <h1>Add</h1>
-            <div className="Add">
-              
+          <div className="songPlayer">
+            <div className="selectedSong"></div>
+            <div className="flex">
+            </div>
+          </div>
+          <div className="subContainer">
+            <div className="translucent">
+              <h1>Attributes</h1>
+              <div className="Attributes" >
+
+              </div>
+            </div>
+            <div className="translucent">
+              <h1>Add</h1>
+              <div className="Add">
+
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </Grid>
-    
+
   )
 }
 

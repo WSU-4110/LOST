@@ -59,17 +59,17 @@ def getSongInfo(session_id, id):
 
 
 def storeSong(session_id, data, email, id):
-    user_song = Database.objects.filter(userEmail=email, trackID=data)
-    print('user song in db (if exists): ' + user_song[0])
+    user_song = Database.objects.filter(userEmail=email, trackID=id)
+    #print('user song in db (if exists): ' + user_song[0])
 
     #if song exist in db, return song information
     if user_song.exists():
         return user_song[0]
     else:
         #else store song in db and return information
-        song = Database(userEmail=email, trackID=id, loudness=data, location=NULL, mood=NULL, activity=NULL, custom_attr1=NULL, custom_attr2=NULL, custom_attr3=NULL)
-        song.save
-        user_song = Database.objects.filter(userEmail=email, trackID=data[0])
+        song = Database(userEmail=email, trackID=id, loudness=data, location=None, mood=None, activity=None, custom_attr1=None, custom_attr2=None, custom_attr3=None)
+        song.save()
+        user_song = Database.objects.filter(userEmail=email, trackID=id)
         return user_song[0]
 
 
