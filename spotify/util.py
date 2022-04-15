@@ -1,3 +1,4 @@
+from api.serializers import DatabaseSerializer
 from .models import SpotifyToken
 from api.models import Database
 from django.utils import timezone 
@@ -64,13 +65,13 @@ def storeSong(session_id, data, email, id):
 
     #if song exist in db, return song information
     if user_song.exists():
-        return user_song[0]
+        return DatabaseSerializer(user_song[0]).data
     else:
         #else store song in db and return information
-        song = Database(userEmail=email, trackID=id, loudness=data, location=None, mood=None, activity=None, custom_attr1=None, custom_attr2=None, custom_attr3=None)
+        song = Database(userEmail=email, trackID=id, loudness=data, location=None, mood=None, activity=None, custom_attr=None, custom_attrtwo=None, custom_attrthree=None)
         song.save()
         user_song = Database.objects.filter(userEmail=email, trackID=id)
-        return user_song[0]
+        return DatabaseSerializer(user_song[0]).data
 
 
 #Check if spotify is authenticated already 

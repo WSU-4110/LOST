@@ -6,10 +6,10 @@ from .models import Database
 class DatabaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Database
-        fields = ('userEmail', 'trackID', 'loudness', 'location', 'mood', 'activity', 'custom1_attr1', 'custom_attr2', 'custom_attr3')
+        fields = ('userEmail', 'trackID', 'loudness', 'location', 'mood', 'activity', 'custom_attr', 'custom_attrtwo', 'custom_attrthree')
 
 # Post request that gives information to Page that requested it
-class CreateDatabaseSerializer(serializers.ModelSerializer):
+"""class CreateDatabaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Database
-        fields = ('userEmail', 'trackID', 'loudness', 'location', 'mood', 'activity', 'custom1_attr1', 'custom_attr2', 'custom_attr3')
+        fields = ('userEmail', 'trackID', 'loudness', 'location', 'mood', 'activity', 'custom1_attr1', 'custom_attr2', 'custom_attr3')"""
