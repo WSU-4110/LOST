@@ -18,9 +18,9 @@ body {
     background-attachment: fixed;  
     background-size: 100% 100%;
     
-    width: 100%;
+    width: 99%;
     margin:0;
-    overflow-y: hidden;
+   
 }
 
 code {
