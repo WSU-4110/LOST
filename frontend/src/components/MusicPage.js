@@ -162,6 +162,7 @@ const MusicPage = () => {
               <div className="Add">
               <div class="search">
                 <input type="text" class="search-bar" placeholder="Search" />
+                <button>+</button>
               </div>
               </div>
             </div>
