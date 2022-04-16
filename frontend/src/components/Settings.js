@@ -49,7 +49,7 @@ const background = () => {
           <div onClick={toggleModal} className="overlay"></div>
           <div className="popUp">
             
-            <button  onClick={logout}>
+            <button className='logoutBTN' onClick={logout}>
               LOGOUT
             </button>
             <br></br>
