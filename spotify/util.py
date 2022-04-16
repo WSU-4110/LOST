@@ -1,6 +1,6 @@
 from api.serializers import DatabaseSerializer
 from .models import SpotifyToken
-from api.models import Database
+from api.models import Attributes, Database
 from django.utils import timezone 
 from datetime import timedelta
 from .credentials import CLIENT_ID, CLIENT_SECRET
@@ -59,7 +59,7 @@ def getSongInfo(session_id, id):
     return execute_spotify_api_request(session_id, searchQuery)
 
 
-def storeSong(session_id, data, email, id):
+def storeSong(data, email, id):
     user_song = Database.objects.filter(userEmail=email, trackID=id)
     #print('user song in db (if exists): ' + user_song[0])
 
@@ -135,3 +135,77 @@ def search(session_id, search):
 def recentlyPlayed(session_id):
     query = "me/player/recently-played?q=limit=1"
     return execute_spotify_api_request(session_id, query)
+
+#rmv attr from song
+def rmvAttr(attrType, email, id):
+    user_song = Database.objects.get(userEmail=email, trackID=id)
+
+    if (attrType == "location"):
+        user_song.location = None
+        user_song.save(update_fields=['location'])
+    elif (attrType == "mood"):
+        user_song.mood = None
+        user_song.save(update_fields=['mood'])
+    elif (attrType == "activity"):
+        user_song.activity = None
+        user_song.save(update_fields=['activity'])
+    elif (attrType == "custom_attr"):
+        user_song.custom_attr = None
+        user_song.save(update_fields=['custom_attr'])
+    elif (attrType == "custom_attrtwo"):
+        user_song.custom_attrtwo = None
+        user_song.save(update_fields=['custom_attrtwo'])
+    elif (attrType == "custom_attrthree"):
+        user_song.custom_attrthree = None
+        user_song.save(update_fields=['custom_attrthree'])    
+    user_song = Database.objects.filter(userEmail=email, trackID=id)
+    return DatabaseSerializer(user_song[0]).data
+
+#add attr to song
+def addAttr(attrType, attrDesc, email, id):
+    user_song = Database.objects.get(userEmail=email, trackID=id)
+
+    if (attrType == "location"):
+        user_song.location = attrDesc
+        user_song.save(update_fields=['location'])
+    elif (attrType == "mood"):
+        user_song.mood = attrDesc
+        user_song.save(update_fields=['mood'])
+    elif (attrType == "activity"):
+        user_song.activity = attrDesc
+        user_song.save(update_fields=['activity'])
+    elif (attrType == "custom_attr"):
+        user_song.custom_attr = attrDesc
+        user_song.save(update_fields=['custom_attr'])
+    elif (attrType == "custom_attrtwo"):
+        user_song.custom_attrtwo = attrDesc
+        user_song.save(update_fields=['custom_attrtwo'])
+    elif (attrType == "custom_attrthree"):
+        user_song.custom_attrthree = attrDesc
+        user_song.save(update_fields=['custom_attrthree'])   
+    user_song = Database.objects.filter(userEmail=email, trackID=id)
+    return DatabaseSerializer(user_song[0]).data
+
+#get all of the user's custom attr
+def getCustomAttr(email):
+    attributes = Attributes.objects.values_list('attr', flat=True).filter(userEmail=email)
+    print(attributes)
+    return attributes
+
+#deprecated, but keep for further analysis
+def findUserSong(email, id):
+    user_song = Database.objects.filter(userEmail=email, trackID=id)
+    return DatabaseSerializer(user_song[0]).data
+
+#remove all attributes from song
+def clearAttributes(email, id):
+    user_song = Database.objects.get(userEmail=email, trackID=id)
+    user_song.location = None
+    user_song.mood = None
+    user_song.activity = None
+    user_song.custom_attr = None
+    user_song.custom_attrtwo = None
+    user_song.custom_attrthree = None
+    user_song.save()
+    user_song = Database.objects.filter(userEmail=email, trackID=id)
+    return DatabaseSerializer(user_song[0]).data
