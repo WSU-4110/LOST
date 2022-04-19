@@ -9,9 +9,9 @@ const Navigation = () => {
       <>
         <div class='navBar'>
         <div className="logo" >
-          <a href="/home" onclick="navigation.followPath('/home');">
+        <Button color="secondary" class="songBtnImg" variant="contained" to="/home" component={Link}>
             <img src="https://i.imgur.com/QVj3kkb.png" width={"100%"} alt="logo" />
-          </a>
+          </Button>
           
         </div>
         <div class='musicPlayerLink'>

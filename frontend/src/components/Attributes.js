@@ -2,11 +2,16 @@ import React from 'react';
 
 
 const Attributes = () => {
+    var makeColorCode = '0123456789ABCDEF';
+      var code = '#';
+      for (var count = 0; count < 6; count++) {
+         code =code+ makeColorCode[Math.floor(Math.random() * 16)];
+      }
     
-    let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    
  
     return (
-        <div style={{ backgroundColor: "#" + `${randomColor}` }} className="bubble">
+        <div style={{ backgroundColor:  `${code}` }} className="bubble">
             <h4 className="description">attribute</h4>
         </div>
     )

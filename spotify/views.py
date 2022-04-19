@@ -1,3 +1,4 @@
+from cgitb import lookup
 from django.shortcuts import render, redirect
 
 from spotify.serializers import userSerializer
@@ -152,6 +153,7 @@ class recentTrack(APIView):
         result = recentlyPlayed(self.request.session.session_key)
         return Response(result, status=status.HTTP_200_OK)
 
+#stores song in database if not already in there
 class sendtoDB(APIView):
     #name of value sent from body of POST request in frontend
     lookup_kwarg = 'song'
@@ -159,16 +161,90 @@ class sendtoDB(APIView):
     def post(self, request, format=None):
         #obtaining value sent from the body of POST request in frontend
         songID = request.data.get(self.lookup_kwarg)
-        #print statement for debugging purposes
-        print('song ID: '+ songID)
 
         songInfo = getSongInfo(self.request.session.session_key, songID)['loudness']
-        print(songInfo)
 
+        email = getUserEmail(self.request.session.session_key)['email']
+
+        results = storeSong(songInfo, email, songID)
+        print(results)
+        return Response(results, status=status.HTTP_200_OK)
+
+#remove attr from song
+class removeAttr(APIView):
+    lookup_kwarg = 'type'
+    lookup_kwarg2 = 'id'
+
+    def post(self, request, format=None):
+        #obtaining value sent from the body of POST request in frontend
+        songID = request.data.get(self.lookup_kwarg2)
+
+        email = getUserEmail(self.request.session.session_key)['email']
+
+        attrType = request.data.get(self.lookup_kwarg)
+
+        results = rmvAttr(attrType, email, songID)
+
+        return Response(results, status=status.HTTP_200_OK)
+
+#add attr to song
+class addAttribute(APIView):
+    lookup_kwarg = 'type'
+    lookup_kwarg2 = 'desc'
+    lookup_kwarg3 = 'id'
+
+    def post(self, request, format=None):
+        #obtaining value sent from the body of POST request in frontend
+        songID = request.data.get(self.lookup_kwarg3)
+        #print statement for debugging purposes
+
+        email = getUserEmail(self.request.session.session_key)['email']
+
+        attrType = request.data.get(self.lookup_kwarg)
+        attrDesc = request.data.get(self.lookup_kwarg2)
+
+        results = addAttr(attrType, attrDesc, email, songID)
+        print(results)
+
+        return Response(results, status=status.HTTP_200_OK)
+
+#get user's custom attr's
+class getCstmAttr(APIView):
+    def get(self, requeset, format=None):        
         email = getUserEmail(self.request.session.session_key)['email']
         print(email)
 
-        results = storeSong(self.request.session.session_key, songInfo, email, songID)
-        print(results)
+        result = getCustomAttr(email)
+
+        return Response(result, status=status.HTTP_200_OK)
+
+#deprecated, keep for further analysis
+class findUsrSong(APIView):
+    lookup_kwarg = 'id'
+
+    def post(self, request, format=None):
+        #email = request.data.get(self.lookup_kwarg)        
+        email = getUserEmail(self.request.session.session_key)['email']
+        print(email)
+        #obtaining value sent from the body of POST request in frontend
+        songID = request.data.get(self.lookup_kwarg)
+        #print statement for debugging purposes
+
+        results = findUserSong(email, songID)
+
         return Response(results, status=status.HTTP_200_OK)
-    
+
+#remove all attr's from given song
+class clrAttr(APIView):
+    lookup_kwarg = 'id'
+
+    def post(self, request, format=None):
+        #obtaining value sent from the body of POST request in frontend
+        songID = request.data.get(self.lookup_kwarg)
+        #print statement for debugging purposes
+
+        email = getUserEmail(self.request.session.session_key)['email']
+
+        results = clearAttributes(email, songID)
+
+        return Response(results, status=status.HTTP_200_OK)
