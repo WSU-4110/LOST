@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button, Grid, Typography, FormHelperText, FormControl, Radio, RadioGroup, FormControlLabel } from "@material-ui/core";
 import Navigation from "./Navigation";
 
-//test commit for kylie
 
 export default class Home extends Component {
     constructor(props) {
@@ -12,8 +11,6 @@ export default class Home extends Component {
         };
         this.authenticateSpotify = this.authenticateSpotify.bind(this);
         this.authenticateSpotify();
-        this.playMusic = this.playMusic.bind(this);
-        this.pauseMusic = this.pauseMusic.bind(this);
     }
 
 
@@ -43,32 +40,26 @@ export default class Home extends Component {
         }, 1000);
     }
 
-    playMusic() {
-        document.getElementsByTagName("audio")[0].play();
-    }
-
-    pauseMusic() {
-        document.getElementsByTagName("audio")[0].pause();
-        //document.getElementsByTagName("audio")[0].currentTime = 0;
-    }
-
     getPlayed() {
         fetch('/spotify/recent')
             .then((response) => response.json())
             .then((data) => {
                 var parentT = document.getElementsByClassName("recentPlayed")[0];
 
-                //styling done here, inside style=' . . . content here . . .'
-                parentT.innerHTML = "<img src='" + data['items'][0]['track']['album']['images'][1]['url'] + "' style='height: 200px; width: 200px;'/>";
+                var strArtists = "";
 
-                var src = document.createElement("source");
-                var attr = document.createAttribute("src");
-                attr.value = data['items'][0]['track']['preview_url'];
-                src.setAttributeNode(attr);
-                attr = document.createAttribute("type");
-                attr.value = "audio/mpeg";
-                src.setAttributeNode(attr);
-                document.getElementById("spotifyAud").appendChild(src)
+                for (var i = 0; i < data['items'][0]['track']['artists'].length; i++) {
+                    if (i != data['items'][0]['track']['artists'].length - 1) {
+                        strArtists += data['items'][0]['track']['artists'][i]['name'] + ", ";
+                    } else {
+                        strArtists += data['items'][0]['track']['artists'][i]['name'];
+                    }
+                }
+
+                console.log(data);
+
+                //styling done here, inside style=' . . . content here . . .'
+                parentT.innerHTML = "<img src='" + data['items'][0]['track']['album']['images'][1]['url'] + "' style='height: 200px; width: 200px;'/><p id='songInfo'>" + data['items'][0]['track']['name'] + "<br>" + strArtists + "</p>";
             });
     }
 
@@ -76,21 +67,20 @@ export default class Home extends Component {
     render() {
         return (
             <Grid container spacing={1} class="App">
+                <div class = "scrollGone">
                 <Navigation></Navigation>
                 <div class="horizontalDisplay">
                     <h3 class="h2Align">Recently Played</h3>
                     <div class="recentPlayed">
 
                     </div>
-                    <audio id="spotifyAud"></audio>
-                    <Button onClick={this.playMusic}>Play</Button>
-                    <Button onClick={this.pauseMusic}>Pause</Button>
-                    <h3 class="h2Align">Recent Attributes</h3>
+                   <div class ="attributeSection"> <h3 class="h2Align">Recent Attributes</h3>
                     <div class="recentAttributes">
                         <div class="flexAttributes">
 
                         </div>
                     </div>
+                </div>
                 </div>
                 <div className="createSection">
                     <div className="leftSection">
@@ -108,7 +98,7 @@ export default class Home extends Component {
 
                     </div>
                 </div>
-
+</div>
 
             </Grid>
         );

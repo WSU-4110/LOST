@@ -1,19 +1,17 @@
 import React from 'react';
 
 
-const Attributes = () => {
+const Attributes = (attrType, attrName) => {
     var makeColorCode = '0123456789ABCDEF';
-      var code = '#';
-      for (var count = 0; count < 6; count++) {
-         code =code+ makeColorCode[Math.floor(Math.random() * 16)];
-      }
-    
-    
- 
+    var code = '#';
+    for (var count = 0; count < 6; count++) {
+        code = code + makeColorCode[Math.floor(Math.random() * 16)];
+    }
+
+
+
     return (
-        <div style={{ backgroundColor:  `${code}` }} className="bubble">
-            <h4 className="description">attribute</h4>
-        </div>
+        "<div style='background-color: " + code + "' class='bubble'><h4 class=" + attrName + " id=" + attrType + ">" + attrName + "</h4></div>"
     )
 }
 

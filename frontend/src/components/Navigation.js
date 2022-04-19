@@ -18,7 +18,7 @@ const Navigation = () => {
             <Button color="secondary" class="songBtn" variant="contained" to="/home" component={Link}>
                 HOME
             </Button>
-            <Button color="secondary" class="songBtn" variant="contained" to="/music-player" component={Link}>
+            <Button color="secondary" class="songBtn" variant="contained" to="/songs" component={Link}>
                 SONGS
             </Button>
             <div class='menuIcon'>
