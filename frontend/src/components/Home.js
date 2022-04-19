@@ -67,18 +67,20 @@ export default class Home extends Component {
     render() {
         return (
             <Grid container spacing={1} class="App">
+                <div class = "scrollGone">
                 <Navigation></Navigation>
                 <div class="horizontalDisplay">
                     <h3 class="h2Align">Recently Played</h3>
                     <div class="recentPlayed">
 
                     </div>
-                    <h3 class="h2Align">Recent Attributes</h3>
+                   <div class ="attributeSection"> <h3 class="h2Align">Recent Attributes</h3>
                     <div class="recentAttributes">
                         <div class="flexAttributes">
 
                         </div>
                     </div>
+                </div>
                 </div>
                 <div className="createSection">
                     <div className="leftSection">
@@ -96,7 +98,7 @@ export default class Home extends Component {
 
                     </div>
                 </div>
-
+</div>
 
             </Grid>
         );

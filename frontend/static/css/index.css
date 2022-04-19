@@ -17,7 +17,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;  
     background-size: 100% 100%;
-    
+    height:50vh;
     width:99%;
     margin:0;
 }
@@ -38,7 +38,7 @@ code {
 /* Where React code is rendered */
 #app {
     width: 100%;
-    height: 100%;
+    height: 90%;
 }
 
 /* For Loading.js */
@@ -53,7 +53,7 @@ code {
 
 .App {
     text-align: center;
-  
+  height:99%;
 }
   
 .App-logo {
@@ -66,7 +66,9 @@ code {
       animation: App-logo-spin infinite 20s linear;
     }
 }
-  
+  .scrollGone{
+    overflow-y: hidden;
+  }
 .App-header {
     background-color: #282c34;
     min-height: 100vh;
@@ -84,6 +86,9 @@ code {
 .h2Align{
   margin-left: -35%;
   color: white;
+}
+.attributeSection{
+  margin-top:70px;
 }
 .rightSection{
   margin-left:auto;
@@ -107,9 +112,10 @@ code {
   justify-content: flex-end;
 }
 .recentPlayed{
-  width: 200px;
+  width: 300px;
   height: 200px;
-  margin:auto;
+ margin-left:-30px;
+  color:white;
 }
 .recentAttributes{
   width: 200px;
@@ -124,10 +130,12 @@ code {
   flex-direction: row;
   flex-wrap: wrap;
   position: relative;
+  height:20px;
 }
 .horizontalDisplay{
   float:left;
-  margin-left:120px;
+  margin-left:20px;
+  height:70vh;
 }
 .createSection{
   width: 600px;
