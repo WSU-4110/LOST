@@ -14,7 +14,7 @@ class DatabaseSerializer(serializers.ModelSerializer):
         model = Database
         fields = ('userEmail', 'trackID', 'loudness', 'location', 'mood', 'activity', 'custom1_attr1', 'custom_attr2', 'custom_attr3')"""
 
-class Attributes(serializers.ModelSerializer):
+class AttributesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Attributes
         fields = ('userEmail', 'attr')
