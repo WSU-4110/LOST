@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button, Grid, Typography, FormHelperText, FormControl, Radio, RadioGroup, FormControlLabel } from "@material-ui/core";
 import Navigation from "./Navigation";
 
-//test commit for kylie
 
 export default class Home extends Component {
     constructor(props) {
