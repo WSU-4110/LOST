@@ -1,8 +1,8 @@
 from cgitb import lookup
 from django.shortcuts import render
 from rest_framework import generics, status
-from .serializers import AttributesSerializer, DatabaseSerializer
-from .models import Database, Attributes
+from .serializers import CustomAttributesSerializer, DatabaseSerializer
+from .models import Database, CustomAttributes
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -14,10 +14,10 @@ class DatabaseView(generics.ListAPIView):
     queryset = Database.objects.all()
     serializer_class = DatabaseSerializer
 
-class AttributesView(generics.ListAPIView):
+class CustomAttributesView(generics.ListAPIView):
 
-    queryset = Attributes.objects.all()
-    serializer_class = AttributesSerializer
+    queryset = CustomAttributes.objects.all()
+    serializer_class = CustomAttributesSerializer
 
 
 

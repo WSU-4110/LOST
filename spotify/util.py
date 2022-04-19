@@ -1,6 +1,6 @@
 from api.serializers import DatabaseSerializer
 from .models import SpotifyToken
-from api.models import Attributes, Database
+from api.models import CustomAttributes, Database
 from django.utils import timezone 
 from datetime import timedelta
 from .credentials import CLIENT_ID, CLIENT_SECRET
@@ -188,7 +188,7 @@ def addAttr(attrType, attrDesc, email, id):
 
 #get all of the user's custom attr
 def getCustomAttr(email):
-    attributes = Attributes.objects.values_list('attr', flat=True).filter(userEmail=email)
+    attributes = CustomAttributes.objects.values_list('attr', flat=True).filter(userEmail=email)
     print(attributes)
     return attributes
 
