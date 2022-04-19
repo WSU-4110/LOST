@@ -16,8 +16,8 @@ const MusicPage = () => {
       <Loading />
     );
   }
-  //fix
 
+  //sends search string from search bar to backend and returns search results
   const get_SearchResults = e => {
     const requestOptions = {
       method: "POST",
@@ -33,6 +33,7 @@ const MusicPage = () => {
       });
   }
 
+  //fills the middle column with song information that the user clicked from the search results
   const fillColumn = (songInfo, display) => {
     const requestOptions = {
       method: "POST",
@@ -58,6 +59,7 @@ const MusicPage = () => {
       });
   }
 
+  //sends song to db and stores it if not stored already
   const sendtoDB = (id) => {
     const requestOptions = {
       method: "POST",
@@ -75,6 +77,7 @@ const MusicPage = () => {
       });
   }
 
+  /*
   const refreshCols = (songData) => {
     const requestOptions = {
       method: "POST",
@@ -91,8 +94,9 @@ const MusicPage = () => {
         middleColumnAttr(data);
         loadAvailableAttributes(data);
       });
-  }
+  }*/
 
+  //fills middle column with attributes that are attached to the song
   const middleColumnAttr = (songData) => {
     var htmlBody = "";
     var parentT = document.getElementsByClassName("songAttrHolder")[0];
@@ -127,6 +131,7 @@ const MusicPage = () => {
 
     parentT.innerHTML = htmlBody;
 
+    //function created to remove an attribute from song when attribute is clicked in middle column
     var removeAttr = function (attrBubble) {
       return function () {
         var attrType = attrBubble.id;
@@ -153,6 +158,7 @@ const MusicPage = () => {
       };
     };
 
+    //removes all attributes from song if clicked
     var clearAttr = function () {
       return function () {
         var songID = document.getElementsByClassName("selectedSong")[0].id;
@@ -208,6 +214,7 @@ const MusicPage = () => {
     }
   }
 
+  //loads attributes that the user is able to attach to song
   const loadAvailableAttributes = (songData) => {
     var parentT = document.getElementsByClassName("Attributes")[0];
     $("#Attributes div").empty();
@@ -263,7 +270,7 @@ const MusicPage = () => {
 
     parentT.innerHTML = htmlBody;
 
-    //make onlcick functions here
+    //attaches attribute to song when clicked
     var addAttr = function (tag) {
       return function () {
         var attrType = tag.id;
@@ -315,6 +322,7 @@ const MusicPage = () => {
     }
   }
 
+  //generates table of search results
   const fillTable = (data) => {
     var table = document.getElementById("results");
     $("#results tr").remove();
@@ -358,6 +366,14 @@ const MusicPage = () => {
     }
   }
 
+  //in-progress function
+  const addCustom = () => {
+    var addBar = document.getElementById("cstmBar");
+    if (addBar.value != "") {
+      console.log(addBar.value);
+    }
+  }
+
   return (
     <Grid container spacing={1} class="App">
       <Navigation></Navigation>
@@ -395,8 +411,8 @@ const MusicPage = () => {
               <h1>Add</h1>
               <div className="Add">
                 <div class="search">
-                  <input type="text" class="search-bar" placeholder="Search" />
-                  <button>+</button>
+                  <input type="text" class="search-bar" id="cstmBar" placeholder="Search" />
+                  <button onClick={addCustom}>+</button>
                 </div>
               </div>
             </div>
@@ -404,7 +420,6 @@ const MusicPage = () => {
         </div>
       </div>
     </Grid>
-
   )
 }
 
