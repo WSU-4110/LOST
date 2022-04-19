@@ -45,8 +45,10 @@ const MusicPage = () => {
       .then((data) => {
         console.dir(data);
         var parentT = document.getElementsByClassName("selectedSong")[0];
+
         //cover art, to style just edit the 'style' part of string
-        parentT.innerHTML = "<img src='" + data['tracks']['items'][0]['album']['images'][1]['url'] + "' style='height: 200px; width: 200px;'/><br>" + display[0] + "<br>" + display[1];
+        parentT.innerHTML = "<img src='" + data['tracks']['items'][0]['album']['images'][1]['url'] + "' style='height: 200px; width: 200px;'/><br>" + display[0] + "<br>" + display[1] + "<br><audio src='" + data['tracks']['items'][0]['preview_url'] + "' controls>";
+
         console.log(data['tracks']['items'][0]['id']);
 
         parentT.id = data['tracks']['items'][0]['id'];
@@ -379,6 +381,7 @@ const MusicPage = () => {
           </div>
           <div className="songPlayer">
             <div className="selectedSong"></div>
+            <audio className="songAud" id="spotifyAud"></audio>
             <div className="songAttrHolder" id="songAttrHolder"></div>
             <div className="flex"></div>
           </div>
@@ -390,10 +393,10 @@ const MusicPage = () => {
             <div className="translucent">
               <h1>Add</h1>
               <div className="Add">
-              <div class="search">
-                <input type="text" class="search-bar" placeholder="Search" />
-                <button>+</button>
-              </div>
+                <div class="search">
+                  <input type="text" class="search-bar" placeholder="Search" />
+                  <button>+</button>
+                </div>
               </div>
             </div>
           </div>
