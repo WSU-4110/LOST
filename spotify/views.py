@@ -253,12 +253,9 @@ class clrAttr(APIView):
 
 class Playlists(APIView):
     def get(self, request, format=None):
-        
+        #me/playlists
+        #me/playlists?limit=10&offset=5
         endpoint = "me/playlists?limit=10&offset=5"
         response = execute_spotify_api_request(self.request.session.session_key, endpoint)
-
-        if 'error' in response or 'item' not in response:
-            return Response({}, status=status.HTTP_204_NO_CONTENT)
-
 
         return Response(response, status=status.HTTP_200_OK)
