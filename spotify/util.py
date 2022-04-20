@@ -1,6 +1,6 @@
 from api.serializers import DatabaseSerializer
 from .models import SpotifyToken
-from api.models import CustomAttributes, Database
+from api.models import *
 from django.utils import timezone 
 from datetime import timedelta
 from .credentials import CLIENT_ID, CLIENT_SECRET
@@ -49,7 +49,8 @@ def update_or_create_user_tokens(session_id, access_token, token_type, expires_i
                               refresh_token=refresh_token, token_type=token_type, expires_in=expires_in)
         tokens.save()
 
-def getUserEmail(session_id):
+#Want to rename to get UserInfo 
+def getUserInfo(session_id):
     searchQuery = "me"
     return execute_spotify_api_request(session_id, searchQuery)
 
@@ -209,3 +210,5 @@ def clearAttributes(email, id):
     user_song.save()
     user_song = Database.objects.filter(userEmail=email, trackID=id)
     return DatabaseSerializer(user_song[0]).data
+
+

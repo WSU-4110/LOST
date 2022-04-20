@@ -17,5 +17,6 @@ urlpatterns = [
     path('addAttribute2Song', addAttribute.as_view()),
     path('finduserSong', findUsrSong.as_view()),
     path('clear', clrAttr.as_view()),
-    path('playlists', Playlists.as_view())
+    path('playlists', Playlists.as_view()),
+    path('create-playlist', CreatePlaylist.as_view())
 ]
