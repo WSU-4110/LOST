@@ -22,7 +22,7 @@ class AuthURL(APIView):
         # info we want to access in the app (need to add more scopes later)
         # find more scopes @ developer.spotify.com
         # https://developer.spotify.com/documentation/general/guides/authorization/code-flow/
-        scopes = 'user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-recently-played user-read-email'
+        scopes = 'user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-recently-played user-read-email playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private'
 
         # URL to authorize account
         url = Request('GET', 'https://accounts.spotify.com/authorize', params={
@@ -106,6 +106,8 @@ class AllCurrentSongInfo(APIView):
 
 
         return Response(response, status=status.HTTP_200_OK)
+
+
 
 
 
@@ -248,3 +250,12 @@ class clrAttr(APIView):
         results = clearAttributes(email, songID)
 
         return Response(results, status=status.HTTP_200_OK)
+
+class Playlists(APIView):
+    def get(self, request, format=None):
+        #me/playlists
+        #me/playlists?limit=10&offset=5
+        endpoint = "me/playlists?limit=10&offset=5"
+        response = execute_spotify_api_request(self.request.session.session_key, endpoint)
+
+        return Response(response, status=status.HTTP_200_OK)
