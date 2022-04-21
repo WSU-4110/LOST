@@ -85,7 +85,7 @@ export default class Home extends Component {
                 <div className="createSection">
                     <div className="leftSection">
                         <div className="createEffect">
-                            <h1 className='create'>CREATE</h1>
+                            <h1  data-testid="text" className='create'>CREATE</h1>
                         </div>
 
                         <h3 >Saved Attributes</h3>
