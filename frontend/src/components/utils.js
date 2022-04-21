@@ -18,5 +18,7 @@ const negative = (vals) => {
 
     return vals.filter((x) => { return x < 0; });
 }
-
-module.exports = { sum, positive, negative };
+const homeText = () =>{
+    return "This is the Home Page"
+}
+module.exports = { sum, positive, negative, homeText };

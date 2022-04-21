@@ -1,5 +1,5 @@
 
-const { sum, positive, negative } = require('../src/components/utils');
+const { sum, positive, negative, homeText } = require('../src/components/utils');
 
 let vals;
 let sum_of_vals;
@@ -23,4 +23,7 @@ test('should get positive values', () => {
 
 test('should get negative values', () => {
     expect(negative(vals)).toEqual(neg_vals);
+});
+test('home page text', () => {
+    expect(homeText()).toEqual("This is the Home Page");
 });
