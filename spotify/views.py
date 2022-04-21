@@ -251,6 +251,19 @@ class clrAttr(APIView):
 
         return Response(results, status=status.HTTP_200_OK)
 
+#add custom attribute to db
+class addCstm(APIView):
+    lookup_kwarg = 'desc'
+
+    def post(self, request, format=None):
+        attrDesc = request.data.get(self.lookup_kwarg)
+
+        email = getUserEmail(self.request.session.session_key)['email']
+
+        results = addCustomAttr(email, attrDesc)
+
+        return Response(results, status=status.HTTP_200_OK)
+        
 class Playlists(APIView):
     def get(self, request, format=None):
         #me/playlists

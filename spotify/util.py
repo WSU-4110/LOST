@@ -1,4 +1,4 @@
-from api.serializers import DatabaseSerializer
+from api.serializers import CustomAttributesSerializer, DatabaseSerializer
 from .models import SpotifyToken
 from api.models import CustomAttributes, Database
 from django.utils import timezone 
@@ -209,3 +209,16 @@ def clearAttributes(email, id):
     user_song.save()
     user_song = Database.objects.filter(userEmail=email, trackID=id)
     return DatabaseSerializer(user_song[0]).data
+
+def addCustomAttr(email, desc):
+    user_attr = CustomAttributes.objects.filter(userEmail=email, attr=desc)
+
+    #if attr exist in db, return attr information
+    if user_attr.exists():
+        return CustomAttributesSerializer(user_attr[0]).data
+    else:
+        #else store attr in db and return information
+        attr = CustomAttributes(userEmail=email, attr=desc)
+        attr.save()
+        user_attr = CustomAttributes.objects.filter(userEmail=email, attr=desc)
+        return CustomAttributesSerializer(user_attr[0]).data
