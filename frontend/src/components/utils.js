@@ -21,4 +21,14 @@ const negative = (vals) => {
 const homeText = () =>{
     return "This is the Home Page"
 }
-module.exports = { sum, positive, negative, homeText };
+const songText = () =>{
+    return "This is the Song Page"
+}
+const attrText = () =>{
+    return "This is the Attribute Page"
+}
+const loginText = () =>{
+    return "This is the Login Page"
+}
+
+module.exports = { sum, positive, negative, homeText, songText, attrText, loginText };
