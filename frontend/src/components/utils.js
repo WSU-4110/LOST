@@ -1,13 +1,4 @@
-const sum = (vals) => {
-
-    let sum = 0;
-
-    vals.forEach((val) => {
-        sum += val;
-    });
-
-    return sum;
-}
+//utils checks to make sure the page is running
 
 const positive = (vals) => {
 
@@ -31,4 +22,4 @@ const loginText = () =>{
     return "This is the Login Page"
 }
 
-module.exports = { sum, positive, negative, homeText, songText, attrText, loginText };
+module.exports = {  positive, negative, homeText, songText, attrText, loginText };

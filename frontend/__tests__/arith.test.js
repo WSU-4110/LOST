@@ -1,4 +1,4 @@
-const { add, mul, sub, div } = require('../src/components/arith');
+const { add, mul } = require('../src/components/arith');
 
 test.each([[1, 1, 1], [-1, 2, -2], [2, 2, 4]])(
     '%i * %i equals %i', (a, b, expected) => {
@@ -6,13 +6,6 @@ test.each([[1, 1, 1], [-1, 2, -2], [2, 2, 4]])(
     },
   );
 
-test('7 - 8 = -1', () => {
-  expect(sub(7, 8)).toBe(-1);
-});
-
-test('8 / 4 = 2', () => {
-  expect(div(8, 4)).toBe(2);
-});
-test('2 + 3 = 5', () => {
-    expect(add(2, 3)).toBe(5);
+test('1+ 4 = 5', () => {
+    expect(add(1, 4)).toBe(5);
   });
