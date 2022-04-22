@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "jest-pytest": "^0.7.0",
     "reactjs-popup": "^2.0.5"
   },
   "devDependencies": {

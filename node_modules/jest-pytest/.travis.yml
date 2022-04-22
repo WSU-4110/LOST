@@ -1,0 +1,55 @@
+language: node_js
+cache: yarn
+node_js:
+  - "8"
+  - "9"
+
+before_install:
+  - sudo add-apt-repository ppa:deadsnakes/ppa -y
+  - sudo add-apt-repository ppa:fkrull/deadsnakes-python2.7 -y
+  - sudo apt-get update -y 
+  - sudo apt-get install -y --allow-unauthenticated python2.7
+  - sudo apt-get install -y --allow-unauthenticated python3.6
+  - sudo pip install --upgrade pip
+  - pip install --user pipenv
+  - pip install --user pytest snapshottest pytest-jest
+
+
+script: yarn test:integration:quick
+
+jobs:
+  include:
+    - stage: npm
+      node_js: "8"
+      script: yarn test:integration
+      if: tag =~ ^v\d.*
+      deploy:
+          provider: npm
+          script: yarn build
+          email: "jondotan@gmail.com"
+          api_key:
+            secure: bixLeXbEWToC6Jlsu6pADc5pi+NnROzPITV2M9bRpwMYVYPnQfvUN7U90UVdsEuNBVoacDsHTcplLUZRM/Vu2GEdzUYNB5M571dMenTGOrMZ0QoXgMdaxmgOCiw8Y0CgfOfnnqz/p5JPNoyF/DRGKSDzWZJ1KPPtvDnN1yLlbw92UMZnwB3e8yICh4u+90TJF27i870RKzIzGGHw8/VVZoaUEil1vDPJW1syiqPr9/QlQP8/pmFbgRu8lynJDTPrQa8yX+BBLpvVz8sverav2xBxMLlwHUrYFjgZIIQ2sB7zBEMB/eEzDcXVNig/vq5j0+XQfjcSSu0a3JwLTz7zgsJSqXeKZ7x4OeZlW0SGQ4R7X8bwU5lgsL5+7+ft8Tup55iztBnbGyoNiLioalhuu5W9vxHRjAN9RYupF/2bkjWdpvBq16hAZ0a7vKsMQH2HkFndi/v1pBPZRoa8DlkjOMsxUiRLH+s61e/U38v1YAy92kj+C4OI+hNkxPz41ksQujeHjJduz4pGZPLNPHFQ8sar4OkciJxkmM4QXjQ+sN5y11Pbc9WUImrqWg8QLLYnqYlHtTmsLrczipxkYOpmkhOJgPtrb9rFmrBaqaKA/BDslknQB3rf3XYeC/UL591PVZ17f9IgB+jaXeNdS7+V6UZG2RwQJcBWDKI3CbkzcOg=
+          on:
+            tags: true
+            skip_cleanup: true
+    # - stage: docs
+    #   script: yarn docs:prepare && yarn docs:build
+    #   node_js: "8"
+    #   deploy:
+    #     provider: pages
+    #     local-dir: hygen.io/public
+    #     skip-cleanup: true
+    #     github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
+    #     keep-history: true
+    # - stage: binary releases
+    #   script: yarn standalone
+    #   if: tag =~ ^v\d.*
+    #   node_js: "8"
+    #   deploy:
+    #     provider: releases
+    #     api_key: $GITHUB_TOKEN
+    #     file_glob: true
+    #     file: standalone/*
+    #     skip_cleanup: true
+    #     on:
+    #       tags: true
