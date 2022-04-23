@@ -252,7 +252,7 @@ class clrAttr(APIView):
         return Response(results, status=status.HTTP_200_OK)
 
 class Playlists(APIView):
-    def get(self, request, format=None):
+    def post(self, request, format=None):
         #me/playlists
         #me/playlists?limit=10&offset=5
         endpoint = "me/playlists?limit=10&offset=5"
@@ -260,14 +260,3 @@ class Playlists(APIView):
 
         return Response(response, status=status.HTTP_200_OK)
 
-class CreatePlaylist(APIView):
-    def post(self, request, format=None):
-
-        #Get userID from User Profile
-        userID = getUserInfo(self.request.session.session_key)['id']
-        print(userID)
-
-        endpoint = "users/" + userID + "/playlists"
-        response = execute_spotify_api_request(self.request.session.session_key, endpoint)
-
-        return Response(response, status=status.HTTP_200_OK)
