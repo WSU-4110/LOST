@@ -94,8 +94,8 @@ code {
   margin-left:auto;
   margin-right:auto;
   margin: auto;
-  width:225px;
-  height:400px;
+  width: 60vh;
+  height:80vh;
   /*background-color:rgb(53, 242, 255);*/
 }
 .navBar{
