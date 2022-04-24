@@ -156,7 +156,9 @@ export default class Home extends Component {
                         <div className="createEffect">
                         </div>
                         <Button onClick={() => {this.createPlaylist()}}>create playlist </Button>
-                        <div class="Created-Playlist-Name">  
+                        <div class="Created-Playlist-Name"> 
+                        <h3 >Saved Attributes</h3>
+                        <div className="SavedAtrributes">
                                 <Button variant="contained" size="small">gym</Button>
                                 <Button variant="contained" size="small">work</Button><br></br>
                                 <Button variant="contained" size="small">home</Button>
@@ -179,13 +181,10 @@ export default class Home extends Component {
                                 <Button variant="contained" size="small">walking</Button>
                                 <Button variant="contained" size="small">running</Button><br></br>
                                 <Button variant="contained" size="small">cleaning</Button>
-
+                                </div>
                             </div>
                         </div>
-                        <h3 >Saved Attributes</h3>
-                        <div className="SavedAtrributes">
-                            
-                        </div>
+                       
                     
                     <div class="rightSection">
                         
