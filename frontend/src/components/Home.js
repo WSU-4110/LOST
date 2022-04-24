@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Grid, Typography, FormHelperText, FormControl, Radio, RadioGroup, FormControlLabel } from "@material-ui/core";
 import Navigation from "./Navigation";
-
+import Attributes from ".Attributes";
+import MusicPage from './MusicPage';
 
 export default class Home extends Component {
     constructor(props) {
@@ -149,6 +150,7 @@ export default class Home extends Component {
                 </div>
                 <div className="createSection">
                     <div className="leftSection">
+                        <div className='Attributes'></div>
                         <div className="createEffect">
                             
                         </div>
