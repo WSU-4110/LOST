@@ -97,7 +97,7 @@ const MusicPage = () => {
   }*/
 
   //fills middle column with attributes that are attached to the song
-  const middleColumnAttr = (songData) => {
+  export const middleColumnAttr = (songData) => {
     var htmlBody = "";
     var parentT = document.getElementsByClassName("songAttrHolder")[0];
 
@@ -219,7 +219,7 @@ const MusicPage = () => {
   }
 
   //loads attributes that the user is able to attach to song
-  const loadAvailableAttributes = (songData) => {
+  export const loadAvailableAttributes = (songData) => {
     var parentT = document.getElementsByClassName("Attributes")[0];
     $("#Attributes div").empty();
 

@@ -3,6 +3,7 @@ import { Button, Grid, Typography, FormHelperText, FormControl, Radio, RadioGrou
 import Navigation from "./Navigation";
 import Attributes from ".Attributes";
 import MusicPage from './MusicPage';
+import {middleColumnAttr, loadAvailableAttributes} from './MusicPage';
 
 export default class Home extends Component {
     constructor(props) {
@@ -128,6 +129,8 @@ export default class Home extends Component {
             });
     }
 
+    
+
     //Display info on the home page 
     //<Button onClick={() => {this.createPlaylist()}}>create playlist </Button>
     render() {
@@ -150,7 +153,17 @@ export default class Home extends Component {
                 </div>
                 <div className="createSection">
                     <div className="leftSection">
-                        <div className='Attributes'></div>
+                        <div className='Attributes' onLoad={this.middleColumnAttr}>
+                            <button>gym</button>
+                            <button>home</button>
+                            <button>beach</button>
+                            <button>happy</button>
+                            <button>sad</button>
+                            <button>loud</button>
+                            <button>studying</button>
+                            <button>driving</button>
+                            <button>cooking</button>
+                        </div>
                         <div className="createEffect">
                             
                         </div>
