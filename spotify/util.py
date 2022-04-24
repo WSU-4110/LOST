@@ -1,6 +1,6 @@
-from api.serializers import CustomAttributesSerializer, DatabaseSerializer
+from api.serializers import DatabaseSerializer
 from .models import SpotifyToken
-from api.models import CustomAttributes, Database
+from api.models import *
 from django.utils import timezone 
 from datetime import timedelta
 from .credentials import CLIENT_ID, CLIENT_SECRET
@@ -49,7 +49,8 @@ def update_or_create_user_tokens(session_id, access_token, token_type, expires_i
                               refresh_token=refresh_token, token_type=token_type, expires_in=expires_in)
         tokens.save()
 
-def getUserEmail(session_id):
+#Want to rename to get UserInfo 
+def getUserInfo(session_id):
     searchQuery = "me"
     return execute_spotify_api_request(session_id, searchQuery)
 
@@ -210,15 +211,31 @@ def clearAttributes(email, id):
     user_song = Database.objects.filter(userEmail=email, trackID=id)
     return DatabaseSerializer(user_song[0]).data
 
-def addCustomAttr(email, desc):
-    user_attr = CustomAttributes.objects.filter(userEmail=email, attr=desc)
+def create_playlist(session_id, userID):
+    tokens = get_user_tokens(session_id)
+    endpoint = "users/" + userID + "/playlists"
+    data = '{"name":"my_playlist","description":"By LifeOST", "public":true }'
+    headers = {'Content-Type': 'application/json', 'Authorization': "Bearer " + tokens.access_token}
+    return post(URL_STEM + endpoint, data=data, headers=headers)
 
-    #if attr exist in db, return attr information
-    if user_attr.exists():
-        return CustomAttributesSerializer(user_attr[0]).data
-    else:
-        #else store attr in db and return information
-        attr = CustomAttributes(userEmail=email, attr=desc)
-        attr.save()
-        user_attr = CustomAttributes.objects.filter(userEmail=email, attr=desc)
-        return CustomAttributesSerializer(user_attr[0]).data
+def get_playlist_info(session_id):
+    endpoint = "me/playlists?limit=1&offset=0"
+    return execute_spotify_api_request(session_id, endpoint)
+
+def add_track_to_playlist(session_id, playlistID, trackID):
+    track = "spotify%3Atrack%3A"
+    endpoint = "playlists/" + playlistID + "/tracks?uris=" + track + trackID
+    return execute_spotify_api_request(session_id, endpoint, post_=True)
+
+def get_playlist_tracks(session_id, playlistID):
+    endpoint = "playlists/" + playlistID + "/tracks?fields=items(added_by.id%2Ctrack(name%2Chref%2Calbum(name%2Chref)))&limit=10"
+    return execute_spotify_api_request(session_id, endpoint)
+
+
+
+
+
+
+    
+
+
