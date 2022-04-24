@@ -162,6 +162,15 @@ export default class Home extends Component {
                                 <Button variant="contained" size="small">home</Button>
                                 <Button variant="contained" size="small">school</Button><br></br>
                                 <Button variant="contained" size="small">beach</Button><br></br><br></br>
+
+                                <Button variant="contained" size="small">sentimental</Button><br></br>
+                                <Button variant="contained" size="small">happy</Button>
+                                <Button variant="contained" size="small">sad</Button><br></br>
+                                <Button variant="contained" size="small">angry</Button>
+                                <Button variant="contained" size="small">soft</Button><br></br>
+                                <Button variant="contained" size="small">loud</Button>
+                                <Button variant="contained" size="small">lonely</Button><br></br>
+                                <Button variant="contained" size="small">melancholy</Button><br></br><br></br>
                             </div>
                         </div>
                         <h3 >Saved Attributes</h3>
