@@ -181,7 +181,7 @@ export default class Home extends Component {
                                 <Button variant="contained" size="small">walking</Button>
                                 <Button variant="contained" size="small">running</Button><br></br>
                                 <Button variant="contained" size="small">cleaning</Button>
-                                </div>
+                            </div>
                             </div>
                         </div>
                        
