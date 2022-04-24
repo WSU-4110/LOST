@@ -26,4 +26,4 @@ class CustomAttributesSerializer(serializers.ModelSerializer):
 
 class PlaylistSerializer(serializers.ModelSerializer):
         model = Playlists
-        fields = ('userEmail', 'attr', 'trackID_1', 'trackID_2', 'trackID_3', 'trackID_4', 'trackID_5', 'trackID_6', 'trackID_7, trackID_8', 'trackID_9', 'trackID_10')
+        fields = ('userEmail', 'userID', 'playlistID',  'attr', 'trackID_1', 'trackID_2', 'trackID_3', 'trackID_4', 'trackID_5', 'trackID_6', 'trackID_7, trackID_8', 'trackID_9', 'trackID_10')

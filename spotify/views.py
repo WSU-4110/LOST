@@ -324,7 +324,8 @@ class PlaylistTracks(APIView):
         item = response.get('items')[0]
         playlistID = item.get('id')
         print(playlistID)
-        
+
+
         track_response = get_playlist_tracks(self.request.session.session_key, playlistID)
 
         return Response(track_response, status=status.HTTP_200_OK)
