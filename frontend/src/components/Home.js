@@ -74,6 +74,9 @@ export default class Home extends Component {
             headers: { "Content-Type": "application/json" },
         };
         fetch("/spotify/create-playlist", requestOptions);
+        this.getPlaylistName();
+        this.addToPlaylist();
+        this.getPlaylistTracks();
     }
 
     addToPlaylist() {
@@ -82,6 +85,46 @@ export default class Home extends Component {
             headers: { "Content-Type": "application/json" },
         };
         fetch("/spotify/add-to-playlist", requestOptions);
+    }
+
+    //Display Playlist name when created 
+    getPlaylistName(){
+        fetch("/spotify/playlist-info")
+            .then((response) => response.json())
+            .then((data) => {
+                var parentT = document.getElementsByClassName("Created-Playlist-Name")[0];
+
+                console.log(data);
+
+                //styling done here, inside style=' . . . content here . . .'
+                parentT.innerHTML = data['name'];
+            });
+    }
+
+    renamePlaylist(new_name) {
+        const requestOptions = {
+            method: "PUT",
+            body: {
+                "name": new_name,
+                "description": "description",
+                "public": true,
+            },
+            headers: { "Content-Type": "application/json" },
+        };
+        fetch("/spotify/rename-playlist", requestOptions);
+    }
+
+    displayPlaylistTracks() {
+        fetch("/spotify/get-playlist-tracks")
+            .then((response) => response.json())
+            .then((data) => {
+                var parentT = document.getElementsByClassName("rightSection")[0];
+
+                console.log(data);
+                console.log(data['items'][0]['track']['name']);
+                //PRINT OUT SONG NAMES 
+                parentT.innerHTML = data['items'][0]['track']['name'] + "<br><br>" + data['items'][1]['track']['name'] + "<br><br>" + data['items'][2]['track']['name'] + "<br><br>" + data['items'][3]['track']['name'] + "<br><br>" + data['items'][4]['track']['name'] + data['items'][5]['track']['name'] + "<br><br>" + data['items'][6]['track']['name'] + "<br><br>" + + data['items'][7]['track']['name'] + "<br><br>" + + data['items'][8]['track']['name'] + "<br><br>" + + data['items'][9]['track']['name'];
+            });
     }
 
     //Display info on the home page 
@@ -109,19 +152,25 @@ export default class Home extends Component {
                         <div className="createEffect">
                             <h1 className='create'>CREATE</h1>
                         </div>
+                        <Button onClick={() => {this.createPlaylist()}}>create playlist </Button>
+                        <div class="Created-Playlist-Name">
+
+                        </div>
                         <h3 >Saved Attributes</h3>
                         <div className="SavedAtrributes">
 
                         </div>
 
                     </div>
-                        
+                    
                     <div class="rightSection">
                         
 
                     </div>
+
+                    <Button onClick={() => {this.displayPlaylistTracks()}}>display tracks </Button>
                 </div>
-</div>
+            </div>
 
             </Grid>
         );

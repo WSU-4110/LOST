@@ -309,6 +309,31 @@ class AddToPlaylist(APIView):
 
         return Response({}, status=status.HTTP_200_OK)
 
+class RenamePlaylist(APIView):
+    def put(self, request, format=None):
+
+        response = get_playlist_info(self.request.session.session_key)
+        item = response.get('items')[0]
+        playlistID = item.get('id')
+        print(playlistID)
+
+class PlaylistTracks(APIView):
+    def get(self, request, format=None):
+
+        response = get_playlist_info(self.request.session.session_key)
+        item = response.get('items')[0]
+        playlistID = item.get('id')
+        print(playlistID)
+        
+        track_response = get_playlist_tracks(self.request.session.session_key, playlistID)
+
+        return Response(track_response, status=status.HTTP_200_OK)
+
+
+
+
+
+
 
 
 

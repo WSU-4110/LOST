@@ -227,6 +227,11 @@ def add_track_to_playlist(session_id, playlistID, trackID):
     endpoint = "playlists/" + playlistID + "/tracks?uris=" + track + trackID
     return execute_spotify_api_request(session_id, endpoint, post_=True)
 
+def get_playlist_tracks(session_id, playlistID):
+    endpoint = "playlists/" + playlistID + "/tracks?fields=items(track(name%2Chref%2Calbum(name%2Chref)))&limit=10"
+    return execute_spotify_api_request(session_id, endpoint)
+
+
 
 
 
