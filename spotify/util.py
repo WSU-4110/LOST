@@ -217,6 +217,20 @@ def create_playlist(session_id, userID):
     data = '{"name":"my_playlist","description":"By LifeOST", "public":true }'
     headers = {'Content-Type': 'application/json', 'Authorization': "Bearer " + tokens.access_token}
     return post(URL_STEM + endpoint, data=data, headers=headers)
+
+def get_playlist_info(session_id):
+    endpoint = "me/playlists?limit=1&offset=0"
+    return execute_spotify_api_request(session_id, endpoint)
+
+def add_track_to_playlist(session_id, playlistID, trackID):
+    track = "spotify%3Atrack%3A"
+    endpoint = "playlists/" + playlistID + "/tracks?uris=" + track + trackID
+    return execute_spotify_api_request(session_id, endpoint, post_=True)
+
+
+
+
+
     
 
 

@@ -294,3 +294,22 @@ class MostRecentPlaylist(APIView):
         
         return Response(playlist, status=status.HTTP_200_OK)
 
+class AddToPlaylist(APIView):
+    def post(self, request, format=None):
+
+        #all of playlist info playlistID 
+        response = get_playlist_info(self.request.session.session_key)
+        item = response.get('items')[0]
+        playlistID = item.get('id')
+        print(playlistID)
+
+        trackID = "6EF9LmygQkNILmFVwYzxDr"
+
+        add_track_to_playlist(self.request.session.session_key, playlistID, trackID)
+
+        return Response({}, status=status.HTTP_200_OK)
+
+
+
+
+
