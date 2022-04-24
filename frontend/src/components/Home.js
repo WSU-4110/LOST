@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Button, Grid, Typography, FormHelperText, FormControl, Radio, RadioGroup, FormControlLabel } from "@material-ui/core";
 import Navigation from "./Navigation";
-
+import Attributes from "./Attributes";
+import MusicPage from './MusicPage';
+import {middleColumnAttr, loadAvailableAttributes} from './MusicPage'; 
 
 export default class Home extends Component {
     constructor(props) {
@@ -127,6 +129,8 @@ export default class Home extends Component {
             });
     }
 
+    
+
     //Display info on the home page 
     //<Button onClick={() => {this.createPlaylist()}}>create playlist </Button>
     render() {
@@ -140,28 +144,47 @@ export default class Home extends Component {
 
                     </div>
                    <div class ="attributeSection"> <h3 class="h2Align">Recent Attributes</h3>
-                    <div class="recentAttributes">
-                        <div class="flexAttributes">
-
+                        <div class="recentAttributes">
+                            <div class="flexAttributes">
+                            </div>
                         </div>
                     </div>
-                </div>
                 </div>
                 <div className="createSection">
                     <div className="leftSection">
+                    
                         <div className="createEffect">
-                            
                         </div>
                         <Button onClick={() => {this.createPlaylist()}}>create playlist </Button>
-                        <div class="Created-Playlist-Name">
-
-                        </div>
+                        <div class="Created-Playlist-Name"> 
                         <h3 >Saved Attributes</h3>
                         <div className="SavedAtrributes">
+                                <Button variant="contained" size="small">gym</Button>
+                                <Button variant="contained" size="small">work</Button><br></br>
+                                <Button variant="contained" size="small">home</Button>
+                                <Button variant="contained" size="small">school</Button><br></br>
+                                <Button variant="contained" size="small">beach</Button><br></br><br></br>
 
+                                <Button variant="contained" size="small">sentimental</Button><br></br>
+                                <Button variant="contained" size="small">happy</Button>
+                                <Button variant="contained" size="small">sad</Button><br></br>
+                                <Button variant="contained" size="small">angry</Button>
+                                <Button variant="contained" size="small">soft</Button><br></br>
+                                <Button variant="contained" size="small">loud</Button>
+                                <Button variant="contained" size="small">lonely</Button><br></br>
+                                <Button variant="contained" size="small">melancholy</Button><br></br><br></br>
+
+                                <Button variant="contained" size="small">studying</Button>
+                                <Button variant="contained" size="small">cooking</Button><br></br>
+                                <Button variant="contained" size="small">sleeping</Button>
+                                <Button variant="contained" size="small">driving</Button><br></br>
+                                <Button variant="contained" size="small">walking</Button>
+                                <Button variant="contained" size="small">running</Button><br></br>
+                                <Button variant="contained" size="small">cleaning</Button>
+                                </div>
+                            </div>
                         </div>
-
-                    </div>
+                       
                     
                     <div class="rightSection">
                         
