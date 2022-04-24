@@ -63,6 +63,19 @@ export default class Home extends Component {
             });
     }
 
+    createPlaylist() {
+        const requestOptions = {
+            method: "POST",
+            body: {
+                "name": "playlist name",
+                "description": "description",
+                "public": true,
+            },
+            headers: { "Content-Type": "application/json" },
+        };
+        fetch("/spotify/create-playlist", requestOptions);
+    }
+
     //Display info on the home page 
     render() {
         return (
@@ -87,6 +100,7 @@ export default class Home extends Component {
                         <div className="createEffect">
                             <h1 className='create'>CREATE</h1>
                         </div>
+                        <Button onClick={() => {this.createPlaylist()}}>create playlist </Button>
 
                         <h3 >Saved Attributes</h3>
                         <div className="SavedAtrributes">
