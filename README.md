@@ -1,9 +1,4 @@
 # LOST
-## Prerequisites
-Python - https://www.python.org/downloads/ 
-
-Node.js - https://nodejs.org/en/
-
 
 ## Navigation
 ### `LOST`- Our main project folder/settings 
