@@ -108,9 +108,6 @@ class AllCurrentSongInfo(APIView):
         return Response(response, status=status.HTTP_200_OK)
 
 
-
-
-
 #Get current info about current song and return to Frontend 
 class CurrentSong(APIView):
     def get(self, request, format=None):
@@ -250,6 +247,20 @@ class clrAttr(APIView):
         results = clearAttributes(email, songID)
 
         return Response(results, status=status.HTTP_200_OK)
+
+#add custom attribute to db
+class addCstm(APIView):
+    lookup_kwarg = 'desc'
+
+    def post(self, request, format=None):
+        attrDesc = request.data.get(self.lookup_kwarg)
+
+        email = getUserInfo(self.request.session.session_key)['email']
+
+        results = addCustomAttr(email, attrDesc)
+
+        return Response(results, status=status.HTTP_200_OK)
+    
 
 class Playlists(APIView):
     def post(self, request, format=None):
