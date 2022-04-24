@@ -268,4 +268,29 @@ class CreatePlaylist(APIView):
         create_playlist(self.request.session.session_key, userID)
 
         return Response({}, status=status.HTTP_200_OK)
+    
+class MostRecentPlaylist(APIView):
+    def get(self, request, format=None):
+        #me/playlists
+        #me/playlists?limit=10&offset=5
+        # playlistID = get_playlist_name(self.request.session.session_key)['']
+        endpoint = "me/playlists?limit=1&offset=0"
+        response = execute_spotify_api_request(self.request.session.session_key, endpoint)
+
+        item = response.get('items')[0]
+        playlistID = item.get('id')
+        playlistName = item.get('name')
+        playlistHREF = item.get('href')
+        userHREF = item.get('owner').get('href')
+        userID = item.get('owner').get('id')
+
+        playlist = {
+            'name': playlistName,
+            'id': playlistID,
+            'href': playlistHREF,
+            'userID': userID,
+            'user_href': userHREF,
+        }
+        
+        return Response(playlist, status=status.HTTP_200_OK)
 
