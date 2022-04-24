@@ -54,6 +54,7 @@ export default class Login extends Component {
     
     renderLoginPage() {
         return (
+            <div className="center">
             <Grid container spacing={3}>
                 <Grid item xs={12} align="center">
                     {/* DISPLAY HOUSE PARTY */}
@@ -68,6 +69,7 @@ export default class Login extends Component {
                     </Button>
                 </Grid>
             </Grid>
+            </div>
         );
     }
 
