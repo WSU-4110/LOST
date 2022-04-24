@@ -260,3 +260,12 @@ class Playlists(APIView):
 
         return Response(response, status=status.HTTP_200_OK)
 
+class CreatePlaylist(APIView):
+    def post(self, request, format=None):
+        userID = getUserInfo(self.request.session.session_key)['id']
+        print(userID)
+
+        create_playlist(self.request.session.session_key, userID)
+
+        return Response({}, status=status.HTTP_200_OK)
+

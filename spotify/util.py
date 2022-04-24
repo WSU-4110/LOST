@@ -211,5 +211,12 @@ def clearAttributes(email, id):
     user_song = Database.objects.filter(userEmail=email, trackID=id)
     return DatabaseSerializer(user_song[0]).data
 
-def getUserID():
+def create_playlist(session_id, userID):
+    tokens = get_user_tokens(session_id)
+    endpoint = "users/" + userID + "/playlists"
+    data = '{"name":"my_playlist","description":"By LifeOST", "public":true }'
+    headers = {'Content-Type': 'application/json', 'Authorization': "Bearer " + tokens.access_token}
+    return post(URL_STEM + endpoint, data=data, headers=headers)
+    
+
 
