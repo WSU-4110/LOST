@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Button, Grid, Typography, FormHelperText, FormControl, Radio, RadioGroup, FormControlLabel } from "@material-ui/core";
 import Navigation from "./Navigation";
-import Attributes from ".Attributes";
+import Attributes from "./Attributes";
 import MusicPage from './MusicPage';
-import {middleColumnAttr, loadAvailableAttributes} from './MusicPage';
+import {middleColumnAttr, loadAvailableAttributes} from './MusicPage'; 
 
 export default class Home extends Component {
     constructor(props) {
@@ -144,39 +144,30 @@ export default class Home extends Component {
 
                     </div>
                    <div class ="attributeSection"> <h3 class="h2Align">Recent Attributes</h3>
-                    <div class="recentAttributes">
-                        <div class="flexAttributes">
-
+                        <div class="recentAttributes">
+                            <div class="flexAttributes">
+                            </div>
                         </div>
                     </div>
-                </div>
                 </div>
                 <div className="createSection">
                     <div className="leftSection">
-                        <div className='Attributes' onLoad={this.middleColumnAttr}>
-                            <button>gym</button>
-                            <button>home</button>
-                            <button>beach</button>
-                            <button>happy</button>
-                            <button>sad</button>
-                            <button>loud</button>
-                            <button>studying</button>
-                            <button>driving</button>
-                            <button>cooking</button>
-                        </div>
+                    
                         <div className="createEffect">
-                            
                         </div>
                         <Button onClick={() => {this.createPlaylist()}}>create playlist </Button>
-                        <div class="Created-Playlist-Name">
-
+                        <div class="Created-Playlist-Name">  
+                                <Button variant="contained" size="small">gym</Button>
+                                <Button variant="contained" size="small">work</Button><br></br>
+                                <Button variant="contained" size="small">home</Button>
+                                <Button variant="contained" size="small">school</Button><br></br>
+                                <Button variant="contained" size="small">beach</Button><br></br><br></br>
+                            </div>
                         </div>
                         <h3 >Saved Attributes</h3>
                         <div className="SavedAtrributes">
-
+                            
                         </div>
-
-                    </div>
                     
                     <div class="rightSection">
                         
