@@ -22,7 +22,7 @@ class AuthURL(APIView):
         # info we want to access in the app (need to add more scopes later)
         # find more scopes @ developer.spotify.com
         # https://developer.spotify.com/documentation/general/guides/authorization/code-flow/
-        scopes = 'user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-recently-played user-read-email playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private'
+        scopes = 'user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-recently-played user-read-email playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private ugc-image-upload'
 
         # URL to authorize account
         url = Request('GET', 'https://accounts.spotify.com/authorize', params={
