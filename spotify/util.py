@@ -261,7 +261,7 @@ def testAttributeFilter(email):
     return attributes
 
 
-def findSongIDSpecificAttr(email, attribute):
+def findLocationSongs(email, attribute):
 
         #Find the objects with the attribute
         user_song = Database.objects.filter(userEmail=email, location=attribute)
@@ -280,6 +280,15 @@ def findSongIDSpecificAttr(email, attribute):
         #songs = Database.objects.values_list('trackID', flat=True).filter(userEmail=email, activity=attribute)
         #print(songs)
 
+def findMoodSongs(email, attribute):
+    #List the trackIDs with the mood attribute
+    songs = Database.objects.values_list('trackID', flat=True).filter(userEmail=email, mood=attribute)
+    print(songs)
+
+def findActivitySongs(email, attribute):
+    #List the trackIDs with the mood attribute
+    songs = Database.objects.values_list('trackID', flat=True).filter(userEmail=email, activity=attribute)
+    print(songs)
 
 def isLocation(attribute):
     locations = ['gym', 'school', 'work', 'home', 'beach']

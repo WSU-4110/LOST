@@ -1,4 +1,5 @@
 from cgitb import lookup
+from gettext import find
 from django.shortcuts import render, redirect
 
 from spotify.serializers import userSerializer
@@ -303,13 +304,13 @@ class CreatePlaylist(APIView):
         activity = isActivity(attribute)
 
         if location:
-            print("location")
+            findLocationSongs(email, attribute)
 
         if mood:
-            print("mood")
+            findMoodSongs(email, attribute)
 
         if activity:
-            print("activity")
+            findActivitySongs(email, attribute)
 
         
         #Find which category the attribute is in
@@ -320,7 +321,7 @@ class CreatePlaylist(APIView):
         #Check which category the attribute belongs to 
         #if  value:
         #Find the songs with that attribute 
-        findSongIDSpecificAttr(email, attribute)
+        
 
         return Response({}, status=status.HTTP_200_OK)
     
