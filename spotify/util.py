@@ -270,7 +270,7 @@ def findLocationSongs(email, attribute):
 
         #List the trackIDs with the location attribute
         songs = Database.objects.values_list('trackID', flat=True).filter(userEmail=email, location=attribute)
-        print(songs)
+        return songs
 
         #List the trackIDs with the mood attribute
         #songs = Database.objects.values_list('trackID', flat=True).filter(userEmail=email, mood=attribute)
@@ -284,6 +284,9 @@ def findMoodSongs(email, attribute):
     #List the trackIDs with the mood attribute
     songs = Database.objects.values_list('trackID', flat=True).filter(userEmail=email, mood=attribute)
     print(songs)
+
+    for x in songs:
+        print(x)
 
 def findActivitySongs(email, attribute):
     #List the trackIDs with the mood attribute

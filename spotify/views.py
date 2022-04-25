@@ -295,24 +295,31 @@ class CreatePlaylist(APIView):
         #Get users email 
         email = getUserInfo(self.request.session.session_key)['email']
 
+        #Get playlist ID
+        response = get_playlist_info(self.request.session.session_key)
+        item = response.get('items')[0]
+        playlistID = item.get('id')
+        print(playlistID)
+
         #Make playlistName string lowercase 
-        attribute= playlistName.lower()
-        print(attribute)
+        attribute = playlistName.lower()
 
         location = isLocation(attribute)
         mood = isMood(attribute)
         activity = isActivity(attribute)
 
         if location:
-            findLocationSongs(email, attribute)
+            songs = findLocationSongs(email, attribute)
 
         if mood:
-            findMoodSongs(email, attribute)
+            songs = findMoodSongs(email, attribute)
 
         if activity:
-            findActivitySongs(email, attribute)
+            songs = findActivitySongs(email, attribute)
 
-        
+        for trackID in songs:
+            add_track_to_playlist(self.request.session.session_key, playlistID, trackID)
+            print(trackID)
         #Find which category the attribute is in
         #findAttributeCategory(attribute)
 
@@ -351,18 +358,42 @@ class MostRecentPlaylist(APIView):
         return Response(playlist, status=status.HTTP_200_OK)
 
 class AddToPlaylist(APIView):
+    lookup_kwarg = 'name'
+
     def post(self, request, format=None):
 
+        
+        #Get id of playlist 
+        response = get_playlist_info(self.request.session.session_key)
         #Get id of playlist 
         response = get_playlist_info(self.request.session.session_key)
         item = response.get('items')[0]
         playlistID = item.get('id')
         print(playlistID)
 
+
+        #Get users email 
+        #email = getUserInfo(self.request.session.session_key)['email']
+
+       # location = isLocation(attribute)
+        #mood = isMood(attribute)
+        #activity = isActivity(attribute)
+
+        #if location:
+           # findLocationSongs(email, attribute)
+
+        #if mood:
+         #   findMoodSongs(email, attribute)
+
+       # if activity:
+           # findActivitySongs(email, attribute)
+
+        trackID = "6EF9LmygQkNILmFVwYzxDr"
+
         trackID = "6EF9LmygQkNILmFVwYzxDr"
 
 
-        add_track_to_playlist(self.request.session.session_key, playlistID, trackID)
+        #add_track_to_playlist(self.request.session.session_key, playlistID, trackID)
 
         return Response({}, status=status.HTTP_200_OK)
 

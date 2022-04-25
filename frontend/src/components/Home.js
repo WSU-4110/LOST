@@ -78,17 +78,23 @@ export default class Home extends Component {
             .then((response) => response.json())
             .then((data) => {
               this.getPlaylistName();
-              this.addToPlaylist();
+              this.displayPlaylistTracks();
             });
     }
 
-    addToPlaylist() {
+    /*addToPlaylist(attr) {
+        console.log(attr);
         const requestOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: attr,
+              description: "By LifeOST",
+              public: true,
+            }),
         };
-        fetch("/spotify/add-to-playlist", requestOptions);
-    }
+        fetch("http://127.0.0.1:8000/spotify/add-to-playlist", requestOptions);
+    }*/
 
     //Display Playlist name when created 
     getPlaylistName(){
