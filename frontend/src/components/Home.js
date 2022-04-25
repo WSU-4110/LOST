@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Grid, Typography, FormHelperText, FormControl, Radio, RadioGroup, FormControlLabel } from "@material-ui/core";
 import Navigation from "./Navigation";
-
+import Attributes from "./Attributes";
 
 export default class Home extends Component {
     constructor(props) {
@@ -12,7 +12,6 @@ export default class Home extends Component {
         this.authenticateSpotify = this.authenticateSpotify.bind(this);
         this.authenticateSpotify();
     }
-
 
     //Ask if current user is authenticated 
     authenticateSpotify() {
@@ -149,9 +148,7 @@ export default class Home extends Component {
                     </div>
                    <div class ="attributeSection"> <h3 class="h2Align">Recent Attributes</h3>
                     <div class="recentAttributes">
-                        <div class="flexAttributes">
-
-                        </div>
+                       
                     </div>
                 </div>
                 </div>
