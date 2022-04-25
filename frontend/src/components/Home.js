@@ -152,16 +152,16 @@ export default class Home extends Component {
                             
                         </div>
                         <Button onClick={() => {this.createPlaylist()}}>create playlist </Button>
-                        <div class="Created-Playlist-Name">
-
-                        </div>
+                        
                         <h3 >Saved Attributes</h3>
                         <div className="SavedAtrributes">
 
                         </div>
 
                     </div>
-                    
+                    <div class="Created-Playlist-Name">
+
+                    </div>
                     <div class="rightSection">
                         
 

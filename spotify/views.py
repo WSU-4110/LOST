@@ -108,6 +108,9 @@ class AllCurrentSongInfo(APIView):
         return Response(response, status=status.HTTP_200_OK)
 
 
+
+
+
 #Get current info about current song and return to Frontend 
 class CurrentSong(APIView):
     def get(self, request, format=None):
