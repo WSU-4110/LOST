@@ -81,17 +81,7 @@ export default class Home extends Component {
               this.addToPlaylist();
             });
     }
-    randomColor(){
-        var letters = '0123456789ABCDEF';
-         var color = '#';
-        for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-     }
-      setRandomColor() {
-        document.getElementById("myDIV").style.backgroundColor = randomColor();
-      }
+
     addToPlaylist() {
         const requestOptions = {
             method: "POST",
@@ -176,26 +166,26 @@ export default class Home extends Component {
                         </div>
                         <h3 >Saved Attributes</h3>
                         <div className="SavedAtrributes">
-                            <Button  onClick={() => {this.createPlaylist("Gym")}} >Gym </Button>
-                            <Button onClick={() => {this.createPlaylist("School")}}>School </Button>
-                            <Button onClick={() => {this.createPlaylist("Work")}}>Work </Button>
-                            <Button onClick={() => {this.createPlaylist("Home")}}>Home </Button>
-                            <Button onClick={() => {this.createPlaylist("Beach")}}>Beach </Button>
-                            <Button onClick={() => {this.createPlaylist("Happy")}}>Happy </Button>
-                            <Button onClick={() => {this.createPlaylist("Sad")}}>Sad </Button>
-                            <Button onClick={() => {this.createPlaylist("Angry")}}>Angry </Button>
-                            <Button onClick={() => {this.createPlaylist("Soft")}}>Soft </Button>
-                            <Button onClick={() => {this.createPlaylist("Loud")}}>Loud </Button>
-                            <Button onClick={() => {this.createPlaylist("Sentimental")}}>Sentimental </Button>
-                            <Button onClick={() => {this.createPlaylist("Lonely")}}>Lonely </Button>
-                            <Button onClick={() => {this.createPlaylist("Melancholy")}}>Melancholy </Button>
-                            <Button onClick={() => {this.createPlaylist("Studying")}}>Studying </Button>
-                            <Button onClick={() => {this.createPlaylist("Cooking")}}>Cooking </Button>
-                            <Button onClick={() => {this.createPlaylist("Sleeping")}}>Sleeping </Button>
-                            <Button onClick={() => {this.createPlaylist("Driving")}}>Driving </Button>
-                            <Button onClick={() => {this.createPlaylist("Walking")}}>Walking </Button>
-                            <Button onClick={() => {this.createPlaylist("Running")}}>Running </Button>
-                            <Button onClick={() => {this.createPlaylist("Cleaning")}}>Cleaning </Button>
+                            <Button onClick={() => {this.createPlaylist("Gym")}} >Gym </Button>
+                            <Button onClick={() => {this.createPlaylist("School")}} >School </Button>
+                            <Button onClick={() => {this.createPlaylist("Work")}} >Work </Button>
+                            <Button onClick={() => {this.createPlaylist("Home")}} >Home </Button>
+                            <Button onClick={() => {this.createPlaylist("Beach")}} >Beach </Button>
+                            <Button onClick={() => {this.createPlaylist("Happy")}} >Happy </Button>
+                            <Button onClick={() => {this.createPlaylist("Sad")}} >Sad </Button>
+                            <Button onClick={() => {this.createPlaylist("Angry")}} >Angry </Button>
+                            <Button onClick={() => {this.createPlaylist("Soft")}} >Soft </Button>
+                            <Button onClick={() => {this.createPlaylist("Loud")}} >Loud </Button>
+                            <Button onClick={() => {this.createPlaylist("Sentimental")}} >Sentimental </Button>
+                            <Button onClick={() => {this.createPlaylist("Lonely")}} >Lonely </Button>
+                            <Button onClick={() => {this.createPlaylist("Melancholy")}} >Melancholy </Button>
+                            <Button onClick={() => {this.createPlaylist("Studying")}} >Studying </Button>
+                            <Button onClick={() => {this.createPlaylist("Cooking")}} >Cooking </Button>
+                            <Button onClick={() => {this.createPlaylist("Sleeping")}} >Sleeping </Button>
+                            <Button onClick={() => {this.createPlaylist("Driving")}} >Driving </Button>
+                            <Button onClick={() => {this.createPlaylist("Walking")}} >Walking </Button>
+                            <Button onClick={() => {this.createPlaylist("Running")}} >Running </Button>
+                            <Button onClick={() => {this.createPlaylist("Cleaning")}} >Cleaning </Button>
 
 
                         </div>
