@@ -147,14 +147,18 @@ export default class Home extends Component {
                     <div class="recentPlayed">
 
                     </div>
-                   <div class ="attributeSection"> <h3 class="h2Align">Recent Attributes</h3>
-                    <div class="recentAttributes">
-                        <div class="flexAttributes">
-
+                    <div class="attributeSection"> 
+                    <h3 class="h2Align">Recent Attributes</h3>
+                        <div class="recentAttributes"> 
+                            <div style={{backgroundColor: "red"}}class="bubble"><h4>Angry</h4></div> 
+                            <div style={{backgroundColor: "blue"}} class='bubble'><h4>School</h4></div>
+                            <div style={{backgroundColor: "green"}} class='bubble'><h4>Happy</h4></div>
+                            <div style={{backgroundColor: "#ffcc00"}} class='bubble'><h4>Work</h4></div>
+                            <div style={{backgroundColor: "purple"}} class='bubble'><h4>Walking</h4></div> 
                         </div>
                     </div>
                 </div>
-                </div>
+               
                 <div className="createSection">
                     <div className="leftSection">
                         <div className="createEffect">

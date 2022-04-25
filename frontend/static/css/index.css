@@ -120,16 +120,7 @@ code {
   height: 200px;
   margin:auto;
 }
-.flexAttributes{
-  width: 90%;
-  margin: auto;
-  display: flex;
-  justify-content: space-around;
-  flex-direction: row;
-  flex-wrap: wrap;
-  position: relative;
-  height:20px;
-}
+
 .horizontalDisplay{
   float:left;
   margin-left:20px;
