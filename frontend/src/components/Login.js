@@ -61,9 +61,9 @@ export default class Login extends Component {
                 <Grid item xs={12} align="center">
                     {/* DISPLAY HOUSE PARTY */}
                     <div className="login-text">
-                    <Typography variant="h3" compact="h3">
-                        LIFEOST
-                    </Typography>
+                        <Typography variant="h3" compact="h3">
+                            LIFEOST
+                        </Typography>
                     </div>
                 </Grid>
                 <Grid item xs={12} align="center">

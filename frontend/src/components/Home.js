@@ -64,7 +64,22 @@ export default class Home extends Component {
     }
 
     createPlaylist(attr) {
+        console.log(attr);
         const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: attr,
+              description: "By LifeOST",
+              public: true,
+            }),
+          };
+          fetch("http://127.0.0.1:8000/spotify/create-playlist", requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data);
+            });
+        /*const requestOptions = {
             method: "POST",
             body: {
                 "name": "playlist name",
@@ -73,8 +88,7 @@ export default class Home extends Component {
             },
             headers: { "Content-Type": "application/json" },
         };
-        fetch("/spotify/create-playlist", requestOptions);
-        this.renamePlaylist(attr)
+        fetch("/spotify/create-playlist", requestOptions);*/
         this.getPlaylistName();
         this.addToPlaylist();
     }
@@ -102,16 +116,21 @@ export default class Home extends Component {
     }
 
     renamePlaylist(attr) {
+        console.log(attr);
         const requestOptions = {
-            method: "PUT",
-            body: {
-                "name": attr,
-                "description": "description",
-                "public": true,
-            },
+            method: "POST",
             headers: { "Content-Type": "application/json" },
-        };
-        fetch("/spotify/rename-playlist", requestOptions);
+            body: JSON.stringify({
+              name: attr,
+              description: "By LifeOST",
+              public: true,
+            }),
+          };
+          fetch("http://127.0.0.1:8000/spotify/rename-playlist", requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data);
+            });
     }
 
     displayPlaylistTracks() {
