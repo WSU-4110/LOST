@@ -91,11 +91,9 @@ code {
   margin-top:70px;
 }
 .rightSection{
-  margin-left:auto;
-  margin-right:auto;
-  margin: auto;
-  width: 60vh;
-  height:80vh;
+ 
+  width: 250px;
+  height: 70vh;
   /*background-color:rgb(53, 242, 255);*/
 }
 .navBar{
@@ -122,16 +120,7 @@ code {
   height: 200px;
   margin:auto;
 }
-.flexAttributes{
-  width: 90%;
-  margin: auto;
-  display: flex;
-  justify-content: space-around;
-  flex-direction: row;
-  flex-wrap: wrap;
-  position: relative;
-  height:20px;
-}
+
 .horizontalDisplay{
   float:left;
   margin-left:20px;
@@ -373,7 +362,11 @@ body.active-modal {
   left: 1%;
   right: 1%;
   color: #fff;
-  padding: 0px 5px;
+  padding: 0px 3px;
+}
+.SavedAtrributes{
+  width: 320px;
+  height: 70vh;
 }
 
 .center {
