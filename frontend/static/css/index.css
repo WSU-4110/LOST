@@ -91,11 +91,9 @@ code {
   margin-top:70px;
 }
 .rightSection{
-  margin-left:auto;
-  margin-right:auto;
-  margin: auto;
-  width: 60vh;
-  height:80vh;
+ 
+  width: 250px;
+  height: 70vh;
   /*background-color:rgb(53, 242, 255);*/
 }
 .navBar{
@@ -374,6 +372,10 @@ body.active-modal {
   right: 1%;
   color: #fff;
   padding: 0px 5px;
+}
+.SavedAtrributes{
+  width: 250px;
+  height: 70vh;
 }
 
 .center {

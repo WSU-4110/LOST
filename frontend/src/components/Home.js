@@ -81,7 +81,17 @@ export default class Home extends Component {
               this.addToPlaylist();
             });
     }
-
+    randomColor(){
+        var letters = '0123456789ABCDEF';
+         var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+     }
+      setRandomColor() {
+        document.getElementById("myDIV").style.backgroundColor = randomColor();
+      }
     addToPlaylist() {
         const requestOptions = {
             method: "POST",
@@ -166,7 +176,7 @@ export default class Home extends Component {
                         </div>
                         <h3 >Saved Attributes</h3>
                         <div className="SavedAtrributes">
-                            <Button onClick={() => {this.createPlaylist("Gym")}} >Gym </Button>
+                            <Button  onClick={() => {this.createPlaylist("Gym")}} >Gym </Button>
                             <Button onClick={() => {this.createPlaylist("School")}}>School </Button>
                             <Button onClick={() => {this.createPlaylist("Work")}}>Work </Button>
                             <Button onClick={() => {this.createPlaylist("Home")}}>Home </Button>
