@@ -22,7 +22,7 @@ class AuthURL(APIView):
         # info we want to access in the app (need to add more scopes later)
         # find more scopes @ developer.spotify.com
         # https://developer.spotify.com/documentation/general/guides/authorization/code-flow/
-        scopes = 'user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-recently-played user-read-email playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private'
+        scopes = 'user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-recently-played user-read-email playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private ugc-image-upload'
 
         # URL to authorize account
         url = Request('GET', 'https://accounts.spotify.com/authorize', params={
@@ -106,6 +106,9 @@ class AllCurrentSongInfo(APIView):
 
 
         return Response(response, status=status.HTTP_200_OK)
+
+
+
 
 
 #Get current info about current song and return to Frontend 
@@ -272,11 +275,20 @@ class Playlists(APIView):
         return Response(response, status=status.HTTP_200_OK)
 
 class CreatePlaylist(APIView):
+    lookup_kwarg = 'name'
+
     def post(self, request, format=None):
+
+        #obtaining attribute sent from the body of POST request in frontend
+        playlistName = request.data.get(self.lookup_kwarg)
+        print("CreatePlaylistAPIView = " + playlistName)
+
+        #Get userID from profile 
         userID = getUserInfo(self.request.session.session_key)['id']
         print(userID)
 
-        create_playlist(self.request.session.session_key, userID)
+        #create the playlist
+        create_playlist(self.request.session.session_key, userID, playlistName)
 
         return Response({}, status=status.HTTP_200_OK)
     
@@ -321,12 +333,29 @@ class AddToPlaylist(APIView):
         return Response({}, status=status.HTTP_200_OK)
 
 class RenamePlaylist(APIView):
-    def put(self, request, format=None):
 
+    lookup_kwarg = 'name'
+
+    def post(self, request, format=None):
+
+        #obtaining attribute sent from the body of POST request in frontend
+        playlistName = request.data.get(self.lookup_kwarg)
+        print("RenameAPIView = " + playlistName)
+
+        #Get playlist ID
         response = get_playlist_info(self.request.session.session_key)
         item = response.get('items')[0]
         playlistID = item.get('id')
         print(playlistID)
+
+        response = rename_playlist(self.request.session.session_key, playlistID, playlistName)
+
+        return Response(response, status=status.HTTP_200_OK)
+
+        #response = get_playlist_info(self.request.session.session_key)
+        #item = response.get('items')[0]
+        #playlistID = item.get('id')
+        #print(playlistID)
 
 class PlaylistTracks(APIView):
     def get(self, request, format=None):

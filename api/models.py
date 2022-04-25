@@ -28,9 +28,11 @@ class CustomAttributes(models.Model):
 
     class Meta:
         unique_together = (('userEmail', 'attr'),)
-
+        
 class Playlists(models.Model):
     userEmail = models.CharField(max_length=200)
+    userID = models.CharField(max_length=200)
+    playlistID = models.CharField(max_length=200)
     attr = models.CharField(max_length=50)
     trackID_1 = models.CharField(max_length=200)
     trackID_2 = models.CharField(max_length=200)

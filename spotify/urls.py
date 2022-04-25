@@ -22,5 +22,6 @@ urlpatterns = [
     path('create-playlist', CreatePlaylist.as_view()),
     path('playlist-info', MostRecentPlaylist.as_view()),
     path('add-to-playlist', AddToPlaylist.as_view()),
-    path('get-playlist-tracks', PlaylistTracks.as_view())
+    path('get-playlist-tracks', PlaylistTracks.as_view()),
+    path('rename-playlist', RenamePlaylist.as_view())
 ]

@@ -224,10 +224,12 @@ def addCustomAttr(email, desc):
         user_attr = CustomAttributes.objects.filter(userEmail=email, attr=desc)
         return CustomAttributesSerializer(user_attr[0]).data
 
-def create_playlist(session_id, userID):
+def create_playlist(session_id, userID, playlistName):
     tokens = get_user_tokens(session_id)
+    description = "By LifeOST"
     endpoint = "users/" + userID + "/playlists"
-    data = '{"name":"my_playlist","description":"By LifeOST", "public":true }'
+    data = '{"name": "' + playlistName + '", "description": "' + description + '", "public":true }'
+    print(data)
     headers = {'Content-Type': 'application/json', 'Authorization': "Bearer " + tokens.access_token}
     return post(URL_STEM + endpoint, data=data, headers=headers)
 
@@ -241,8 +243,20 @@ def add_track_to_playlist(session_id, playlistID, trackID):
     return execute_spotify_api_request(session_id, endpoint, post_=True)
 
 def get_playlist_tracks(session_id, playlistID):
-    endpoint = "playlists/" + playlistID + "/tracks?fields=items(added_by.id%2Ctrack(name%2Chref%2Calbum(name%2Chref)))&limit=10"
+    endpoint = "playlists/" + playlistID + "/tracks?fields=items(added_by.id%2Ctrack(name%2Chref%2Calbum(name%2Chref%2C)))&limit=10"
     return execute_spotify_api_request(session_id, endpoint)
+
+def rename_playlist(session_id, playlistID, playlistName):
+    tokens = get_user_tokens(session_id)
+    endpoint = "playlists/" + playlistID
+    data = '{"name":"' + playlistName + '","description": "By LifeOST", "public":true }'
+    print(data)
+    data = '{"name":"my_playlist", "description":"By LifeOST", "public":true }'
+    headers = {'Content-Type': 'application/json', 'Authorization': "Bearer " + tokens.access_token}
+    return post(URL_STEM + endpoint, data=data, headers=headers)
+
+
+
 
 
 

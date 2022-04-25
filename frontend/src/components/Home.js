@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Grid, Typography, FormHelperText, FormControl, Radio, RadioGroup, FormControlLabel } from "@material-ui/core";
 import Navigation from "./Navigation";
-import Attributes from "./Attributes";
-import MusicPage from './MusicPage';
-import {middleColumnAttr, loadAvailableAttributes} from './MusicPage'; 
+
 
 export default class Home extends Component {
     constructor(props) {
@@ -65,20 +63,23 @@ export default class Home extends Component {
             });
     }
 
-    createPlaylist() {
+    createPlaylist(attr) {
+        console.log(attr);
         const requestOptions = {
             method: "POST",
-            body: {
-                "name": "playlist name",
-                "description": "description",
-                "public": true,
-            },
             headers: { "Content-Type": "application/json" },
-        };
-        fetch("/spotify/create-playlist", requestOptions);
-        this.getPlaylistName();
-        this.addToPlaylist();
-        this.getPlaylistTracks();
+            body: JSON.stringify({
+              name: attr,
+              description: "By LifeOST",
+              public: true,
+            }),
+          };
+          fetch("http://127.0.0.1:8000/spotify/create-playlist", requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+              this.getPlaylistName();
+              this.addToPlaylist();
+            });
     }
 
     addToPlaylist() {
@@ -103,17 +104,22 @@ export default class Home extends Component {
             });
     }
 
-    renamePlaylist(new_name) {
+    renamePlaylist(attr) {
+        console.log(attr);
         const requestOptions = {
-            method: "PUT",
-            body: {
-                "name": new_name,
-                "description": "description",
-                "public": true,
-            },
+            method: "POST",
             headers: { "Content-Type": "application/json" },
-        };
-        fetch("/spotify/rename-playlist", requestOptions);
+            body: JSON.stringify({
+              name: attr,
+              description: "By LifeOST",
+              public: true,
+            }),
+          };
+          fetch("http://127.0.0.1:8000/spotify/rename-playlist", requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data);
+            });
     }
 
     displayPlaylistTracks() {
@@ -129,8 +135,6 @@ export default class Home extends Component {
             });
     }
 
-    
-
     //Display info on the home page 
     //<Button onClick={() => {this.createPlaylist()}}>create playlist </Button>
     render() {
@@ -144,47 +148,49 @@ export default class Home extends Component {
 
                     </div>
                    <div class ="attributeSection"> <h3 class="h2Align">Recent Attributes</h3>
-                        <div class="recentAttributes">
-                            <div class="flexAttributes">
-                            </div>
+                    <div class="recentAttributes">
+                        <div class="flexAttributes">
+
                         </div>
                     </div>
                 </div>
+                </div>
                 <div className="createSection">
                     <div className="leftSection">
-                    
                         <div className="createEffect">
+                            
                         </div>
                         <Button onClick={() => {this.createPlaylist()}}>create playlist </Button>
-                        <div class="Created-Playlist-Name"> 
+                        <div class="Created-Playlist-Name">
+
+                        </div>
                         <h3 >Saved Attributes</h3>
                         <div className="SavedAtrributes">
-                                <Button variant="contained" size="small">gym</Button>
-                                <Button variant="contained" size="small">work</Button><br></br>
-                                <Button variant="contained" size="small">home</Button>
-                                <Button variant="contained" size="small">school</Button><br></br>
-                                <Button variant="contained" size="small">beach</Button><br></br><br></br>
+                            <Button onClick={() => {this.createPlaylist("Gym")}} >Gym </Button>
+                            <Button onClick={() => {this.createPlaylist("School")}}>School </Button>
+                            <Button onClick={() => {this.createPlaylist("Work")}}>Work </Button>
+                            <Button onClick={() => {this.createPlaylist("Home")}}>Home </Button>
+                            <Button onClick={() => {this.createPlaylist("Beach")}}>Beach </Button>
+                            <Button onClick={() => {this.createPlaylist("Happy")}}>Happy </Button>
+                            <Button onClick={() => {this.createPlaylist("Sad")}}>Sad </Button>
+                            <Button onClick={() => {this.createPlaylist("Angry")}}>Angry </Button>
+                            <Button onClick={() => {this.createPlaylist("Soft")}}>Soft </Button>
+                            <Button onClick={() => {this.createPlaylist("Loud")}}>Loud </Button>
+                            <Button onClick={() => {this.createPlaylist("Sentimental")}}>Sentimental </Button>
+                            <Button onClick={() => {this.createPlaylist("Lonely")}}>Lonely </Button>
+                            <Button onClick={() => {this.createPlaylist("Melancholy")}}>Melancholy </Button>
+                            <Button onClick={() => {this.createPlaylist("Studying")}}>Studying </Button>
+                            <Button onClick={() => {this.createPlaylist("Cooking")}}>Cooking </Button>
+                            <Button onClick={() => {this.createPlaylist("Sleeping")}}>Sleeping </Button>
+                            <Button onClick={() => {this.createPlaylist("Driving")}}>Driving </Button>
+                            <Button onClick={() => {this.createPlaylist("Walking")}}>Walking </Button>
+                            <Button onClick={() => {this.createPlaylist("Running")}}>Running </Button>
+                            <Button onClick={() => {this.createPlaylist("Cleaning")}}>Cleaning </Button>
 
-                                <Button variant="contained" size="small">sentimental</Button><br></br>
-                                <Button variant="contained" size="small">happy</Button>
-                                <Button variant="contained" size="small">sad</Button><br></br>
-                                <Button variant="contained" size="small">angry</Button>
-                                <Button variant="contained" size="small">soft</Button><br></br>
-                                <Button variant="contained" size="small">loud</Button>
-                                <Button variant="contained" size="small">lonely</Button><br></br>
-                                <Button variant="contained" size="small">melancholy</Button><br></br><br></br>
 
-                                <Button variant="contained" size="small">studying</Button>
-                                <Button variant="contained" size="small">cooking</Button><br></br>
-                                <Button variant="contained" size="small">sleeping</Button>
-                                <Button variant="contained" size="small">driving</Button><br></br>
-                                <Button variant="contained" size="small">walking</Button>
-                                <Button variant="contained" size="small">running</Button><br></br>
-                                <Button variant="contained" size="small">cleaning</Button>
-                            </div>
-                            </div>
                         </div>
-                       
+
+                    </div>
                     
                     <div class="rightSection">
                         
