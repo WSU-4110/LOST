@@ -436,9 +436,17 @@ class PlaylistTracks(APIView):
 
         return Response(track_response, status=status.HTTP_200_OK)
 
+class getSongIDSpecificAttr(APIView):
+    lookup_kwarg = 'id'
+    lookup_kwarg1 = 'desc'
 
-
-
+    def post(self, request, format=None):
+        attribute = request.data.get(self.lookup_kwarg1)
+        print(attribute)
+        songID = request.data.get(self.lookup_kwarg)
+        results = findSongIDSpecificAttr(songID, attribute)
+    
+        return Response(results, status=status.HTTP_200_OK)
 
 
 
