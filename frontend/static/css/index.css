@@ -110,13 +110,13 @@ code {
   justify-content: flex-end;
 }
 .recentPlayed{
-  width: 300px;
+  width: 290px;
   height: 200px;
  margin-left:-30px;
   color:white;
 }
 .recentAttributes{
-  width: 200px;
+  width: 250px;
   height: 200px;
   margin:auto;
 }
