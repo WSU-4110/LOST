@@ -63,17 +63,18 @@ export default class Home extends Component {
             });
     }
 
-    createPlaylist() {
+    createPlaylist(attr) {
         const requestOptions = {
             method: "POST",
-            data: {
-                "name": "my_playlist",
+            body: {
+                "name": "playlist name",
                 "description": "description",
                 "public": true,
             },
             headers: { "Content-Type": "application/json" },
         };
         fetch("/spotify/create-playlist", requestOptions);
+        this.renamePlaylist(attr)
         this.getPlaylistName();
         this.addToPlaylist();
     }
@@ -100,11 +101,11 @@ export default class Home extends Component {
             });
     }
 
-    renamePlaylist(new_name) {
+    renamePlaylist(attr) {
         const requestOptions = {
             method: "PUT",
             body: {
-                "name": new_name,
+                "name": attr,
                 "description": "description",
                 "public": true,
             },
@@ -122,7 +123,7 @@ export default class Home extends Component {
                 console.log(data);
                 console.log(data['items'][0]['track']['name']);
                 //PRINT OUT SONG NAMES 
-                parentT.innerHTML = data['items'][0]['track']['name'] + "<br><br>" + data['items'][1]['track']['name'] + "<br><br>" + data['items'][2]['track']['name'] + "<br><br>" + data['items'][3]['track']['name'] + "<br><br>" + data['items'][4]['track']['name'] + "<br><br>" + data['items'][5]['track']['name'] + "<br><br>" + data['items'][6]['track']['name'] + "<br><br>" + data['items'][7]['track']['name'] + "<br><br>" + data['items'][8]['track']['name'] + "<br><br>" + data['items'][9]['track']['name'];
+                parentT.innerHTML =  data['items'][0]['track']['name'] + "<br><br>" + data['items'][1]['track']['name'] + "<br><br>" + data['items'][2]['track']['name'] + "<br><br>" + data['items'][3]['track']['name'] + "<br><br>" + data['items'][4]['track']['name'] + "<br><br>" + data['items'][5]['track']['name'] + "<br><br>" + data['items'][6]['track']['name'] + "<br><br>" + data['items'][7]['track']['name'] + "<br><br>" + data['items'][8]['track']['name'] + "<br><br>" + data['items'][9]['track']['name'];
             });
     }
 
@@ -152,16 +153,22 @@ export default class Home extends Component {
                             
                         </div>
                         <Button onClick={() => {this.createPlaylist()}}>create playlist </Button>
-                        
+                        <div class="Created-Playlist-Name">
+
+                        </div>
                         <h3 >Saved Attributes</h3>
                         <div className="SavedAtrributes">
-
+                            <Button onClick={() => {this.createPlaylist("Gym")}} >Gym </Button>
+                            <Button onClick={() => {this.createPlaylist()}}>Test </Button>
+                            <Button onClick={() => {this.createPlaylist()}}>Test </Button>
+                            <Button onClick={() => {this.createPlaylist()}}>Test </Button>
+                            <Button onClick={() => {this.createPlaylist()}}>Test </Button>
+                            <Button onClick={() => {this.createPlaylist()}}>Test </Button>
+                            <Button onClick={() => {this.createPlaylist()}}>Test </Button>
                         </div>
 
                     </div>
-                    <div class="Created-Playlist-Name">
-
-                    </div>
+                    
                     <div class="rightSection">
                         
 
