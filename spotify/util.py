@@ -229,6 +229,7 @@ def create_playlist(session_id, userID, playlistName):
     description = "By LifeOST"
     endpoint = "users/" + userID + "/playlists"
     data = '{"name": "' + playlistName + '", "description": "' + description + '", "public":true }'
+    print(data)
     headers = {'Content-Type': 'application/json', 'Authorization': "Bearer " + tokens.access_token}
     return post(URL_STEM + endpoint, data=data, headers=headers)
 
