@@ -63,45 +63,143 @@ export default class Home extends Component {
             });
     }
 
+    createPlaylist(attr) {
+        console.log(attr);
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: attr,
+              description: "By LifeOST",
+              public: true,
+            }),
+          };
+          fetch("http://127.0.0.1:8000/spotify/create-playlist", requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+              this.getPlaylistName();
+              this.addToPlaylist();
+            });
+    }
+
+    addToPlaylist() {
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+        };
+        fetch("/spotify/add-to-playlist", requestOptions);
+    }
+
+    //Display Playlist name when created 
+    getPlaylistName(){
+        fetch("/spotify/playlist-info")
+            .then((response) => response.json())
+            .then((data) => {
+                var parentT = document.getElementsByClassName("Created-Playlist-Name")[0];
+
+                console.log(data);
+
+                //styling done here, inside style=' . . . content here . . .'
+                parentT.innerHTML = data['name'];
+            });
+    }
+
+    renamePlaylist(attr) {
+        console.log(attr);
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: attr,
+              description: "By LifeOST",
+              public: true,
+            }),
+          };
+          fetch("http://127.0.0.1:8000/spotify/rename-playlist", requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data);
+            });
+    }
+
+    displayPlaylistTracks() {
+        fetch("/spotify/get-playlist-tracks")
+            .then((response) => response.json())
+            .then((data) => {
+                var parentT = document.getElementsByClassName("rightSection")[0];
+
+                console.log(data);
+                console.log(data['items'][0]['track']['name']);
+                //PRINT OUT SONG NAMES 
+                parentT.innerHTML =  data['items'][0]['track']['name'] + "<br><br>" + data['items'][1]['track']['name'] + "<br><br>" + data['items'][2]['track']['name'] + "<br><br>" + data['items'][3]['track']['name'] + "<br><br>" + data['items'][4]['track']['name'] + "<br><br>" + data['items'][5]['track']['name'] + "<br><br>" + data['items'][6]['track']['name'] + "<br><br>" + data['items'][7]['track']['name'] + "<br><br>" + data['items'][8]['track']['name'] + "<br><br>" + data['items'][9]['track']['name'];
+            });
+    }
 
     //Display info on the home page 
+    //<Button onClick={() => {this.createPlaylist()}}>create playlist </Button>
     render() {
         return (
             <Grid container spacing={1} class="App">
-                <div class="scrollGone">
-                    <Navigation></Navigation>
-                    <div class="horizontalDisplay">
-                        <h3 class="h2Align">Recently Played</h3>
-                        <div class="recentPlayed">
+                <div class = "scrollGone">
+                <Navigation></Navigation>
+                <div class="horizontalDisplay">
+                    <h3 class="h2Align">Recently Played</h3>
+                    <div class="recentPlayed">
 
-                        </div>
-                        <div class="attributeSection"> <h3 class="h2Align">Recent Attributes</h3>
-                            <div class="recentAttributes">
-                                <div class='bubble'><h4>Angry</h4></div>
-                                <div class='bubble'><h4>School</h4></div>
-                                <div class='bubble'><h4>Happy</h4></div>
-                                <div class='bubble'><h4>Work</h4></div>
-                                <div class='bubble'><h4>Walking</h4></div>
-                            </div>
-                        </div>
                     </div>
-                    <div className="createSection">
-                        <div className="leftSection">
-                            <div className="createEffect">
-                                <h1 className='create'>CREATE</h1>
-                            </div>
-
-                            <h3 >Saved Attributes</h3>
-                            <div className="SavedAtrributes">
-
-                            </div>
-
-                        </div>
-                        <div class="rightSection">
+                   <div class ="attributeSection"> <h3 class="h2Align">Recent Attributes</h3>
+                    <div class="recentAttributes">
+                        <div class="flexAttributes">
 
                         </div>
                     </div>
                 </div>
+                </div>
+                <div className="createSection">
+                    <div className="leftSection">
+                        <div className="createEffect">
+                            
+                        </div>
+                        <Button onClick={() => {this.createPlaylist()}}>create playlist </Button>
+                        <div class="Created-Playlist-Name">
+
+                        </div>
+                        <h3 >Saved Attributes</h3>
+                        <div className="SavedAtrributes">
+                            <Button onClick={() => {this.createPlaylist("Gym")}} >Gym </Button>
+                            <Button onClick={() => {this.createPlaylist("School")}} >School </Button>
+                            <Button onClick={() => {this.createPlaylist("Work")}} >Work </Button>
+                            <Button onClick={() => {this.createPlaylist("Home")}} >Home </Button>
+                            <Button onClick={() => {this.createPlaylist("Beach")}} >Beach </Button>
+                            <Button onClick={() => {this.createPlaylist("Happy")}} >Happy </Button>
+                            <Button onClick={() => {this.createPlaylist("Sad")}} >Sad </Button>
+                            <Button onClick={() => {this.createPlaylist("Angry")}} >Angry </Button>
+                            <Button onClick={() => {this.createPlaylist("Soft")}} >Soft </Button>
+                            <Button onClick={() => {this.createPlaylist("Loud")}} >Loud </Button>
+                            <Button onClick={() => {this.createPlaylist("Sentimental")}} >Sentimental </Button>
+                            <Button onClick={() => {this.createPlaylist("Lonely")}} >Lonely </Button>
+                            <Button onClick={() => {this.createPlaylist("Melancholy")}} >Melancholy </Button>
+                            <Button onClick={() => {this.createPlaylist("Studying")}} >Studying </Button>
+                            <Button onClick={() => {this.createPlaylist("Cooking")}} >Cooking </Button>
+                            <Button onClick={() => {this.createPlaylist("Sleeping")}} >Sleeping </Button>
+                            <Button onClick={() => {this.createPlaylist("Driving")}} >Driving </Button>
+                            <Button onClick={() => {this.createPlaylist("Walking")}} >Walking </Button>
+                            <Button onClick={() => {this.createPlaylist("Running")}} >Running </Button>
+                            <Button onClick={() => {this.createPlaylist("Cleaning")}} >Cleaning </Button>
+
+
+                        </div>
+
+                    </div>
+                    
+                    <div class="rightSection">
+                        
+
+                    </div>
+
+                    <Button onClick={() => {this.displayPlaylistTracks()}}>display tracks </Button>
+                </div>
+            </div>
 
             </Grid>
         );
