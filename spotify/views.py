@@ -228,6 +228,7 @@ class findUsrSong(APIView):
         #email = request.data.get(self.lookup_kwarg)        
         email = getUserInfo(self.request.session.session_key)['email']
         print(email)
+
         #obtaining value sent from the body of POST request in frontend
         songID = request.data.get(self.lookup_kwarg)
         #print statement for debugging purposes
@@ -287,8 +288,39 @@ class CreatePlaylist(APIView):
         userID = getUserInfo(self.request.session.session_key)['id']
         print(userID)
 
-        #create the playlist
+        #Create the playlist
         create_playlist(self.request.session.session_key, userID, playlistName)
+
+        #Get users email 
+        email = getUserInfo(self.request.session.session_key)['email']
+
+        #Make playlistName string lowercase 
+        attribute= playlistName.lower()
+        print(attribute)
+
+        location = isLocation(attribute)
+        mood = isMood(attribute)
+        activity = isActivity(attribute)
+
+        if location:
+            print("location")
+
+        if mood:
+            print("mood")
+
+        if activity:
+            print("activity")
+
+        
+        #Find which category the attribute is in
+        #findAttributeCategory(attribute)
+
+        #value = isLocation(attribute)
+       # print(value)
+        #Check which category the attribute belongs to 
+        #if  value:
+        #Find the songs with that attribute 
+        findSongIDSpecificAttr(email, attribute)
 
         return Response({}, status=status.HTTP_200_OK)
     
@@ -320,13 +352,14 @@ class MostRecentPlaylist(APIView):
 class AddToPlaylist(APIView):
     def post(self, request, format=None):
 
-        #all of playlist info playlistID 
+        #Get id of playlist 
         response = get_playlist_info(self.request.session.session_key)
         item = response.get('items')[0]
         playlistID = item.get('id')
         print(playlistID)
 
         trackID = "6EF9LmygQkNILmFVwYzxDr"
+
 
         add_track_to_playlist(self.request.session.session_key, playlistID, trackID)
 
@@ -360,11 +393,12 @@ class RenamePlaylist(APIView):
 class PlaylistTracks(APIView):
     def get(self, request, format=None):
 
+        #Get playlist ID
         response = get_playlist_info(self.request.session.session_key)
         item = response.get('items')[0]
         playlistID = item.get('id')
         print(playlistID)
-
+        
 
         track_response = get_playlist_tracks(self.request.session.session_key, playlistID)
 

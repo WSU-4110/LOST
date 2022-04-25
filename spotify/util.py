@@ -255,9 +255,79 @@ def rename_playlist(session_id, playlistID, playlistName):
     headers = {'Content-Type': 'application/json', 'Authorization': "Bearer " + tokens.access_token}
     return post(URL_STEM + endpoint, data=data, headers=headers)
 
+def testAttributeFilter(email):
+    attributes = Database.objects.values_list('attr', flat=True).filter(userEmail=email)
+
+    return attributes
 
 
+def findSongIDSpecificAttr(email, attribute):
 
+        #Find the objects with the attribute
+        user_song = Database.objects.filter(userEmail=email, location=attribute)
+        #Print out those objects 
+        print(user_song)
+
+        #List the trackIDs with the location attribute
+        songs = Database.objects.values_list('trackID', flat=True).filter(userEmail=email, location=attribute)
+        print(songs)
+
+        #List the trackIDs with the mood attribute
+        #songs = Database.objects.values_list('trackID', flat=True).filter(userEmail=email, mood=attribute)
+        #print(songs)
+
+        #List the trackIDs with the mood attribute
+        #songs = Database.objects.values_list('trackID', flat=True).filter(userEmail=email, activity=attribute)
+        #print(songs)
+
+
+def isLocation(attribute):
+    locations = ['gym', 'school', 'work', 'home', 'beach']
+
+    for x in locations: 
+        if x == attribute:
+            print(x)
+            return True
+        else: 
+            return False
+
+def isMood(attribute):
+    moods = ['happy', 'sad', 'angry', 'soft', 'loud', 'sentimental', 'lonely', 'melancholy']
+
+    for x in moods: 
+        if x == attribute:
+            print(x)
+            return True
+        else: 
+            return False
+
+def isActivity(attribute):
+    activities = ['studying', 'cooking', 'sleeping', 'driving', 'walking', 'running', 'cleaning']
+
+    for x in activities: 
+        if x == attribute:
+            print(x)
+            return True
+        else: 
+            return False
+
+
+def findAttributeCategory(attribute):
+
+    location = isLocation(attribute)
+    mood = isMood(attribute)
+    activity = isActivity(attribute)
+
+    if location:
+        print("location")
+
+    if mood:
+        print("mood")
+
+    if activity:
+        print("activity")
+
+    
 
 
 
