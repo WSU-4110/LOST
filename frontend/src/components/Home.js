@@ -133,9 +133,8 @@ export default class Home extends Component {
             .then((response) => response.json())
             .then((data) => {
                 var parentT = document.getElementsByClassName("rightSection")[0];
-
-                console.log(data);
-                console.log(data['items'][0]['track']['name']);
+                
+            
                 //PRINT OUT SONG NAMES 
                 parentT.innerHTML =  data['items'][0]['track']['name'] + "<br><br>" + data['items'][1]['track']['name'] + "<br><br>" + data['items'][2]['track']['name'] + "<br><br>" + data['items'][3]['track']['name'] + "<br><br>" + data['items'][4]['track']['name'] + "<br><br>" + data['items'][5]['track']['name'] + "<br><br>" + data['items'][6]['track']['name'] + "<br><br>" + data['items'][7]['track']['name'] + "<br><br>" + data['items'][8]['track']['name'] + "<br><br>" + data['items'][9]['track']['name'];
             });
@@ -203,7 +202,6 @@ export default class Home extends Component {
                     </div>
                     
                     <div class="rightSection">
-                        
 
                     </div>
 
