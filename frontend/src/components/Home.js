@@ -150,8 +150,8 @@ export default class Home extends Component {
                     <div class="attributeSection"> 
                     <h3 class="h2Align">Recent Attributes</h3>
                         <div class="recentAttributes"> 
-                            <div style={{backgroundColor: "red"}}class="bubble"><h4>Angry</h4></div> 
-                            <div style={{backgroundColor: "blue"}} class='bubble'><h4>School</h4></div>
+                            <div style={{backgroundColor: "#FB268B"}}class="bubble"><h4>Angry</h4></div> 
+                            <div style={{backgroundColor: "#E43146"}} class='bubble'><h4>School</h4></div>
                             <div style={{backgroundColor: "green"}} class='bubble'><h4>Happy</h4></div>
                             <div style={{backgroundColor: "#ffcc00"}} class='bubble'><h4>Work</h4></div>
                             <div style={{backgroundColor: "purple"}} class='bubble'><h4>Walking</h4></div> 
@@ -170,26 +170,26 @@ export default class Home extends Component {
                         </div>
                         <h3 >Saved Attributes</h3>
                         <div className="SavedAtrributes">
-                            <Button onClick={() => {this.createPlaylist("Gym")}} >Gym </Button>
-                            <Button onClick={() => {this.createPlaylist("School")}} >School </Button>
-                            <Button onClick={() => {this.createPlaylist("Work")}} >Work </Button>
-                            <Button onClick={() => {this.createPlaylist("Home")}} >Home </Button>
-                            <Button onClick={() => {this.createPlaylist("Beach")}} >Beach </Button>
-                            <Button onClick={() => {this.createPlaylist("Happy")}} >Happy </Button>
-                            <Button onClick={() => {this.createPlaylist("Sad")}} >Sad </Button>
-                            <Button onClick={() => {this.createPlaylist("Angry")}} >Angry </Button>
-                            <Button onClick={() => {this.createPlaylist("Soft")}} >Soft </Button>
-                            <Button onClick={() => {this.createPlaylist("Loud")}} >Loud </Button>
-                            <Button onClick={() => {this.createPlaylist("Sentimental")}} >Sentimental </Button>
-                            <Button onClick={() => {this.createPlaylist("Lonely")}} >Lonely </Button>
-                            <Button onClick={() => {this.createPlaylist("Melancholy")}} >Melancholy </Button>
-                            <Button onClick={() => {this.createPlaylist("Studying")}} >Studying </Button>
-                            <Button onClick={() => {this.createPlaylist("Cooking")}} >Cooking </Button>
-                            <Button onClick={() => {this.createPlaylist("Sleeping")}} >Sleeping </Button>
-                            <Button onClick={() => {this.createPlaylist("Driving")}} >Driving </Button>
-                            <Button onClick={() => {this.createPlaylist("Walking")}} >Walking </Button>
-                            <Button onClick={() => {this.createPlaylist("Running")}} >Running </Button>
-                            <Button onClick={() => {this.createPlaylist("Cleaning")}} >Cleaning </Button>
+                            <div style={{backgroundColor: "purple"}} class="bubble"><Button style={{color:"white"}} onClick={() => {this.createPlaylist("Gym")}} >Gym </Button></div>
+                            <div style={{backgroundColor: "#F4677B"}} className='bubble'><Button style={{color:"white"}}  onClick={() => {this.createPlaylist("School")}} >School </Button></div>
+                            <div style={{backgroundColor: "#02BD29"}} className='bubble'><Button style={{color:"white"}}  onClick={() => {this.createPlaylist("Work")}} >Work </Button> </div>
+                            <div style={{backgroundColor: "#F4A49B"}} className='bubble'><Button style={{color:"white"}}  onClick={() => {this.createPlaylist("Home")}} >Home </Button></div>
+                            <div style={{backgroundColor: "#2B630E"}} className='bubble'><Button style={{color:"white"}}  onClick={() => {this.createPlaylist("Beach")}} >Beach </Button></div>
+                            <div style={{backgroundColor: "#5B4DFD"}} className='bubble'><Button style={{color:"white"}}  onClick={() => {this.createPlaylist("Happy")}} >Happy </Button></div>
+                            <div style={{backgroundColor: "#EA9737"}} className='bubble'><Button style={{color:"white"}}  onClick={() => {this.createPlaylist("Sad")}} >Sad </Button></div>
+                            <div style={{backgroundColor: "#BE2D9B"}} className='bubble'><Button style={{color:"white"}}  onClick={() => {this.createPlaylist("Angry")}} >Angry </Button></div>
+                            <div style={{backgroundColor: "red"}} className='bubble'><Button style={{color:"white"}}  onClick={() => {this.createPlaylist("Soft")}} >Soft </Button></div>
+                            <div style={{backgroundColor: "#6B4F19"}} className='bubble'><Button style={{color:"white"}}  onClick={() => {this.createPlaylist("Loud")}} >Loud </Button></div>
+                            <div style={{backgroundColor: "#7AC3B8"}} className='bubble'><Button style={{color:"white"}}  onClick={() => {this.createPlaylist("Sentimental")}} >Sentimental </Button></div>
+                            <div style={{backgroundColor: "#ED96D4"}} className='bubble'><Button style={{color:"white"}}  onClick={() => {this.createPlaylist("Lonely")}} >Lonely </Button></div>
+                            <div style={{backgroundColor: "#27A9FE"}} className='bubble'><Button style={{color:"white"}}  onClick={() => {this.createPlaylist("Melancholy")}} >Melancholy </Button></div>
+                            <div style={{backgroundColor: "#DB7986"}} className='bubble'><Button style={{color:"white"}} onClick={() => {this.createPlaylist("Studying")}} >Studying </Button></div>
+                            <div style={{backgroundColor: "#56444A"}} className='bubble'><Button style={{color:"white"}} onClick={() => {this.createPlaylist("Cooking")}} >Cooking </Button></div>
+                            <div style={{backgroundColor: "#AAB3F3"}} className='bubble'><Button style={{color:"white"}} onClick={() => {this.createPlaylist("Sleeping")}} >Sleeping </Button></div>
+                            <div style={{backgroundColor: "#E84200"}} className='bubble'><Button style={{color:"white"}} onClick={() => {this.createPlaylist("Driving")}} >Driving </Button></div>
+                            <div style={{backgroundColor: "#EF4ECD"}} className='bubble'><Button style={{color:"white"}}  onClick={() => {this.createPlaylist("Walking")}} >Walking </Button></div>
+                            <div style={{backgroundColor: "#832CDA"}} className='bubble'><Button style={{color:"white"}}  onClick={() => {this.createPlaylist("Running")}} >Running </Button></div>
+                            <div style={{backgroundColor: "#20BC69"}} className='bubble'><Button style={{color:"white"}}  onClick={() => {this.createPlaylist("Cleaning")}} >Cleaning </Button></div>
 
 
                         </div>
