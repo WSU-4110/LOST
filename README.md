@@ -39,5 +39,8 @@
 ### `spotify`
 
 ## Plans
+![MockUp](unknown.png)
+
+![MockUp](IMG_1396.png)
 
 
