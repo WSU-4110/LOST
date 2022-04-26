@@ -246,14 +246,13 @@ def get_playlist_tracks(session_id, playlistID):
     endpoint = "playlists/" + playlistID + "/tracks?fields=items(added_by.id%2Ctrack(name%2Chref%2Calbum(name%2Chref%2C)))&limit=10"
     return execute_spotify_api_request(session_id, endpoint)
 
+#Not in use, can be implemented eventually 
 def rename_playlist(session_id, playlistID, playlistName):
     tokens = get_user_tokens(session_id)
     endpoint = "playlists/" + playlistID
     data = '{"name":"' + playlistName + '","description": "By LifeOST", "public":true }'
-    print(data)
-    data = '{"name":"my_playlist", "description":"By LifeOST", "public":true }'
     headers = {'Content-Type': 'application/json', 'Authorization': "Bearer " + tokens.access_token}
-    return post(URL_STEM + endpoint, data=data, headers=headers)
+    return put(URL_STEM + endpoint, data=data, headers=headers)
 
 def testAttributeFilter(email):
     attributes = Database.objects.values_list('attr', flat=True).filter(userEmail=email)
