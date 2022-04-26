@@ -38,3 +38,6 @@
 * `webpack.config.js` - Bundles all of our Javascript files into one file 
 ### `spotify`
 
+## Plans
+
+
