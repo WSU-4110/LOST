@@ -272,26 +272,18 @@ def findLocationSongs(email, attribute):
         songs = Database.objects.values_list('trackID', flat=True).filter(userEmail=email, location=attribute)
         return songs
 
-        #List the trackIDs with the mood attribute
-        #songs = Database.objects.values_list('trackID', flat=True).filter(userEmail=email, mood=attribute)
-        #print(songs)
-
-        #List the trackIDs with the mood attribute
-        #songs = Database.objects.values_list('trackID', flat=True).filter(userEmail=email, activity=attribute)
-        #print(songs)
+       
 
 def findMoodSongs(email, attribute):
     #List the trackIDs with the mood attribute
     songs = Database.objects.values_list('trackID', flat=True).filter(userEmail=email, mood=attribute)
-    print(songs)
-
-    for x in songs:
-        print(x)
+    return songs
 
 def findActivitySongs(email, attribute):
     #List the trackIDs with the mood attribute
     songs = Database.objects.values_list('trackID', flat=True).filter(userEmail=email, activity=attribute)
-    print(songs)
+    return songs
+
 
 def isLocation(attribute):
     locations = ['gym', 'school', 'work', 'home', 'beach']
@@ -324,20 +316,6 @@ def isActivity(attribute):
             return False
 
 
-def findAttributeCategory(attribute):
-
-    location = isLocation(attribute)
-    mood = isMood(attribute)
-    activity = isActivity(attribute)
-
-    if location:
-        print("location")
-
-    if mood:
-        print("mood")
-
-    if activity:
-        print("activity")
 
     
 
