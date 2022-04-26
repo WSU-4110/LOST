@@ -1,5 +1,14 @@
 # LOST
 
+## About LOST
+### Contributors
+* Kylie Lee, Anthony Jones, Cristina Powers, Kelly Whitlock, Masrur Tajwar
+### Purpose
+* to provide users with customized Spotify playlists that fit their needs
+### Functionalities
+* generate a playlist based on attributes added to songs
+* attach attributes to a song based on location, mood, activity
+
 ## Navigation
 ### `LOST`- Our main project folder/settings 
 * `__init__.py` - Makes LOST a python package 
@@ -28,6 +37,10 @@
 * `Babel.config.json` - Reroutes the pages so you can go to different pages from the React app 
 * `webpack.config.js` - Bundles all of our Javascript files into one file 
 ### `spotify`
-# merge
-git checkout main (switched to brain 'main')
-git merge [Name of Branch]
+
+## Plans
+![MockUp](unknown.png)
+
+![MockUp](IMG_1396.png)
+
+
