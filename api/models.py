@@ -21,6 +21,7 @@ class Attributes(models.Model):
     userEmail = models.CharField(max_length=200)
     attr = models.CharField(max_length=50)
 
+
 class CustomAttributes(models.Model):
     userEmail = models.CharField(max_length=200)
     attr = models.CharField(max_length=50)

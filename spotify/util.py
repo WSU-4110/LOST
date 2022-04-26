@@ -1,4 +1,3 @@
-import logging
 from api.serializers import CustomAttributesSerializer, DatabaseSerializer
 from .models import SpotifyToken
 from api.models import *
@@ -245,12 +244,6 @@ def get_playlist_tracks(session_id, playlistID):
     endpoint = "playlists/" + playlistID + "/tracks?fields=items(added_by.id%2Ctrack(name%2Chref%2Calbum(name%2Chref)))&limit=10"
     return execute_spotify_api_request(session_id, endpoint)
 
-# test function to display 10 songIDs of a specific attribute
-def findSongIDSpecificAttr(attribute, id):
-    for i in range(10):
-        user_song = Database.objects.filter(custom_attr=attribute, trackID=id)
-        print(user_song)
-        return DatabaseSerializer(user_song[i]).data
 
 
 
