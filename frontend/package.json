@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "dev": "webpack --mode development --watch",
-    "build": "webpack --mode production",
-    "test": "jest"
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
