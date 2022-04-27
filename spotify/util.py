@@ -1,6 +1,6 @@
-from api.serializers import DatabaseSerializer
+from api.serializers import CustomAttributesSerializer, DatabaseSerializer
 from .models import SpotifyToken
-from api.models import CustomAttributes, Database
+from api.models import *
 from django.utils import timezone 
 from datetime import timedelta
 from .credentials import CLIENT_ID, CLIENT_SECRET
@@ -49,7 +49,8 @@ def update_or_create_user_tokens(session_id, access_token, token_type, expires_i
                               refresh_token=refresh_token, token_type=token_type, expires_in=expires_in)
         tokens.save()
 
-def getUserEmail(session_id):
+#Want to rename to get UserInfo 
+def getUserInfo(session_id):
     searchQuery = "me"
     return execute_spotify_api_request(session_id, searchQuery)
 
@@ -209,3 +210,127 @@ def clearAttributes(email, id):
     user_song.save()
     user_song = Database.objects.filter(userEmail=email, trackID=id)
     return DatabaseSerializer(user_song[0]).data
+
+def addCustomAttr(email, desc):
+    user_attr = CustomAttributes.objects.filter(userEmail=email, attr=desc)
+
+    #if attr exist in db, return attr information
+    if user_attr.exists():
+        return CustomAttributesSerializer(user_attr[0]).data
+    else:
+        #else store attr in db and return information
+        attr = CustomAttributes(userEmail=email, attr=desc)
+        attr.save()
+        user_attr = CustomAttributes.objects.filter(userEmail=email, attr=desc)
+        return CustomAttributesSerializer(user_attr[0]).data
+
+def create_playlist(session_id, userID, playlistName):
+    tokens = get_user_tokens(session_id)
+    description = "By LifeOST"
+    endpoint = "users/" + userID + "/playlists"
+    data = '{"name": "' + playlistName + '", "description": "' + description + '", "public":true }'
+    print(data)
+    headers = {'Content-Type': 'application/json', 'Authorization': "Bearer " + tokens.access_token}
+    return post(URL_STEM + endpoint, data=data, headers=headers)
+
+def get_playlist_info(session_id):
+    endpoint = "me/playlists?limit=1&offset=0"
+    return execute_spotify_api_request(session_id, endpoint)
+
+def add_track_to_playlist(session_id, playlistID, trackID):
+    track = "spotify%3Atrack%3A"
+    endpoint = "playlists/" + playlistID + "/tracks?uris=" + track + trackID
+    return execute_spotify_api_request(session_id, endpoint, post_=True)
+
+def get_playlist_tracks(session_id, playlistID):
+    endpoint = "playlists/" + playlistID + "/tracks?fields=items(added_by.id%2Ctrack(name%2Chref%2Calbum(name%2Chref%2C)))&limit=10"
+    return execute_spotify_api_request(session_id, endpoint)
+
+#Not in use, can be implemented eventually 
+def rename_playlist(session_id, playlistID, playlistName):
+    tokens = get_user_tokens(session_id)
+    endpoint = "playlists/" + playlistID
+    data = '{"name":"' + playlistName + '","description": "By LifeOST", "public":true }'
+    headers = {'Content-Type': 'application/json', 'Authorization': "Bearer " + tokens.access_token}
+    return put(URL_STEM + endpoint, data=data, headers=headers)
+
+def testAttributeFilter(email):
+    attributes = Database.objects.values_list('attr', flat=True).filter(userEmail=email)
+
+    return attributes
+
+
+def findLocationSongs(email, attribute):
+
+        #Find the objects with the attribute
+        user_song = Database.objects.filter(userEmail=email, location=attribute)
+        #Print out those objects 
+        #print(user_song)
+
+        #List the trackIDs with the location attribute
+        songs = Database.objects.values_list('trackID', flat=True).filter(userEmail=email, location=attribute)
+        return songs
+
+       
+
+def findMoodSongs(email, attribute):
+    #List the trackIDs with the mood attribute
+    songs = Database.objects.values_list('trackID', flat=True).filter(userEmail=email, mood=attribute)
+    return songs
+
+def findActivitySongs(email, attribute):
+    #List the trackIDs with the mood attribute
+    songs = Database.objects.values_list('trackID', flat=True).filter(userEmail=email, activity=attribute)
+    return songs
+
+
+def isLocation(attribute):
+    locations = ['gym', 'school', 'work', 'home', 'beach']
+
+    isLocation = False
+
+    for x in locations: 
+        if x == attribute:
+            isLocation = True
+            return isLocation
+        
+    return isLocation
+
+    
+
+def isMood(attribute):
+    moods = ['happy', 'sad', 'angry', 'soft', 'loud', 'sentimental', 'lonely', 'melancholy']
+
+    isMood = False
+
+    for x in moods: 
+        if x == attribute:
+            isMood = True
+            return isMood
+        
+    return isMood
+
+def isActivity(attribute):
+    activities = ['studying', 'cooking', 'sleeping', 'driving', 'walking', 'running', 'cleaning']
+
+
+    isActivity = False
+
+    for x in activities: 
+        if x == attribute:
+            isActivity = True
+            return isActivity
+        
+    return isActivity
+
+
+
+    
+
+
+
+
+
+    
+
+

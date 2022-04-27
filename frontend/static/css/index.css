@@ -91,12 +91,10 @@ code {
   margin-top:70px;
 }
 .rightSection{
-  margin-left:auto;
-  margin-right:auto;
-  margin: auto;
-  width:225px;
-  height:400px;
-  background-color:black;
+ 
+  width: 250px;
+  height: 70vh;
+  /*background-color:rgb(53, 242, 255);*/
 }
 .navBar{
   display: flex;
@@ -112,26 +110,17 @@ code {
   justify-content: flex-end;
 }
 .recentPlayed{
-  width: 300px;
+  width: 290px;
   height: 200px;
  margin-left:-30px;
   color:white;
 }
 .recentAttributes{
-  width: 200px;
+  width: 250px;
   height: 200px;
   margin:auto;
 }
-.flexAttributes{
-  width: 90%;
-  margin: auto;
-  display: flex;
-  justify-content: space-around;
-  flex-direction: row;
-  flex-wrap: wrap;
-  position: relative;
-  height:20px;
-}
+
 .horizontalDisplay{
   float:left;
   margin-left:20px;
@@ -167,7 +156,7 @@ code {
   margin: auto;
   width:225px;
   height:40vh;
-  background-color:black;
+  background-color:white;
 }
 .songBtn{
   text-decoration: none;
@@ -373,5 +362,47 @@ body.active-modal {
   left: 1%;
   right: 1%;
   color: #fff;
-  padding: 0px 5px;
+  padding: 0px 3px;
+}
+.SavedAtrributes{
+  width: 320px;
+  height: 70vh;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login-text {
+  color: white;
+  font-family: sans-serif;
+  letter-spacing: 16px;
+  font-weight: bold;
+  opacity: 100%;
+}
+
+.login-background {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    opacity: 25%;
+	  background-size: 400% 400%;
+	  animation: gradient 15s ease infinite;
+	  height: 100vh;
+    background-repeat: no-repeat;
+    width:100%;
+    margin:0;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
