@@ -1,4 +1,4 @@
-# LOST
+# LOST - installation
 ## Prerequisites
 Python - https://www.python.org/downloads/ 
 
