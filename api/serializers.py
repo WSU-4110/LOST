@@ -1,7 +1,7 @@
 # Takes all python related code and translates Room to json response 
 
 from rest_framework import serializers 
-from .models import Database, Attributes, CustomAttributes
+from .models import *
 
 class DatabaseSerializer(serializers.ModelSerializer):
     class Meta:
@@ -23,3 +23,7 @@ class CustomAttributesSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomAttributes
         fields = ('userEmail', 'attr')
+
+class PlaylistSerializer(serializers.ModelSerializer):
+        model = Playlists
+        fields = ('userEmail', 'userID', 'playlistID',  'attr', 'trackID_1', 'trackID_2', 'trackID_3', 'trackID_4', 'trackID_5', 'trackID_6', 'trackID_7, trackID_8', 'trackID_9', 'trackID_10')
