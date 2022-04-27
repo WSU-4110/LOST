@@ -1,5 +1,4 @@
 from cgitb import lookup
-from gettext import find
 from django.shortcuts import render, redirect
 
 from spotify.serializers import userSerializer
@@ -23,7 +22,7 @@ class AuthURL(APIView):
         # info we want to access in the app (need to add more scopes later)
         # find more scopes @ developer.spotify.com
         # https://developer.spotify.com/documentation/general/guides/authorization/code-flow/
-        scopes = 'user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-recently-played user-read-email playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private ugc-image-upload'
+        scopes = 'user-read-playback-state user-modify-playback-state user-read-currently-playing user-read-recently-played user-read-email'
 
         # URL to authorize account
         url = Request('GET', 'https://accounts.spotify.com/authorize', params={
@@ -110,8 +109,6 @@ class AllCurrentSongInfo(APIView):
 
 
 
-
-
 #Get current info about current song and return to Frontend 
 class CurrentSong(APIView):
     def get(self, request, format=None):
@@ -167,7 +164,7 @@ class sendtoDB(APIView):
 
         songInfo = getSongInfo(self.request.session.session_key, songID)['loudness']
 
-        email = getUserInfo(self.request.session.session_key)['email']
+        email = getUserEmail(self.request.session.session_key)['email']
 
         results = storeSong(songInfo, email, songID)
         print(results)
@@ -182,7 +179,7 @@ class removeAttr(APIView):
         #obtaining value sent from the body of POST request in frontend
         songID = request.data.get(self.lookup_kwarg2)
 
-        email = getUserInfo(self.request.session.session_key)['email']
+        email = getUserEmail(self.request.session.session_key)['email']
 
         attrType = request.data.get(self.lookup_kwarg)
 
@@ -201,7 +198,7 @@ class addAttribute(APIView):
         songID = request.data.get(self.lookup_kwarg3)
         #print statement for debugging purposes
 
-        email = getUserInfo(self.request.session.session_key)['email']
+        email = getUserEmail(self.request.session.session_key)['email']
 
         attrType = request.data.get(self.lookup_kwarg)
         attrDesc = request.data.get(self.lookup_kwarg2)
@@ -214,7 +211,7 @@ class addAttribute(APIView):
 #get user's custom attr's
 class getCstmAttr(APIView):
     def get(self, requeset, format=None):        
-        email = getUserInfo(self.request.session.session_key)['email']
+        email = getUserEmail(self.request.session.session_key)['email']
         print(email)
 
         result = getCustomAttr(email)
@@ -227,9 +224,8 @@ class findUsrSong(APIView):
 
     def post(self, request, format=None):
         #email = request.data.get(self.lookup_kwarg)        
-        email = getUserInfo(self.request.session.session_key)['email']
+        email = getUserEmail(self.request.session.session_key)['email']
         print(email)
-
         #obtaining value sent from the body of POST request in frontend
         songID = request.data.get(self.lookup_kwarg)
         #print statement for debugging purposes
@@ -247,200 +243,8 @@ class clrAttr(APIView):
         songID = request.data.get(self.lookup_kwarg)
         #print statement for debugging purposes
 
-        email = getUserInfo(self.request.session.session_key)['email']
+        email = getUserEmail(self.request.session.session_key)['email']
 
         results = clearAttributes(email, songID)
 
         return Response(results, status=status.HTTP_200_OK)
-
-#add custom attribute to db
-class addCstm(APIView):
-    lookup_kwarg = 'desc'
-
-    def post(self, request, format=None):
-        attrDesc = request.data.get(self.lookup_kwarg)
-
-        email = getUserInfo(self.request.session.session_key)['email']
-
-        results = addCustomAttr(email, attrDesc)
-
-        return Response(results, status=status.HTTP_200_OK)
-    
-
-class Playlists(APIView):
-    def post(self, request, format=None):
-        #me/playlists
-        #me/playlists?limit=10&offset=5
-        endpoint = "me/playlists?limit=10&offset=5"
-        response = execute_spotify_api_request(self.request.session.session_key, endpoint)
-
-        return Response(response, status=status.HTTP_200_OK)
-
-class CreatePlaylist(APIView):
-    lookup_kwarg = 'name'
-
-    def post(self, request, format=None):
-
-        #obtaining attribute sent from the body of POST request in frontend
-        playlistName = request.data.get(self.lookup_kwarg)
-        print("CreatePlaylistAPIView = " + playlistName)
-
-        #Get userID from profile 
-        userID = getUserInfo(self.request.session.session_key)['id']
-        print(userID)
-
-        #Create the playlist
-        create_playlist(self.request.session.session_key, userID, playlistName)
-
-        #Get users email 
-        email = getUserInfo(self.request.session.session_key)['email']
-
-        #Get playlist ID
-        response = get_playlist_info(self.request.session.session_key)
-        item = response.get('items')[0]
-        playlistID = item.get('id')
-        print(playlistID)
-
-        #Make playlistName string lowercase 
-        attribute = playlistName.lower()
-
-        location = isLocation(attribute)
-        mood = isMood(attribute)
-        activity = isActivity(attribute)
-
-        if location:
-            songs = findLocationSongs(email, attribute)
-
-        if mood:
-            songs = findMoodSongs(email, attribute)
-
-        if activity:
-            songs = findActivitySongs(email, attribute)
-
-        for trackID in songs:
-            add_track_to_playlist(self.request.session.session_key, playlistID, trackID)
-        #Find which category the attribute is in
-        #findAttributeCategory(attribute)
-
-        #value = isLocation(attribute)
-       # print(value)
-        #Check which category the attribute belongs to 
-        #if  value:
-        #Find the songs with that attribute 
-        
-
-        return Response({}, status=status.HTTP_200_OK)
-    
-class MostRecentPlaylist(APIView):
-    def get(self, request, format=None):
-        #me/playlists
-        #me/playlists?limit=10&offset=5
-        # playlistID = get_playlist_name(self.request.session.session_key)['']
-        endpoint = "me/playlists?limit=1&offset=0"
-        response = execute_spotify_api_request(self.request.session.session_key, endpoint)
-
-        item = response.get('items')[0]
-        playlistID = item.get('id')
-        playlistName = item.get('name')
-        playlistHREF = item.get('href')
-        userHREF = item.get('owner').get('href')
-        userID = item.get('owner').get('id')
-
-        playlist = {
-            'name': playlistName,
-            'id': playlistID,
-            'href': playlistHREF,
-            'userID': userID,
-            'user_href': userHREF,
-        }
-        
-        return Response(playlist, status=status.HTTP_200_OK)
-
-class AddToPlaylist(APIView):
-    lookup_kwarg = 'name'
-
-    def post(self, request, format=None):
-
-        
-        #Get id of playlist 
-        response = get_playlist_info(self.request.session.session_key)
-        #Get id of playlist 
-        response = get_playlist_info(self.request.session.session_key)
-        item = response.get('items')[0]
-        playlistID = item.get('id')
-        print(playlistID)
-
-
-        #Get users email 
-        #email = getUserInfo(self.request.session.session_key)['email']
-
-        # location = isLocation(attribute)
-        #mood = isMood(attribute)
-        #activity = isActivity(attribute)
-
-        #if location:
-           # findLocationSongs(email, attribute)
-
-        #if mood:
-         #   findMoodSongs(email, attribute)
-
-        # if activity:
-           # findActivitySongs(email, attribute)
-
-        trackID = "6EF9LmygQkNILmFVwYzxDr"
-
-        trackID = "6EF9LmygQkNILmFVwYzxDr"
-
-
-        #add_track_to_playlist(self.request.session.session_key, playlistID, trackID)
-
-        return Response({}, status=status.HTTP_200_OK)
-
-class RenamePlaylist(APIView):
-
-    lookup_kwarg = 'name'
-
-    def post(self, request, format=None):
-
-        #obtaining attribute sent from the body of POST request in frontend
-        playlistName = request.data.get(self.lookup_kwarg)
-        print("RenameAPIView = " + playlistName)
-
-        #Get playlist ID
-        response = get_playlist_info(self.request.session.session_key)
-        item = response.get('items')[0]
-        playlistID = item.get('id')
-        print(playlistID)
-
-        response = rename_playlist(self.request.session.session_key, playlistID, playlistName)
-
-        return Response(response, status=status.HTTP_200_OK)
-
-        #response = get_playlist_info(self.request.session.session_key)
-        #item = response.get('items')[0]
-        #playlistID = item.get('id')
-        #print(playlistID)
-
-class PlaylistTracks(APIView):
-    def get(self, request, format=None):
-
-        #Get playlist ID
-        response = get_playlist_info(self.request.session.session_key)
-        item = response.get('items')[0]
-        playlistID = item.get('id')
-        print(playlistID)
-        
-
-        track_response = get_playlist_tracks(self.request.session.session_key, playlistID)
-
-        return Response(track_response, status=status.HTTP_200_OK)
-
-
-
-
-
-
-
-
-
-

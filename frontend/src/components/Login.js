@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Button, ButtonGroup, Typography, CardMedia, createTheme } from "@material-ui/core";
+import { Grid, Button, ButtonGroup, Typography } from "@material-ui/core";
 import Home from './Home';
 import SongPage from './SongPage';
 import Settings from './Settings';
@@ -54,17 +54,12 @@ export default class Login extends Component {
     
     renderLoginPage() {
         return (
-            <div className="center">
             <Grid container spacing={3}>
-                <Grid item xs={12}>
-                </Grid>
                 <Grid item xs={12} align="center">
                     {/* DISPLAY HOUSE PARTY */}
-                    <div className="login-text">
-                        <Typography variant="h3" compact="h3">
-                            LIFEOST
-                        </Typography>
-                    </div>
+                    <Typography variant="h3" compact="h3">
+                        Life OST
+                    </Typography>
                 </Grid>
                 <Grid item xs={12} align="center">
                     {/* LOGIN BUTTON*/}
@@ -73,7 +68,6 @@ export default class Login extends Component {
                     </Button>
                 </Grid>
             </Grid>
-            </div>
         );
     }
 

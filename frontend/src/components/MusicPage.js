@@ -103,30 +103,30 @@ const MusicPage = () => {
 
     $("#songAttrHolder div").empty();
 
-    htmlBody += Attributes('removeClear', 'Clear', 'Clear Attributes');
+    htmlBody += Attributes('Clear', 'Clear Attributes');
 
     if (typeof songData['location'] != "object") {
-      htmlBody += Attributes('remove' + songData['location'], 'location', songData['location']);
+      htmlBody += Attributes('location', songData['location']);
     }
 
     if (typeof songData['mood'] != "object") {
-      htmlBody += Attributes('remove' + songData['mood'], 'mood', songData['mood']);
+      htmlBody += Attributes('mood', songData['mood']);
     }
 
     if (typeof songData['activity'] != "object") {
-      htmlBody += Attributes('remove' + songData['activity'], 'activity', songData['activity']);
+      htmlBody += Attributes('activity', songData['activity']);
     }
 
     if (typeof songData['custom_attr'] != "object") {
-      htmlBody += Attributes('remove' + songData['custom_attr'], 'custom_attr', songData['custom_attr']);
+      htmlBody += Attributes('custom_attr', songData['custom_attr']);
     }
 
     if (typeof songData['custom_attrtwo'] != "object") {
-      htmlBody += Attributes('remove' + songData['custom_attrtwo'], 'custom_attrtwo', songData['custom_attrtwo']);
+      htmlBody += Attributes('custom_attrtwo', songData['custom_attrtwo']);
     }
 
     if (typeof songData['custom_attrthree'] != "object") {
-      htmlBody += Attributes('remove' + songData['custom_attrthree'], 'custom_attrthree', songData['custom_attrthree']);
+      htmlBody += Attributes('custom_attrthree', songData['custom_attrthree']);
     }
 
     parentT.innerHTML = htmlBody;
@@ -183,37 +183,33 @@ const MusicPage = () => {
     var clearBubble = document.getElementById("Clear");
     clearBubble.onclick = clearAttr();
 
-    var bubbleAttr;
-
     if (typeof songData['location'] != "object") {
-      bubbleAttr = document.getElementsByClassName('remove' + songData['location'])[0];
+      var bubbleAttr = document.getElementById("location");
       bubbleAttr.onclick = removeAttr(bubbleAttr);
     }
 
     if (typeof songData['mood'] != "object") {
-      bubbleAttr = document.getElementsByClassName('remove' + songData['mood'])[0];
+      bubbleAttr = document.getElementById("mood");
       bubbleAttr.onclick = removeAttr(bubbleAttr);
     }
 
     if (typeof songData['activity'] != "object") {
-      bubbleAttr = document.getElementsByClassName('remove' + songData['activity'])[0];
+      bubbleAttr = document.getElementById("activity");
       bubbleAttr.onclick = removeAttr(bubbleAttr);
     }
 
     if (typeof songData['custom_attr'] != "object") {
-
-      bubbleAttr = document.getElementsByClassName('remove' + songData['custom_attr'])[0];
+      bubbleAttr = document.getElementById("custom_attr");
       bubbleAttr.onclick = removeAttr(bubbleAttr);
     }
 
     if (typeof songData['custom_attrtwo'] != "object") {
-      bubbleAttr = document.getElementsByClassName('remove' + songData['custom_attrtwo'])[0];
+      bubbleAttr = document.getElementById("custom_attrtwo");
       bubbleAttr.onclick = removeAttr(bubbleAttr);
     }
 
     if (typeof songData['custom_attrthree'] != "object") {
-      console.log(document.getElementsByClassName('remove' + songData['custom_attrthree'])[0]);
-      bubbleAttr = document.getElementsByClassName('remove' + songData['custom_attrthree'])[0];
+      bubbleAttr = document.getElementById("custom_attrthree");
       bubbleAttr.onclick = removeAttr(bubbleAttr);
     }
   }
@@ -231,137 +227,99 @@ const MusicPage = () => {
 
     if (typeof songData['location'] == "object") {
       for (var i = 0; i < locations.length; i++) {
-        htmlBody += Attributes('add' + locations[i], 'location', locations[i]);
+        htmlBody += Attributes('location', locations[i]);
       }
     }
 
     if (typeof songData['mood'] == "object") {
       for (var i = 0; i < moods.length; i++) {
-        htmlBody += Attributes('add' + moods[i], 'mood', moods[i]);
+        htmlBody += Attributes('mood', moods[i]);
       }
     }
 
     if (typeof songData['activity'] == "object") {
       for (var i = 0; i < activities.length; i++) {
-        htmlBody += Attributes('add' + activities[i], 'activity', activities[i]);
+        htmlBody += Attributes('activity', activities[i]);
+      }
+    }
+
+    var customAttr = [];
+
+    if (typeof songData['custom_attr'] == "object" || typeof songData['custom_attrtwo'] == "object" || typeof songData['custom_attr'] == "object") {
+      if (customAttr.length != 0) {
+        fetch("http://127.0.0.1:8000/spotify/getUserCustomAttr")
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            if (typeof songData['custom_attr'] != "object") {
+              for (var i = 0; i < customAttr.length; i++) {
+                htmlBody += Attributes('custom_attr', customAttr[i]);
+              }
+            } else if (typeof songData['custom_attrtwo'] != "object") {
+              for (var i = 0; i < customAttr.length; i++) {
+                htmlBody += Attributes('custom_attrtwo', customAttr[i]);
+              }
+            } else {
+              for (var i = 0; i < customAttr.length; i++) {
+                htmlBody += Attributes('custom_attrthree', customAttr[i]);
+              }
+            }
+          });
       }
     }
 
     parentT.innerHTML = htmlBody;
-    var cstmAttrArr = [];
-
-    if (typeof songData['custom_attr'] == "object" || typeof songData['custom_attrtwo'] == "object" || typeof songData['custom_attrthree'] == "object") {
-      fetch("http://127.0.0.1:8000/spotify/getUserCustomAttr")
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          if (data.length != 0) {
-            cstmAttrArr = data;
-            console.log(cstmAttrArr);
-            if (typeof songData['custom_attr'] == "object") {
-              for (var i = 0; i < data.length; i++) {
-                parentT.innerHTML += Attributes('add' + data[i], 'custom_attr', data[i]);
-              }
-            } else if (typeof songData['custom_attrtwo'] == "object") {
-              for (var i = 0; i < data.length; i++) {
-                parentT.innerHTML += Attributes('add' + data[i], 'custom_attrtwo', data[i]);
-              }
-            } else if (typeof songData['custom_attrthree'] == "object") {
-              for (var i = 0; i < data.length; i++) {
-                parentT.innerHTML += Attributes('add' + data[i], 'custom_attrthree', data[i]);
-              }
-            }
-          }
-        });
-    }
 
     //attaches attribute to song when clicked
     var addAttr = function (tag) {
       return function () {
         var attrType = tag.id;
         console.log("add type: " + attrType);
-        var attrDesc = tag.innerHTML;
+        var attrDesc = tag.className;
         console.log("add desc: " + attrDesc);
         var songID = document.getElementsByClassName("selectedSong")[0].id;
         console.log('id: ' + songID);
-        var flag = false;
 
-        //check if there is already the same attribute added to song
-        var parentT = document.getElementById("songAttrHolder");
-        for (var i = 0; i < parentT.children.length; i++) {
-          if (attrDesc == parentT.children[i].firstChild.innerHTML) {
-            flag = true;
-            break;
-          }
-        }
-
-        //if there isnt another attribute like as the one clicked, append to song
-        if (flag == false) {
-          const requestOptions = {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              type: attrType,
-              desc: attrDesc,
-              id: songID,
-            }),
-          };
-          fetch("http://127.0.0.1:8000/spotify/addAttribute2Song", requestOptions)
-            .then((response) => response.json())
-            .then((data) => {
-              console.log(data);
-              sendtoDB(songID);
-            });
-        }
+        const requestOptions = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: attrType,
+            desc: attrDesc,
+            id: songID,
+          }),
+        };
+        fetch("http://127.0.0.1:8000/spotify/addAttribute2Song", requestOptions)
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            sendtoDB(songID);
+          });
       };
     };
 
+    var attrBubble;
 
-    setTimeout(function () {
-      var attrBubble;
-
-      if (typeof songData['location'] == "object") {
-        for (var i = 0; i < locations.length; i++) {
-          attrBubble = document.getElementsByClassName('add' + locations[i])[0];
-          attrBubble.onclick = addAttr(attrBubble);
-        }
+    if (typeof songData['location'] == "object") {
+      for (var i = 0; i < locations.length; i++) {
+        attrBubble = document.getElementsByClassName(locations[i])[0];
+        attrBubble.onclick = addAttr(attrBubble);
       }
+    }
 
-      if (typeof songData['mood'] == "object") {
-        for (var i = 0; i < moods.length; i++) {
-          attrBubble = document.getElementsByClassName('add' + moods[i])[0];
-          attrBubble.onclick = addAttr(attrBubble);
-        }
+    if (typeof songData['mood'] == "object") {
+      for (var i = 0; i < moods.length; i++) {
+        attrBubble = document.getElementsByClassName(moods[i])[0];
+        attrBubble.onclick = addAttr(attrBubble);
       }
+    }
 
-      if (typeof songData['activity'] == "object") {
-        for (var i = 0; i < activities.length; i++) {
-          attrBubble = document.getElementsByClassName('add' + activities[i])[0];
-          attrBubble.onclick = addAttr(attrBubble);
-        }
+    if (typeof songData['activity'] == "object") {
+      for (var i = 0; i < activities.length; i++) {
+        attrBubble = document.getElementsByClassName(activities[i])[0];
+        attrBubble.onclick = addAttr(attrBubble);
       }
-      console.log(cstmAttrArr.length);
-
-      if (typeof songData['custom_attr'] == "object") {
-        for (var i = 0; i < cstmAttrArr.length; i++) {
-          attrBubble = document.getElementsByClassName('add' + cstmAttrArr[i])[0];
-          attrBubble.onclick = addAttr(attrBubble);
-        }
-      } else if (typeof songData['custom_attrtwo'] == "object") {
-        for (var i = 0; i < cstmAttrArr.length; i++) {
-          attrBubble = document.getElementsByClassName('add' + cstmAttrArr[i])[0];
-          attrBubble.onclick = addAttr(attrBubble);
-        }
-      } else if (typeof songData['custom_attrthree'] == "object") {
-        for (var i = 0; i < cstmAttrArr.length; i++) {
-          attrBubble = document.getElementsByClassName('add' + cstmAttrArr[i])[0];
-          attrBubble.onclick = addAttr(attrBubble);
-        }
-      }
-    }, 1000);
-
-
-
+    }
   }
 
   //generates table of search results
@@ -412,23 +370,7 @@ const MusicPage = () => {
   const addCustom = () => {
     var addBar = document.getElementById("cstmBar");
     if (addBar.value != "") {
-      const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          desc: addBar.value,
-        }),
-      };
-      fetch("http://127.0.0.1:8000/spotify/addCstm", requestOptions)
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          var parentT = document.getElementsByClassName("selectedSong")[0];
-          if (parentT.hasChildNodes()) {
-            sendtoDB(parentT.id);
-          }
-          addBar.value = "";
-        });
+      console.log(addBar.value);
     }
   }
 
