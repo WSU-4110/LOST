@@ -319,7 +319,6 @@ class CreatePlaylist(APIView):
 
         for trackID in songs:
             add_track_to_playlist(self.request.session.session_key, playlistID, trackID)
-            print(trackID)
         #Find which category the attribute is in
         #findAttributeCategory(attribute)
 
@@ -375,7 +374,7 @@ class AddToPlaylist(APIView):
         #Get users email 
         #email = getUserInfo(self.request.session.session_key)['email']
 
-       # location = isLocation(attribute)
+        # location = isLocation(attribute)
         #mood = isMood(attribute)
         #activity = isActivity(attribute)
 
@@ -385,7 +384,7 @@ class AddToPlaylist(APIView):
         #if mood:
          #   findMoodSongs(email, attribute)
 
-       # if activity:
+        # if activity:
            # findActivitySongs(email, attribute)
 
         trackID = "6EF9LmygQkNILmFVwYzxDr"

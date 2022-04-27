@@ -169,11 +169,12 @@ export default class Home extends Component {
                         <div className="createEffect">
                             
                         </div>
-                        <Button onClick={() => {this.createPlaylist()}}>create playlist </Button>
+                       
                         <div class="Created-Playlist-Name">
 
                         </div>
-                        <h3 >Saved Attributes</h3>
+                        <br></br>
+                        <h3 >Create Playlist</h3>
                         <div className="SavedAtrributes">
                             <div style={{backgroundColor: "purple"}} class="bubble"><Button style={{color:"white"}} onClick={() => {this.createPlaylist("Gym")}} >Gym </Button></div>
                             <div style={{backgroundColor: "#F4677B"}} className='bubble'><Button style={{color:"white"}}  onClick={() => {this.createPlaylist("School")}} >School </Button></div>

@@ -265,7 +265,7 @@ def findLocationSongs(email, attribute):
         #Find the objects with the attribute
         user_song = Database.objects.filter(userEmail=email, location=attribute)
         #Print out those objects 
-        print(user_song)
+        #print(user_song)
 
         #List the trackIDs with the location attribute
         songs = Database.objects.values_list('trackID', flat=True).filter(userEmail=email, location=attribute)
@@ -287,32 +287,41 @@ def findActivitySongs(email, attribute):
 def isLocation(attribute):
     locations = ['gym', 'school', 'work', 'home', 'beach']
 
+    isLocation = False
+
     for x in locations: 
         if x == attribute:
-            print(x)
-            return True
-        else: 
-            return False
+            isLocation = True
+            return isLocation
+        
+    return isLocation
+
+    
 
 def isMood(attribute):
     moods = ['happy', 'sad', 'angry', 'soft', 'loud', 'sentimental', 'lonely', 'melancholy']
 
+    isMood = False
+
     for x in moods: 
         if x == attribute:
-            print(x)
-            return True
-        else: 
-            return False
+            isMood = True
+            return isMood
+        
+    return isMood
 
 def isActivity(attribute):
     activities = ['studying', 'cooking', 'sleeping', 'driving', 'walking', 'running', 'cleaning']
 
+
+    isActivity = False
+
     for x in activities: 
         if x == attribute:
-            print(x)
-            return True
-        else: 
-            return False
+            isActivity = True
+            return isActivity
+        
+    return isActivity
 
 
 
