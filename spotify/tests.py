@@ -1,7 +1,7 @@
 from django.test import TestCase
 from api.models import CustomAttributes, Database
 from api.serializers import CustomAttributesSerializer, DatabaseSerializer
-from spotify.util import addAttr, clearAttributes, getCustomAttr, getSongInfo, rmvAttr, storeSong
+from spotify.util import *
 
 # Create your tests here.
 class utilTestCase(TestCase):
