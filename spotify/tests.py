@@ -129,4 +129,40 @@ class utilTestCase(TestCase):
 
          self.assertEquals(0, song.count())
 
+    # Masrur's test functions 
+    def test_getUserTokens(self):
+        print('\nTesting getting user token...\n')
+        sessionId = '6yt36lylmzzqeqwimapadiy6m4028snz'
+        user_token = get_user_tokens(sessionId)
+        self.assertEqual(None, user_token)
+
+    def test_addCustomAttr(self): 
+        print('\nTesting add custom attribute...\n')    
+        email = 'cristina.powers@powerstribe.net'
+        desc = 'slay'
+        result = addCustomAttr(email, desc)
+        self.assertEqual('slay', result['attr']) 
+
+    def test_logoutButton(self):
+        print('\nTesting logout button...\n')
+        id = '6d8HN8MqqbqrEUI2bvx0aG'
+        result = logout_button(id)
+        self.assertEqual(None, result)
         
+    def test_isSpotifyAuthenticated(self):
+        print('\nTesting is user authenticated on Spotify...\n')
+        id = '6d8HN8MqqbqrEUI2bvx0aG'
+        result = is_spotify_authenticated(id)
+        self.assertEqual(False, result)
+
+    def test_isLocation(self):
+        print('\nTesting if attribute is location attribute...\n')
+        attribute = 'beach'
+        result = isLocation(attribute)
+        self.assertEqual(True, result)
+
+    def test_isMood(self): 
+        print('\nTesting if attribute is mood attribute...\n')
+        attribute = 'happy'
+        result = isMood(attribute)
+        self.assertEqual(True, result)
