@@ -22,6 +22,11 @@ class CustomAttributesView(generics.ListAPIView):
     queryset = CustomAttributes.objects.all()
     serializer_class = CustomAttributesSerializer
 
+class PlaylistsView(generics.ListAPIView):
+    queryset = Playlists.objects.all()
+    serializer_class = PlaylistSerializer
+
+
 
 
 #Load Users HomePage 
