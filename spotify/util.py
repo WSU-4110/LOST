@@ -281,7 +281,7 @@ def findMoodSongs(email, attribute):
 def findActivitySongs(email, attribute):
     #List the trackIDs with the mood attribute
     songs = Database.objects.values_list('trackID', flat=True).filter(userEmail=email, activity=attribute)
-    return songs
+    return songs 
 
 
 def isLocation(attribute):
