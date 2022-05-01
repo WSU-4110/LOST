@@ -36,7 +36,7 @@
 * `templates/frontend` 
 * `Babel.config.json` - Reroutes the pages so you can go to different pages from the React app 
 * `webpack.config.js` - Bundles all of our Javascript files into one file 
-### `spotify`
+### `spotify`- Django Spotify folder for Spotify API calls
 # merge
 git checkout main (switched to brain 'main')
 git merge [Name of Branch]
