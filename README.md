@@ -9,6 +9,8 @@ Framework: `Django REST Framework `
 
 Languages: `Python` `React.js` `HTML` `CSS`
 
+Design: `Figma` `Material-UI`
+
 Database: `SQLite`
 
 API: `Spotify` 
