@@ -1,4 +1,7 @@
 # LOST
+## Description 
+## Functionalities
+## Contributors 
 ## Prerequisites
 Python - https://www.python.org/downloads/ 
 
