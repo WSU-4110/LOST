@@ -1,6 +1,11 @@
 # LOST
+
 ## Description 
-## Functionalities
+LOST – short for Life OST (Original Sound Track) - is a website that will use algorithms to play the perfect songs for each unique user based on time, location, activity, and even customizable filters. It will allow users to attach any song they listen to a customizable value which will be used to create ‘the perfect playlist’. Pre-defined values will range from locations, emotions, memories, time, and activities, and will also allow users to define their own. LOST will then use this data of the user and other users to create new playlists. These playlists will be a mix of familiar and new songs to give the listener a sense of familiarity while also introducing new songs and artists. After an initial collection of data, the user will have allowed the software to become aware of their music taste and suggest the perfect songs with just one click of a button.  
+
+## Current Functionalities
+
+
 ## Contributors 
 - Kylie Lee 
 - Cristina Powers
