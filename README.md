@@ -49,7 +49,7 @@ cd frontend and install the following
 * `tests.py` - Used to test views or models 
 * `urls.py` - API urls 
 * `views.py` - Code responsible for rendering our API endpoints
-### `frontend`
+### `frontend`- React & Frontend folder
 * `migrations`
 * `src` 
 * `components` folder holds all React page components 
