@@ -2,6 +2,12 @@
 ## Description 
 ## Functionalities
 ## Contributors 
+- Kylie Lee 
+- Cristina Powers
+- Anthony Jones
+- Kelly Whitlock
+- Masrur Tajwar
+
 ## Prerequisites
 Python - https://www.python.org/downloads/ 
 
