@@ -10,15 +10,15 @@ LOST – short for Life OST (Original Sound Track) - is a website that will use 
 <a name="technicalities"/>
 ## Technicalities 
 
-Framework: `Django REST Framework `
+- Framework: `Django REST Framework `
 
-Languages: `Python` `React.js` `HTML` `CSS`
+- Languages: `Python` `React.js` `HTML` `CSS`
 
-Design: `Figma` `Material-UI`
+- Design: `Figma` `Material-UI`
 
-Database: `SQLite`
+- Database: `SQLite`
 
-API: `Spotify` 
+- API: `Spotify` 
 
 <a name="functionalities"/>
 
@@ -94,8 +94,8 @@ API: `Spotify`
 <a name="contributors"/>
 
 ## Contributors 
-- Kylie Lee 
-- Cristina Powers
-- Anthony Jones
-- Kelly Whitlock
-- Masrur Tajwar
+- Kylie Lee  -  [@kcgalee](https://github.com/kcgalee)
+- Cristina Powers -  [@cristinanoelle11](https://github.com/cristinanoelle11)
+- Anthony Jones -  [@ajones00](https://github.com/ajones00)
+- Kelly Whitlock -  [@kelbel272](https://github.com/kelbel272)
+- Masrur Tajwar -  [@masrurtajwar](https://github.com/masrurtajwar)
