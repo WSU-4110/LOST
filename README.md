@@ -84,3 +84,4 @@ API: `Spotify`
 * `webpack.config.js` - Bundles all of our Javascript files into one file 
 ### `spotify`- Django Spotify folder for Spotify API calls
 ## Mockup
+<img src="frontend/images/LOST-Mockup-1.png" height="300"> <img src="frontend/images/LOST-Mockup-2.png" height="300">
